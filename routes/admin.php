@@ -13,8 +13,30 @@ Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(functio
             'guest:admin',
             $limiter ? 'throttle:'.$limiter : null,
         ]));
-        Route::view('home','home')->middleware('auth:admin')->name('home');
+
+    Route::view('home','home')->middleware('auth:admin')->name('home');
+
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth:admin')
         ->name('logout');
+
+    Route::get('/','Admin\DashboardController@index')->middleware('auth:admin');
+    Route::get('/dashboard','Admin\DashboardController@index')->middleware('auth:admin')->name('dashboard');
+    Route::resource('/admin','Admin\AdminController')->middleware('auth:admin');
+    Route::get(
+        'admin/{id}/delete',
+        [
+            'uses' => 'Admin\AdminController@destroy',
+            'as' => 'admin.admin.destroy'
+        ]
+    );
+    Route::resource('/user','Admin\UserController')->middleware('auth:admin');
+    Route::get(
+        'user/{id}/delete',
+        [
+            'uses' => 'Admin\UserController@destroy',
+            'as' => 'admin.user.destroy'
+        ]
+    );
 });
+
