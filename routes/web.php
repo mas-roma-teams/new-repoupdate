@@ -44,10 +44,12 @@ Route::prefix('user')->group(function () {
 	Route::group(['middleware' => 'auth'], function() {
 		Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
-		
+
    });
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+require __DIR__ .'/admin.php';
