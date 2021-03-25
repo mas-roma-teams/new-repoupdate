@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'table_prefix' => 'indonesia_',
+   // 'indonesia' => [
+   //      'table_prefix' => 'id_',
+   //  ],
     'route' => [
         'enabled' => false,
         'middleware' => ['web', 'auth'],
@@ -14,3 +16,4 @@ return [
         'enabled' => false,
     ],
 ];
+

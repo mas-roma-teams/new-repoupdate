@@ -27,7 +27,7 @@
    
 
     <script src="{{ asset('themes/frontend/js/jquery-3.5.1.slim.min.js') }}"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> -->
     <script src="{{ asset('themes/frontend/js/popper.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/slick.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/bootstrap.min.js') }}"></script>
