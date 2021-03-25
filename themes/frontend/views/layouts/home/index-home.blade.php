@@ -19,13 +19,13 @@
   
       <div class="for_slick_slider center my-5">
       
-      <!-- looping banner -->
-      @foreach( $banner as $banners )
-        <div class="items">
-          <img src="{{ $banners->photo_banner  }}" alt="">
-        </div>
-      @endforeach
-      <!-- end looping banner -->
+        <!-- looping banner -->
+        @foreach( $banner as $banners )
+          <div class="items">
+            <img src="{{ $banners->photo_banner  }}" alt="">
+          </div>
+        @endforeach
+        <!-- end looping banner -->
       
           
         

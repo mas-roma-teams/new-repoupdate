@@ -18,13 +18,13 @@ use App\Http\Controllers\JasasController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // HOME ROUTE
-Route::get('/testinghome', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index']);
 
 // VENDOR ROUTE
 Route::get('/vendors', [VendorsController::class,'index']);
@@ -44,9 +44,14 @@ Route::prefix('user')->group(function () {
 	Route::group(['middleware' => 'auth'], function() {
 		Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
+		// LOGIN USER
+		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
 
    });
 });
+
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

@@ -54,6 +54,20 @@
             });
     </script>
 
+    <script>
+    function relocate_login()
+    {
+         location.href = "{{ route('login') }}";
+    } 
+    </script>
+
+     <script>
+    function relocate_register()
+    {
+         location.href = "{{ route('register') }}";
+    } 
+    </script>
+
    <script>
     window.addEventListener('DOMContentLoaded', function() {
        $(function () {

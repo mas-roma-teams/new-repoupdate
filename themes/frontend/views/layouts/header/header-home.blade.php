@@ -8,9 +8,53 @@
                 <img src="{{ asset('themes/frontend/images/category-point.png') }}" alt="">
               </div>
 
+
               <div class="d-flex">
-                <button class="btn-login mr-3">Masuk</button>
-                <button class="btn-regis">Daftar</button>
+
+                @guest
+                  @if (Route::has('login'))
+                      <input type="button" class="btn-login mr-3" value="{{ __('Login') }}" onclick=" relocate_login()">
+                      
+                  @endif
+
+                  @if (Route::has('register'))
+                      <input type="button" class="btn-regis" value="{{ __('Register') }}" onclick=" relocate_register()">
+                  @endif
+                @else
+                
+                
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     {{ Auth::user()->name }}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <a class="dropdown-item" type="button">Dashboard</a>
+                    <a class="dropdown-item" type="button">Edit Profile</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                       {{ __('Logout') }}
+                    </a>
+                    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                  
+                  </div>
+                </div>
+                @endguest
               </div>
             </div>
             <div class="d-flex justify-content-center">
