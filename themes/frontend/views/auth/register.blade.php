@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
               <label for="notel">Nomor Handphone</label>
-              <input type="text" class="form-control" id="notel" aria-describedby="emailHelp">
+              <input type="text" class="form-control" name="no_tlp" id="notel" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
               <label for="email">Alamat Email</label>
