@@ -34,5 +34,7 @@ class CreateNewUser implements CreatesNewUsers
             'no_tlp' => $input['no_tlp'],
             'password' => Hash::make($input['password']),
         ]);
+
+        
     }
 }
