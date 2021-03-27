@@ -97,9 +97,10 @@
                         }
 
                         if(len > 0) {
+
                             // Read Data Create Option
                             for(var i=0; i<len; i++) {
-                                var id = response[i].id;
+                                var province_id = response[i].province_id;
                                 var name = response[i].name;
                                 var option = "<option value='"+id+"'>"+name+"</option>";
 
