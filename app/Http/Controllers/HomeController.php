@@ -10,6 +10,7 @@ use App\Models\Vendors;
 
 
 
+
 class HomeController extends Controller
 {
     /**
@@ -24,6 +25,9 @@ class HomeController extends Controller
         $banner = Banner::All();
         $jasas = Jasas::All();
         $vendors = DB::select('select * from vendors limit 12');
+
+        // Fetch Province
+
         // $jasas = DB::select('SELECT jasas.nama_jasa,photo_jasa vendors.alamat_lengkap, FROM jasas INNER JOIN vendors ON jasas.id=vendors.id;');
 
             // var_dump($vendors);exit;

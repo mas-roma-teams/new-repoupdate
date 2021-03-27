@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\JasasController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -22,6 +23,15 @@ use App\Http\Controllers\JasasController;
 //     return view('welcome');
 // });
 
+
+// GET PROVINSI  - KOTA
+Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );
+Route::get('/getCitys/{provice_id}', [VendorsController::class, 'getCitys'] );
+
+
+
+// ROUTE LOGIN USER ADMIN
+Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 // HOME ROUTE
 Route::get('/', [HomeController::class,'index']);
@@ -58,3 +68,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 require __DIR__ .'/admin.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

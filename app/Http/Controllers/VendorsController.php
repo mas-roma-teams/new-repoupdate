@@ -10,6 +10,8 @@ use App\Models\Kategoris;
 use App\Models\Ratings_Place;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
+use App\Models\IndoProv;
+use App\Models\IndoCity;
 
 
 class VendorsController extends Controller
@@ -28,10 +30,47 @@ class VendorsController extends Controller
         $provinces = Province::pluck('name', 'id');
         // $cities = City::where('province_id', $request->get('id'))
         // return response()->json($cities);
-        return view('layouts.vendors.index',compact('kategoris','rating_place','vendors',['vendors'=> $vendors]),[
+
+        //Fetch Provinces
+        $provincess = IndoProv::orderby("name","asc")
+                                        ->select('id','name')->get();
+
+
+        // Get kota
+       
+
+        return view('layouts.vendors.index',compact(
+            'kategoris','rating_place',
+            'provincess', ['provincess' => $provincess],
+            'vendors',    ['vendors'=> $vendors]),
+        [
             'provinces' => $provinces,
-        ]);
+        ]
+
+    );
     }   
+
+    public function getCity($provincessid=0){
+
+         $cityData['data'] = IndoCity::orderby("name","asc")
+                    ->select('province_id','name')
+                    ->where('id',$provincessid)
+                    ->get();
+         var_dump( $cityData['data']);exit;
+        return response()->json($cityData);
+    }
+
+    public function getCitys($province_id){
+
+         $citysData['data'] = IndoCity::orderby("name","asc")
+                    ->select('province_id','name')
+                    ->where('province_id',$province_id)
+                    ->get();
+         echo( $citysData['data']);exit;
+        return response()->json($citysData);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

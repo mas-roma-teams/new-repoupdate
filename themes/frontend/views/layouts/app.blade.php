@@ -27,7 +27,8 @@
    
 
     <script src="{{ asset('themes/frontend/js/jquery-3.5.1.slim.min.js') }}"></script>
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> -->
+    <script src="{{ asset('themes/frontend/js/jquery-3.6.0.min.js') }}"></script>
+<!--     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> -->
     <script src="{{ asset('themes/frontend/js/popper.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/slick.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/bootstrap.min.js') }}"></script>
@@ -68,30 +69,47 @@
     } 
     </script>
 
-   <script>
-    window.addEventListener('DOMContentLoaded', function() {
-       $(function () {
-            $.ajaxSetup({
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-            });
+   <script type="text/javascript">
+       $(document).ready(function() {
+            // Province change
 
-            $('#province').change(function () {
+            $('#province').change(function(){
+
+                // Province id
+                var id =  $(this).val();
+                var province_id =  $(this).val();
+                console.log(id);
+                console.log(province_id);
+
+                // Empty DropDown
+                $('#city').find('option').not(':first').remove();
+
+                // AJAX Request
                 $.ajax({
-                    url: '{{ route('vendorsprovice.store') }}',
-                    method: 'POST',
-                    data: {id: $(this).val()},
-                    success: function (response) {
-                        $('#city').empty();
+                    url: 'getCitys/'+ province_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success : function(response){
 
-                        $.each(response, function (id, name) {
-                            $('#city').append(new Option(name, id))
-                        })
+                        var len = 0;
+                        if(response != null){
+                            len = response.length;
+                        }
+
+                        if(len > 0) {
+                            // Read Data Create Option
+                            for(var i=0; i<len; i++) {
+                                var id = response[i].id;
+                                var name = response[i].name;
+                                var option = "<option value='"+id+"'>"+name+"</option>";
+
+                            $("#city").append(option);  
+                            }
+                        }
                     }
                 })
-            });
-        });
-    });
-
+            })
+       })
    </script>
   </body>
 </html>
