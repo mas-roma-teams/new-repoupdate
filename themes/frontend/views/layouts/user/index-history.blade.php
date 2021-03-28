@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-8 col-sm-7">
           <!-- INCLUDE HISTORY VENDOR  -->
-          @include('layouts.profile-user.user-p')
+          @include('layouts.profile-user.history-vendor')
           <!-- INCLUDE HISTORY VENDOR  -->
          
 

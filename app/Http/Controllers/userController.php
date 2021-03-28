@@ -22,6 +22,25 @@ class userController extends Controller
         return view('layouts.user.index');
     }
 
+
+    public function gethistory()
+    {
+        //
+        return view('layouts.user.index-history');
+    }
+
+    public function getstatustransaksi()
+    {
+        //
+        return view('layouts.user.index-status-transaksi');
+    }
+
+
+    public function getprofileuser()
+    {
+        //
+        return view('layouts.user.index-profile-user');
+    }
     /**
      * Show the form for creating a new resource.
      *

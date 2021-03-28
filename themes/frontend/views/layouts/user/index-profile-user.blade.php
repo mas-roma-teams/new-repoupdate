@@ -16,8 +16,7 @@
         </div>
         <div class="col-md-8 col-sm-7">
           <!-- INCLUDE HISTORY VENDOR  -->
-          @include('layouts.profile-user.user-p')
-          <!-- INCLUDE HISTORY VENDOR  -->
+          @include('layouts.profile-user.user-profile')
          
 
          <!-- INCLUDE STATUS TRANSAKSI  -->

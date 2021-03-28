@@ -63,7 +63,12 @@ Route::prefix('user')->group(function () {
 		// LOGIN USER
 		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
 		Route::get('/dashboard',[userController::class, 'index'])->name('layots.user.index');
-		// Auth::routes();
+		Route::get('/dashboard/history',[userController::class, 'gethistory'])->name('history');
+
+		Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
+
+		Route::get('/dashboard/profile',[userController::class, 'getprofileuser'])->name('profile');
+		
    });
 });
 
