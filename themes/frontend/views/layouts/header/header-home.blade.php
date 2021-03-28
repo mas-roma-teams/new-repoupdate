@@ -37,7 +37,7 @@
                       Dropdown button
                     </button> -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Dashboard Saya</a>
+                      <a class="dropdown-item" href="{{ route('layots.user.index') }}">Dashboard Saya</a>
                       <a class="dropdown-item" href="#">Edit Profile</a>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();

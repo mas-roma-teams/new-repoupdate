@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\JasasController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\userController;
+
 
 
 /*
@@ -31,7 +33,11 @@ Route::get('/getCitys/{provice_id}', [VendorsController::class, 'getCitys'] );
 
 
 // ROUTE LOGIN USER ADMIN
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('user/home', [HomeController::class, 'userHome'])->name('user.index')->middleware('is_admin');
+
+
+
+
 
 // HOME ROUTE
 Route::get('/', [HomeController::class,'index']);
@@ -56,9 +62,14 @@ Route::prefix('user')->group(function () {
 
 		// LOGIN USER
 		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
-
+		Route::get('/dashboard',[userController::class, 'index'])->name('layots.user.index');
+		// Auth::routes();
    });
 });
+
+
+
+
 
 
 
