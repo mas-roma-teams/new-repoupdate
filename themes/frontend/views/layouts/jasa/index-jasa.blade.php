@@ -20,10 +20,10 @@
             @include('layouts.bar-right.kategori')
             
             <!-- INCLUDE LAYUOUT WILAYAH -->
-            @include('layouts.bar-right.daerah')
+            @include('layouts.bar-right.daerah-select-option') 
 
             <!-- INCLUDE LAYOUT RATINGS BAR -->
-            @include('layouts.bar-right.ratings')
+           {{-- @include('layouts.bar-right.ratings') --}} 
           </div>
           <div class="col-lf-9 col-md-8 col-7">
 
@@ -37,7 +37,7 @@
                  <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                   <div class="card-body no-paddingleft">
                     <h4 class="mb-2">{{ $jasa->nama_jasa }}</h4>
-                    <p class="mb-2 font-light">{{ $jasa->nama_daerah  }}</p>
+                    <p class="mb-2 font-light">kosong</p>
                     <div class="d-flex mb-2">
                     <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
                     <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">

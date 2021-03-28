@@ -20,10 +20,10 @@
             @include('layouts.bar-right.kategori')
             
             <!-- INCLUDE LAYUOUT WILAYAH -->
-            @include('layouts.bar-right.daerah-select-option')
+           @include('layouts.bar-right.daerah-select-option') 
 
             <!-- INCLUDE LAYOUT RATINGS BAR -->
-            @include('layouts.bar-right.ratings')
+             {{-- @include('layouts.bar-right.ratings') --}} 
           </div>
           <div class="col-lf-9 col-md-8 col-7">
 

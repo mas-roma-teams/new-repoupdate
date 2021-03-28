@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Ratings_Place;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
+use App\Models\IndoProv;
+use App\Models\IndoCity;
 
 
 class JasasController extends Controller
@@ -24,9 +26,21 @@ class JasasController extends Controller
         $kategoris = Kategoris::All();
         $rating_place = Ratings_Place::All();
         $jasas = DB::table('jasas')->paginate(9);
-        return view('layouts.jasa.index-jasa',compact('kategoris','rating_place','jasas',['jasas'=> $jasas]));
+        $provincess = IndoProv::orderby("name","asc")
+                                        ->select('id','name')->get();
+        return view('layouts.jasa.index-jasa',compact('kategoris','provincess', ['provincess' => $provincess],'rating_place','jasas',['jasas'=> $jasas]));
     }
 
+
+    public function getCitys($province_id){
+
+         $citysData['data'] = IndoCity::orderby("name","asc")
+                    ->select('province_id','name')
+                    ->where('province_id',$province_id)
+                    ->get();
+         echo( $citysData['data']);exit;
+        return response()->json($citysData);
+    }
     /**
      * Show the form for creating a new resource.
      *
