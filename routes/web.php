@@ -68,7 +68,7 @@ Route::prefix('user')->group(function () {
 		Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
 
 		Route::get('/dashboard/profile',[userController::class, 'getprofileuser'])->name('profile');
-		
+
    });
 });
 
@@ -85,10 +85,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 require __DIR__ .'/admin.php';
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
