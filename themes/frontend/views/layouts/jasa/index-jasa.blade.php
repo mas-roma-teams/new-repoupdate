@@ -38,14 +38,13 @@
                   <div class="card-body no-paddingleft">
                     <h4 class="mb-2">{{ $jasa->nama_jasa }}</h4>
                     <p class="mb-2 font-light">kosong</p>
-                    <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-4" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    <div class="alert alert-danger" role="alert">
+                      Dilihat : 0 
                     </div>
-                    
+
+                    <div class="alert alert-success" role="alert">
+                      Jumlah Transaksi : 0
+                    </div>
                   </div>
                 </div>
               </div>

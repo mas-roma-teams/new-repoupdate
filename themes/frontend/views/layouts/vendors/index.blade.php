@@ -33,18 +33,22 @@
             <div class="row">
               @foreach ( $vendors as $vendor )
               <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card noborder">
+                <div class="cardo noborder">
                  <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $vendor->nama_vendor }}">
                   <div class="card-body no-paddingleft">
                     <a href="{{ url('/vendors/detail/'.$vendor->id) }}"><h4 class="mb-2">{{ $vendor->nama_vendor }}</h4></a>
                     <p class="mb-2 font-light">{{ $vendor->alamat_lengkap  }}</p>
-                    <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-4" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    </div>
+                   <span class="float-left">
+                    <i class="fa fa-eye"></i> 200
+                   
+
+                   </span>
+
+                   <span class="float-right">
+                    
+                    <i class="fas fa-shopping-cart"></i> 76 
+
+                   </span>
                     
                   </div>
                 </div>

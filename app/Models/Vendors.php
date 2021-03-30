@@ -32,7 +32,7 @@ class Vendors extends Model
 
     public function jasas()
 	{
-	    return $this->belongsTo(Jasas::class);
+	    return $this->hasMany(Jasas::class);
 	}
 }
 

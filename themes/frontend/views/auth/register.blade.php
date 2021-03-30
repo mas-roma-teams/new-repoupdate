@@ -31,7 +31,7 @@
 
             </div>
             <div class="form-group">
-              <label for="notel">Nomor Handphone</label>
+              <label for="notel">Nomor Whatsapp</label>
               <input type="text" class="form-control" name="no_tlp" id="notel" aria-describedby="emailHelp">
             </div>
             <div class="form-group">

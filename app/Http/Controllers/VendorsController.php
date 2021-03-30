@@ -7,7 +7,7 @@ use App\Models\Jasas;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Kategoris;
-use App\Models\Ratings_Place;
+// use App\Models\Ratings_Place;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\IndoProv;
@@ -25,9 +25,23 @@ class VendorsController extends Controller
     {
         //
         $vendors = DB::table('vendors')->paginate(9);
-        $rating_place = Ratings_Place::All();
+        // $rating_place = Ratings_Place::All();
         $kategoris = Kategoris::All();
         $provinces = Province::pluck('name', 'id');
+        // $vendors = Vendors::lastest()->get();
+        // $jasa = Jasas::all();
+        // $vendors2 = Vendors::join('jasas', 'jasas.vendor_id', '=', 'vendors.id')
+        //        ->get();
+
+        // $vendors3 = Jasas::join('vendors', 'vendors.id', '=', 'jasas.vendor_id')
+        //       ->join('transaksis', 'transaksis.vendor_id', '=', 'vendors.id')
+        //       ->get('vendors.*', 'jasas.vendor_id', 'vendors');
+
+        // $testing = DB::table('vendors')
+        //     ->join('jasas', 'vendors.id', '=', 'jasas.vendor_id')
+        //     ->join('transaksis', 'vendors.id', '=', 'transaksis.vendor_id')
+        //     ->select('vendors.*', 'jasas.dilihat')
+        //     ->get();
         // $cities = City::where('province_id', $request->get('id'))
         // return response()->json($cities);
 
@@ -40,7 +54,10 @@ class VendorsController extends Controller
        
 
         return view('layouts.vendors.index',compact(
-            'kategoris','rating_place',
+            'kategoris',
+          
+            'vendors',
+            
             'provincess', ['provincess' => $provincess],
             'vendors',    ['vendors'=> $vendors]),
         [
