@@ -34,6 +34,11 @@ class AdminController extends Controller
         return view('admin.add');
     }
 
+    public function show()
+    {
+
+    }
+
     public function store(Request $request)
     {
         $messages = [
