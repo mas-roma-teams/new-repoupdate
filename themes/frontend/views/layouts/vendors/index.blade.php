@@ -38,17 +38,7 @@
                   <div class="card-body no-paddingleft">
                     <a href="{{ url('/vendors/detail/'.$vendor->id) }}"><h4 class="mb-2">{{ $vendor->nama_vendor }}</h4></a>
                     <p class="mb-2 font-light">{{ $vendor->alamat_lengkap  }}</p>
-                   <span class="float-left">
-                    <i class="fa fa-eye"></i> 200
                    
-
-                   </span>
-
-                   <span class="float-right">
-                    
-                    <i class="fas fa-shopping-cart"></i> 76 
-
-                   </span>
                     
                   </div>
                 </div>

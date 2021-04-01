@@ -25,10 +25,22 @@ class JasasController extends Controller
         //
         $kategoris = Kategoris::All();
         $rating_place = Ratings_Place::All();
-        $jasas = DB::table('jasas')->paginate(9);
+        $jasas = DB::table('jasas')->paginate(6);
         $provincess = IndoProv::orderby("name","asc")
-                                        ->select('id','name')->get();
-        return view('layouts.jasa.index-jasa',compact('kategoris','provincess', ['provincess' => $provincess],'rating_place','jasas',['jasas'=> $jasas]));
+                    ->select('id','name')->get();
+        $jasas_new = Jasas::All();
+
+        $jasas_new = DB::table('jasas')
+            ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
+            ->get();
+
+        $jasas_count = $jasas_new->count();
+       
+
+        // dd($jasas_new);
+
+
+        return view('layouts.jasa.index-jasa',compact('kategoris','provincess','jasas_new','jasas', 'jasas_count', ['provincess' => $provincess],'rating_place','jasas',['jasas'=> $jasas]));
     }
 
 

@@ -24,12 +24,13 @@ class VendorsController extends Controller
     public function index()
     {
         //
-        $vendors = DB::table('vendors')->paginate(9);
+        $vendors = DB::table('vendors')->paginate(6);
         // $rating_place = Ratings_Place::All();
         $kategoris = Kategoris::All();
         $provinces = Province::pluck('name', 'id');
         // $vendors = Vendors::lastest()->get();
-        // $jasa = Jasas::all();
+        // $jasa = Transaksis::groupBy('user_id')->count();
+        // dd($jasa);
         // $vendors2 = Vendors::join('jasas', 'jasas.vendor_id', '=', 'vendors.id')
         //        ->get();
 

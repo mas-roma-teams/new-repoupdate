@@ -37,14 +37,18 @@
                  <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                   <div class="card-body no-paddingleft">
                     <h4 class="mb-2">{{ $jasa->nama_jasa }}</h4>
-                    <p class="mb-2 font-light">kosong</p>
-                    <div class="alert alert-danger" role="alert">
-                      Dilihat : 0 
-                    </div>
+                    <p class="mb-2 font-light">{{ $jasa->deskripsi }}</p>
+                    <span class="float-left">
+                    <i class="fa fa-eye"></i>{{ $jasa->dilihat }}
+                   
 
-                    <div class="alert alert-success" role="alert">
-                      Jumlah Transaksi : 0
-                    </div>
+                   </span>
+
+                   <span class="float-right">
+                    
+                    <i class="fas fa-shopping-cart"></i>  {{ $jasas_count }}
+
+                   </span>
                   </div>
                 </div>
               </div>
