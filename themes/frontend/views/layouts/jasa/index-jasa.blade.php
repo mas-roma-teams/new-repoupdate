@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
- <!-- INCLUDE HEADER -->
-  @include('layouts.header.header-home')
- <!-- END INCLUDE HEADER -->
-
 <div class="container">
       <div class="title w-75 mx-auto mb-5">
         <h1 class="text-center color-primary text-ptserif mb-5">Temukan kebutuhan untuk moment pernikahan anda</h1>

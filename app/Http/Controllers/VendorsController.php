@@ -25,48 +25,23 @@ class VendorsController extends Controller
     {
         //
         $vendors = DB::table('vendors')->paginate(6);
-        // $rating_place = Ratings_Place::All();
         $kategoris = Kategoris::All();
         $provinces = Province::pluck('name', 'id');
-        // $vendors = Vendors::lastest()->get();
-        // $jasa = Transaksis::groupBy('user_id')->count();
-        // dd($jasa);
-        // $vendors2 = Vendors::join('jasas', 'jasas.vendor_id', '=', 'vendors.id')
-        //        ->get();
-
-        // $vendors3 = Jasas::join('vendors', 'vendors.id', '=', 'jasas.vendor_id')
-        //       ->join('transaksis', 'transaksis.vendor_id', '=', 'vendors.id')
-        //       ->get('vendors.*', 'jasas.vendor_id', 'vendors');
-
-        // $testing = DB::table('vendors')
-        //     ->join('jasas', 'vendors.id', '=', 'jasas.vendor_id')
-        //     ->join('transaksis', 'vendors.id', '=', 'transaksis.vendor_id')
-        //     ->select('vendors.*', 'jasas.dilihat')
-        //     ->get();
-        // $cities = City::where('province_id', $request->get('id'))
-        // return response()->json($cities);
-
-        //Fetch Provinces
+       
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
-
-
-        // Get kota
        
 
         return view('layouts.vendors.index',compact(
             'kategoris',
-          
             'vendors',
-            
             'provincess', ['provincess' => $provincess],
             'vendors',    ['vendors'=> $vendors]),
-        [
-            'provinces' => $provinces,
-        ]
-
-    );
+            ['provinces' => $provinces,]
+        );
     }   
+
+
 
     public function getCity($provincessid=0){
 
@@ -77,6 +52,8 @@ class VendorsController extends Controller
          var_dump( $cityData['data']);exit;
         return response()->json($cityData);
     }
+
+    
 
     public function getCitys($province_id){
 

@@ -40,8 +40,18 @@ class JasasController extends Controller
         // dd($jasas_new);
 
 
-        return view('layouts.jasa.index-jasa',compact('kategoris','provincess','jasas_new','jasas', 'jasas_count', ['provincess' => $provincess],'rating_place','jasas',['jasas'=> $jasas]));
-    }
+        return view('layouts.jasa.index-jasa',compact(
+            'kategoris',
+            'provincess',
+            'jasas_new',
+            'jasas',
+            'jasas_count', 
+            ['provincess' => $provincess],
+            'rating_place',
+            'jasas',
+            ['jasas'=> $jasas])
+        );
+     }
 
 
     public function getCitys($province_id){

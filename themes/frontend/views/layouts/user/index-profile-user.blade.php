@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
- <!-- INCLUDE HEADER -->
-  @include('layouts.header.header-home')
- <!-- END INCLUDE HEADER -->
+
 <div class="container">
       <div class="text-right mb-4">
         <button type="button" class="btn btn-primary px-5">
@@ -23,6 +21,11 @@
          {{-- @include('layouts.profile-user.status-transaksi') --}}
 
          <!-- INCLUDE STATUS TRANSAKSI  -->
+
+         <!-- INCLUDE MODAL USER CRUD  -->
+         @include('layouts.user.modal-edit-user')
+
+         <!-- END MODAL USER CRUD  -->
         </div>
       </div>
 </div>
