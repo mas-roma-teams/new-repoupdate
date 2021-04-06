@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<!-- INCLUDE HEADER -->
-    @include('layouts.header.header-home')
-    <!-- END INCLUDE HEADER -->
-
 <div class="container">
       <div class="title w-75 mx-auto mb-5">
         <h1 class="text-center color-primary text-ptserif mb-5">Temukan kebutuhan untuk moment pernikahan anda</h1>
@@ -17,7 +13,7 @@
         <div class="row">
           <div class="col-lg-3 col-md-4 col-5">
             <!-- INCLUDE LAYOUT BAR KATEGORI -->
-           {{-- @include('layouts.bar-right.kategori') --}}
+            @include('layouts.bar-right.kategori')
             
             <!-- INCLUDE LAYUOUT WILAYAH -->
             @include('layouts.bar-right.daerah-select-option') 

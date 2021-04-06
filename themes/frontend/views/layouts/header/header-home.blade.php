@@ -1,3 +1,4 @@
+  
 <header class="py-5">
         <div class="container">
           <div class="desktop">
@@ -37,7 +38,7 @@
                       Dropdown button
                     </button> -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="{{ route('layots.user.index') }}">Dashboard Saya</a>
+                      <a class="dropdown-item" href="{{ url('/user/dashboard/'. Auth::user()->id) }}">Dashboard Saya</a>
                       <a class="dropdown-item" href="#">Edit Profile</a>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();

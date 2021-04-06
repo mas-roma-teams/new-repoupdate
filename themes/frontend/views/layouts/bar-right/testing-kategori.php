@@ -1,30 +1,30 @@
-
+<form class="form" method="GET">
     <div class="border-sort">
 
-              <!-- <h4 class="text-ptserif">Kategori Vendor</h4> -->
-               <h3>Refine By:<span class="_t-item">(0 items)</span></h3>
-              <div class="col-12 p-0" id="catFilters"></div>
+              <h4 class="text-ptserif">Kategori Vendor</h4>
               <hr>
-               <?php $counter=0; ?>
-              @if(!empty($kategoris))
-              @foreach ($kategoris as $category)
-              <div class="form-check mb-3">
+              <form action="" method="GET">
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="all">
+                  <label class="h5 form-check-label font-regular" for="all">
+                    Semua
+                  </label>
+                </div>
+               @foreach ( $kategoris as $kategori)
+               
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" name="kategori[]" value="{{ $kategori->id }} "id="{{ $kategori->nama_kategori }}" 
+                 
+                  />
+                  <label class="h5 form-check-label font-regular" for="{{ $kategori->nama_kategori }}">
+                    {{ $kategori->nama_kategori }}
+                  </label>
+
                   
-                
-                <div class="custom-control custom-checkbox">
-                <input type="checkbox" {{($counter == 0 ? 'checked' : '')}}
-                attr-name="{{$category->nama_kategori}}"
-                class="custom-control-input category_checkbox" id="{{$category->id}}">
-                <label class="custom-control-label"
-                for="{{$category->id}}">{{ucfirst($category->nama_kategori)}}</label>
                 </div>
 
-              </div>
-              <?php $counter++; ?>
-              @endforeach
-              @endif
 
-
+                @endforeach
 
               <h4 class="text-ptserif">Sortir Wilayah</h4>
               <hr>
@@ -52,3 +52,4 @@
                   <button type="submit" class="btn btn-primary btn-block">Submit</button>
               
       </div>
+</form>

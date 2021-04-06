@@ -10,6 +10,7 @@ use App\Http\Controllers\userController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,7 @@ use App\Http\Controllers\userController;
 // GET PROVINSI  - KOTA
 Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );
 Route::get('/getCitys/{provice_id}', [VendorsController::class, 'getCitys'] );
+Route::get('get/{id}', 'CategoryController@get_causes_against_category');
 
 
 
@@ -53,21 +55,26 @@ Route::post('vendorsprovices', 'VendorsController@store')
 
 // JASA ROUTE
 Route::get('/jasa-list', [JasasController::class,'index']);
+Route::post('testingdata/{id}', 'JasasController@getJasaCategory')
+    ->name('testingdata');
 
 Route::view('/home','home')->middleware('auth');
 
 Route::prefix('user')->group(function () {
 	Route::group(['middleware' => 'auth'], function() {
-		Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
+		// Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
 		// LOGIN USER
 		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
-		Route::get('/dashboard',[userController::class, 'index'])->name('layots.user.index');
+		Route::get('/user/dashboard/{id}',[userController::class, 'index'])->name('layots.user');
 		Route::get('/dashboard/history',[userController::class, 'gethistory'])->name('history');
+		Route::get('/dashboard/{id}',[userController::class,'show'])->name('users.edit');
 
 		Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
 
 		Route::get('/dashboard/profile',[userController::class, 'getprofileuser'])->name('profile');
+
+		Route::resource('user', userController::class);
 
    });
 });

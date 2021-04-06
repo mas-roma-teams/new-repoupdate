@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
+<!-- INCLUDE HEADER -->
+    @include('layouts.header.header-home')
+    <!-- END INCLUDE HEADER -->
 
 <div class="container">
       <div class="text-right mb-4">

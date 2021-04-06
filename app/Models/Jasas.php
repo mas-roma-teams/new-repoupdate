@@ -31,4 +31,9 @@ class Jasas extends Model
 	{
 	    return $this->belongsTo(Vendors::class);
 	}
+
+    public function kategoris()
+    {
+        return $this->hasMany(Jasas::class);
+    }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.app')
     @section('content')
+
+    <!-- INCLUDE HEADER -->
+    @include('layouts.header.header-home')
+    <!-- END INCLUDE HEADER -->
     <div id="content">
      
       <div class="container">
@@ -54,13 +58,7 @@
                 <div class="card-body">
                   <h4 class="mb-2">{{ $vendor->nama_vendor }}</h4>
                   <p class="mb-2 font-light">{{ $vendor->alamat_lengkap  }}</p>
-                  <div class="d-flex">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -81,14 +79,18 @@
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2">{{ $jasa->nama_jasa }}</h4>
                   <p class="mb-2 font-light">{{ $jasa->nama_daerah }}</p>
-                  <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                  </div>
-                  <h2 class="text-primary text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2>
+                  <span class="float-left">
+                    <i class="fa fa-eye"></i>{{ $jasa->dilihat }}
+                   
+
+                   </span>
+
+                   <span class="float-right">
+                    
+                    <i class="fas fa-shopping-cart"></i>  {{ $jasas_count }}
+
+                   </span>
+                  {{-- <h2 class="text-primary text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2> --}}
                 </div>
               </div>
             </div>
@@ -112,12 +114,36 @@
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                 
+                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+
+             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <div class="card noborder">
+                <img src="{{ asset('themes/frontend/images/jasa-1.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body no-paddingleft">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                 
+                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+
+             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <div class="card noborder">
+                <img src="{{ asset('themes/frontend/images/jasa-1.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body no-paddingleft">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    
+                    
+                    
+                    
+                    
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -131,47 +157,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                  </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
-                </div>
-              </div>
-            </div>
-
-             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <div class="card noborder">
-                <img src="{{ asset('themes/frontend/images/jasa-1.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body no-paddingleft">
-                  <h4 class="mb-2">Wedding March Factory</h4>
-                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                  </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
-                </div>
-              </div>
-            </div>
-
-             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <div class="card noborder">
-                <img src="{{ asset('themes/frontend/images/jasa-1.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body no-paddingleft">
-                  <h4 class="mb-2">Wedding March Factory</h4>
-                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    
+                    
+                    
+                    
+                    
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -195,11 +185,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    
+                    
+                    
+                    
+                    
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -213,11 +203,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    
+                    
+                    
+                    
+                    
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -231,11 +221,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    
+                    
+                    
+                    
+                    
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -249,11 +239,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
-                    <img class="mr-2" src="{{ asset('themes/frontend/images/star-full.png') }}" alt="">
+                    
+                    
+                    
+                    
+                    
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>

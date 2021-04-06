@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class userController extends Controller
 {
@@ -71,6 +72,8 @@ class userController extends Controller
     public function show($id)
     {
         //
+        $users = User::findOrFail($id);
+        return view('layouts.user.index-profile-user',compact('users'));
     }
 
     /**
@@ -91,10 +94,23 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, User $users)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'no_tlp' => 'required',
+        ]);
+ 
+        $users->update($request->all());
+        var_dump($users);exit;
+ 
+        return redirect()->route('posts.index')
+                        ->with('success','Post updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

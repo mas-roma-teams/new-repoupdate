@@ -20,12 +20,20 @@ class JasasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $datakategori =[];
         $kategoris = Kategoris::All();
         $rating_place = Ratings_Place::All();
-        $jasas = DB::table('jasas')->paginate(6);
+        $jasas = DB::table('jasas')
+        ->Where(function ($query) use($datakategori) {
+            for ($i = 0; $i < count($datakategori ); $i++){
+                  $query->Where('kategori_id', $datakategori);
+            }  
+        })
+        ->paginate(6);
+        
         $provincess = IndoProv::orderby("name","asc")
                     ->select('id','name')->get();
         $jasas_new = Jasas::All();
@@ -34,16 +42,23 @@ class JasasController extends Controller
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
             ->get();
 
+        $getJasaCat = DB::table('kategoris')
+            ->join('jasas', 'kategoris.id', '=', 'jasas.kategori_id')
+            ->get();
+
+
         $jasas_count = $jasas_new->count();
        
 
         // dd($jasas_new);
 
 
-        return view('layouts.jasa.index-jasa',compact(
+        return view('layouts.jasa.jasa-testing',compact(
             'kategoris',
             'provincess',
             'jasas_new',
+            'getJasaCat',
+        
             'jasas',
             'jasas_count', 
             ['provincess' => $provincess],
@@ -52,6 +67,38 @@ class JasasController extends Controller
             ['jasas'=> $jasas])
         );
      }
+
+     public function getJasaCategory($id){
+        $getJasaCat = DB::table('kategoris')
+            ->join('jasas', 'kategoris.id', '=', 'jasas.kategoris_id')
+            ->get();
+
+        return view('layouts.jasa.jasa-testing',compact(
+            'kategoris',
+            'provincess',
+            'jasas_new',
+            'getJasaCat',
+            'jasas',
+            'jasas_count', 
+            ['provincess' => $provincess],
+            'rating_place',
+            'jasas',
+            ['jasas'=> $jasas])
+        );
+     }
+
+
+       public function get_jasa_per_kategori($id){
+     
+         $data = DB::table
+         ('jasas as jasa')->
+         selectRaw('
+            (Select photo_jasa from categories where id = sub_cat.category_id) as cat_image,  
+            (Select title from categories where id = sub_cat.category_id) as cat_title')
+         ->whereRaw('category_id IN ('.$id.')')->get();
+
+        echo json_encode($data);
+    }
 
 
     public function getCitys($province_id){

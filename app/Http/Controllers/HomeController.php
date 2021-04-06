@@ -36,13 +36,21 @@ class HomeController extends Controller
         $banner = Banner::All();
         $jasas = Jasas::All();
         $vendors = DB::select('select * from vendors limit 12');
+         $jasas_new = DB::table('jasas')
+            ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
+            ->get();
+
+       
+
+
+        $jasas_count = $jasas_new->count();
 
         // Fetch Province
 
         // $jasas = DB::select('SELECT jasas.nama_jasa,photo_jasa vendors.alamat_lengkap, FROM jasas INNER JOIN vendors ON jasas.id=vendors.id;');
 
             // var_dump($vendors);exit;
-        return view('layouts.home.index-home',compact(array('banner','kategoris','jasas','vendors')));
+        return view('layouts.home.index-home',compact(array('jasas_count','banner','kategoris','jasas','vendors')));
     }
 
     /**
