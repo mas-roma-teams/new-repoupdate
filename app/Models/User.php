@@ -31,7 +31,8 @@ class User extends Authenticatable
         'no_tlp',
         'email',
         'password',
-        'is_admin',
+        'vendor_status',
+        'google_id',
 
     ];
 

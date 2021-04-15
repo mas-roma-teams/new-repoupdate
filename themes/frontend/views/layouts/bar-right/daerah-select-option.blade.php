@@ -1,9 +1,8 @@
 
     <div class="border-sort">
 
-              <!-- <h4 class="text-ptserif">Kategori Vendor</h4> -->
-               <h3>Refine By:<span class="_t-item">(0 items)</span></h3>
-              <div class="col-12 p-0" id="catFilters"></div>
+              <h4 class="text-ptserif">Kategori Vendor</h4>
+               
               <hr>
                <?php $counter=0; ?>
               @if(!empty($kategoris))

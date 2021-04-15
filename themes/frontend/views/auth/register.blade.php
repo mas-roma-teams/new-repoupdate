@@ -19,6 +19,7 @@
           <h2 class="h3 font-regular text-center text-secondary mb-5">Daftarkan dirimu sekarang untuk mendapatkan penawaran exclusive</h2>
           <form action="{{ route('register') }}" method="POST">
             @csrf
+            <!-- <input type="text" name="vendor_status" value="0"> -->
             <div class="form-group">
               <label for="name">Nama Pengguna</label>
              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -85,7 +86,7 @@
                 <p class="mb-0">or</p>
               </div>
             </div>
-            <a class="btn btn-outline-dark w-100 py-2 mb-4"><img class="mr-4 icon-google" src="{{ asset('themes/frontend/images/icon-google.svg') }}"> Sign in with Google</a> 
+            <a href="{{ url('auth/google') }}" class="btn btn-outline-dark w-100 py-2 mb-4"><img class="mr-4 icon-google" src="{{ asset('themes/frontend/images/icon-google.svg') }}"> Sign in with Google</a> 
 
             <button type="submit" class="btn btn-booking py-2">
                                     {{ __('Register') }}

@@ -53,7 +53,7 @@ class JasasController extends Controller
         // dd($jasas_new);
 
 
-        return view('layouts.jasa.jasa-testing',compact(
+        return view('layouts.jasa.index-jasa',compact(
             'kategoris',
             'provincess',
             'jasas_new',
@@ -68,38 +68,6 @@ class JasasController extends Controller
         );
      }
 
-     public function getJasaCategory($id){
-        $getJasaCat = DB::table('kategoris')
-            ->join('jasas', 'kategoris.id', '=', 'jasas.kategoris_id')
-            ->get();
-
-        return view('layouts.jasa.jasa-testing',compact(
-            'kategoris',
-            'provincess',
-            'jasas_new',
-            'getJasaCat',
-            'jasas',
-            'jasas_count', 
-            ['provincess' => $provincess],
-            'rating_place',
-            'jasas',
-            ['jasas'=> $jasas])
-        );
-     }
-
-
-       public function get_jasa_per_kategori($id){
-     
-         $data = DB::table
-         ('jasas as jasa')->
-         selectRaw('
-            (Select photo_jasa from categories where id = sub_cat.category_id) as cat_image,  
-            (Select title from categories where id = sub_cat.category_id) as cat_title')
-         ->whereRaw('category_id IN ('.$id.')')->get();
-
-        echo json_encode($data);
-    }
-
 
     public function getCitys($province_id){
 
@@ -110,6 +78,41 @@ class JasasController extends Controller
          echo( $citysData['data']);exit;
         return response()->json($citysData);
     }
+
+
+
+    public function getJasaBanyakDicari()
+    {
+        //
+        $provincess = IndoProv::orderby("name","asc")
+                    ->select('id','name')->get();
+                    
+        $jasas_news = Jasas::orderBy('dilihat','desc')->paginate(9);
+        // dd($jasas_news);
+        $jasas_new = DB::table('jasas')
+            ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
+            ->get();
+
+        $getJasaCat = DB::table('kategoris')
+            ->join('jasas', 'kategoris.id', '=', 'jasas.kategori_id')
+            ->get();
+
+
+        $jasas_count = $jasas_new->count();
+        
+         $kategoris = Kategoris::All();
+        return view('layouts.jasa.index-jasa-dicari',compact(
+            'kategoris',
+            'provincess',
+            'jasas_news',
+           
+            'jasas_count', 
+            ['provincess' => $provincess],
+           
+           )
+        );
+     }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -119,6 +122,8 @@ class JasasController extends Controller
     {
         //
     }
+
+
 
     /**
      * Store a newly created resource in storage.

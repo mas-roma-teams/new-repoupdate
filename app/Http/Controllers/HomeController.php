@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Models\Banner;
 use App\Models\Kategoris;
 use App\Models\Jasas;
 use App\Models\Vendors;
-
+use Laravel\Socialite\Facades\Socialite;
 
 
 

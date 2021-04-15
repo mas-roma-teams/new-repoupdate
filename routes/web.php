@@ -7,7 +7,7 @@ use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\JasasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\userController;
-
+use App\Http\Controllers\GoogleController;
 
 
 
@@ -55,11 +55,14 @@ Route::post('vendorsprovices', 'VendorsController@store')
 
 // JASA ROUTE
 Route::get('/jasa-list', [JasasController::class,'index']);
+Route::get('/jasa-banyak-dicari', [JasasController::class,'getJasaBanyakDicari']);
 Route::post('testingdata/{id}', 'JasasController@getJasaCategory')
     ->name('testingdata');
 
 Route::view('/home','home')->middleware('auth');
 
+
+//Route Log
 Route::prefix('user')->group(function () {
 	Route::group(['middleware' => 'auth'], function() {
 		// Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
@@ -76,8 +79,16 @@ Route::prefix('user')->group(function () {
 
 		Route::resource('user', userController::class);
 
+		
+
+
    });
 });
+
+Route::get('/dashboard/testaja',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

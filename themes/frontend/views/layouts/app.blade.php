@@ -160,6 +160,7 @@
                             for(var i=0; i<len; i++) {
                                 var province_id = response[i].province_id;
                                 var name = response[i].name;
+                                var option = "<option value='""'>- Pilih Data -</option>";
                                 var option = "<option value='"+id+"'>"+name+"</option>";
 
                             $("#city").append(option);  

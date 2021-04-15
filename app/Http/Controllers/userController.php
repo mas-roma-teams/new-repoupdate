@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Transaksis;
+use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
+use Auth;
 
 class userController extends Controller
 {
@@ -30,10 +34,18 @@ class userController extends Controller
         return view('layouts.user.index-history');
     }
 
-    public function getstatustransaksi()
+    public function getstatustransaksi(Request $request)
     {
-        //
-        return view('layouts.user.index-status-transaksi');
+
+        // Auth::user()->id; berfungsi untuk menampilkan data berdasarkan session login
+        $getuserid = Auth::user()->id;
+        $getstatus = DB::table('transaksis')
+        ->join('users', 'transaksis.user_id', '=', 'users.id')
+        ->where('user_id', $getuserid)->get();
+
+
+      // dd($getstatus);
+        return view('layouts.user.index-status-transaksi',compact('getstatus'))->with(['getuserid' => $getuserid]);
     }
 
 
@@ -103,12 +115,11 @@ class userController extends Controller
             'password' => 'required',
             'no_tlp' => 'required',
         ]);
- 
+        var_dump($request);exit;
         $users->update($request->all());
-        var_dump($users);exit;
+        
  
-        return redirect()->route('posts.index')
-                        ->with('success','Post updated successfully');
+        return redirect()->back()->with('success_message','any message you want');
     }
 
 
