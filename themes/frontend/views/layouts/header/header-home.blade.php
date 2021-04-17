@@ -1,9 +1,9 @@
-  
+
 <header class="py-5">
         <div class="container">
           <div class="desktop">
             <div class="d-flex align-items-center justify-content-between mb-5">
-              
+
               <div class="d-flex align-items-center">
                 <img class="mr-5" src="{{ asset('themes/frontend/images/logo.png') }}" alt="">
                 <img src="{{ asset('themes/frontend/images/category-point.png') }}" alt="">
@@ -15,7 +15,7 @@
                 @guest
                   @if (Route::has('login'))
                       <input type="button" class="btn-login mr-3" value="{{ __('Login') }}" onclick=" relocate_login()">
-                      
+
                   @endif
 
                   @if (Route::has('register'))
@@ -27,25 +27,27 @@
                   <img class="mr-4" src="{{ asset('themes/frontend/images/icon-calendar.png') }}" alt="">
                   <img class="mr-4" src="{{ asset('themes/frontend/images/icon-notif.png') }}" alt="">
                   <div class="d-flex align-items-center ml-3">
+                    <h5 class="text-bold mr-3 btn btn-me">Jadi Vendor</h5>
                     <div class="profile small mr-2">
                       <img src="{{ asset('themes/frontend/images/ex-profile-1.jpg') }}" alt="">
                     </div>
                     <h5 class="text-bold">{{ Auth::user()->name }}</h5>
                     <i class="fa fa-angle-down ml-3" aria-hidden="true" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
-                    
+
                    <!--  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Dropdown button
                     </button> -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="{{ url('/user/dashboard/'. Auth::user()->id) }}">Dashboard Saya</a>
+
                       <a class="dropdown-item" href="#">Edit Profile</a>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                            {{ __('Logout') }}
                         </a>
-                        
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
@@ -62,12 +64,12 @@
                             </form>
                         </div>
                     </div>
-                 
+
                   </div>
 
                 </div>
-                
-                
+
+
                 @endguest
               </div>
             </div>
@@ -91,7 +93,7 @@
             </div>
           </div>
 
-          
+
           <!-- <div id="menuside-nonlogin" class="d-flex flex-column align-items-center">
             <i class="fas fa-times" onclick="closeSidemenu()" style="position: absolute; right: 5%; top: 10%; font-size: 20px; cursor: pointer;"></i>
             <img src="{{ asset('assets/images/logo.png') }}" alt="">

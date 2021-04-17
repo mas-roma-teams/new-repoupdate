@@ -39,11 +39,14 @@ class userController extends Controller
 
         // Auth::user()->id; berfungsi untuk menampilkan data berdasarkan session login
         $getuserid = Auth::user()->id;
-        $getstatus = DB::table('transaksis')
-        ->join('users', 'transaksis.user_id', '=', 'users.id')
-        ->join('vendors', 'transaksis.vendor_id', '=', 'vendors.id')
-        ->where('user_id', $getuserid)
-        ->where('vendors.id','transaksis.vendor_id')->get();
+        // $getstatus = DB::table('transaksis')
+        // ->join('users', 'transaksis.user_id', '=', 'users.id')
+        // ->join('vendors', 'transaksis.vendor_id', '=', 'vendors.id')
+        // ->where('user_id', $getuserid)
+        // ->where('vendors.id','transaksis.vendor_id')->get();
+
+        $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
+        dd($transaksiPerId);
 
 
       dd($getstatus);
@@ -119,8 +122,8 @@ class userController extends Controller
         ]);
         var_dump($request);exit;
         $users->update($request->all());
-        
- 
+
+
         return redirect()->back()->with('success_message','any message you want');
     }
 

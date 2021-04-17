@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('themes/frontend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/frontend/scss/index.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('themes/frontend/css/style.css')}}">
     <title>Hello, world!</title>
   </head>
   <body style="overflow-x: hidden;">
-    
 
-    
+
+
 
 
     <!-- START CONTENT -->
@@ -32,12 +32,12 @@
 
     <!-- @include('layouts.user.modal-chat-user') -->
 
-    
 
-    
 
-    
-   
+
+
+
+
 
     <script src="{{ asset('themes/frontend/js/jquery-3.5.1.slim.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/jquery-3.6.0.min.js') }}"></script>
@@ -47,7 +47,7 @@
     <script src="{{ asset('themes/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/app.js') }}" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
+
         <script type="text/javascript">
             $(function () {
                 $("#toggle_pwd").click(function () {
@@ -72,14 +72,14 @@
     function relocate_login()
     {
          location.href = "{{ route('login') }}";
-    } 
+    }
     </script>
 
      <script>
     function relocate_register()
     {
          location.href = "{{ route('register') }}";
-    } 
+    }
     </script>
 
    <script type="text/javascript">
@@ -117,7 +117,7 @@
                                 var name = response[i].name;
                                 var option = "<option value='"+id+"'>"+name+"</option>";
 
-                            $("#city").append(option);  
+                            $("#city").append(option);
                             }
                         }
                     }
@@ -163,7 +163,7 @@
                                 var option = "<option value='""'>- Pilih Data -</option>";
                                 var option = "<option value='"+id+"'>"+name+"</option>";
 
-                            $("#city").append(option);  
+                            $("#city").append(option);
                             }
                         }
                     }
