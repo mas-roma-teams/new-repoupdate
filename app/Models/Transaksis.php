@@ -13,6 +13,6 @@ class Transaksis extends Model
 
     public function vendor()
     {
-        return $this->belongsTo(Vendors::class,'vendor_id');
+        return $this->belongsTo(Vendors::class);
     }
 }

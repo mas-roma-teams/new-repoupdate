@@ -13,13 +13,13 @@
       </div>
       <!-- INCLUDE SIDE MENU PROFILE USER -->
       @include('layouts.bar-right.list-menu-user')
-      
+
         </div>
         <div class="col-md-8 col-sm-7">
           <!-- INCLUDE HISTORY VENDOR  -->
          {{--  @include('layouts.profile-user.history-vendor')  --}}
           <!-- INCLUDE HISTORY VENDOR  -->
-         
+
 
          <!-- INCLUDE STATUS TRANSAKSI  -->
          @include('layouts.profile-user.status-transaksi')

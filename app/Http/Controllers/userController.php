@@ -46,11 +46,12 @@ class userController extends Controller
         // ->where('vendors.id','transaksis.vendor_id')->get();
 
         $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
-        dd($transaksiPerId);
+        // dd($transaksiPerId);
 
 
-      dd($getstatus);
-        return view('layouts.user.index-status-transaksi',compact('getstatus'))->with(['getuserid' => $getuserid]);
+
+      // dd($getstatus);
+        return view('layouts.user.index-status-transaksi',compact('transaksiPerId'))->with(['getuserid' => $getuserid]);
     }
 
 
