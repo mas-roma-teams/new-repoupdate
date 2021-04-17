@@ -8,7 +8,7 @@
 <div class="container">
       <div class="text-right mb-4">
         <button type="button" class="btn px-5" style="background-color: #E78A6E; color: white;">
-          Gabung jadi mitra
+          Gabung jadi vendor
         </button>
       </div>
       <!-- INCLUDE SIDE MENU PROFILE USER -->

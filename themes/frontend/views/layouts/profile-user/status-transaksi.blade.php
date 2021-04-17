@@ -30,46 +30,10 @@
                     <div class="list-transaksi w-100 p-3 mb-4">
                       <div class="d-flex align-items-center">
                         <div class="profile small mr-3">
-                          <img src="images/ex-profile-1.jpg" alt="">
+                          <img src="{{ asset('images/ex-profile-1.jpg') }}" alt="">
                         </div>
                         <div class="d-flex flex-column">
                           <h5 class="font-medium">Gilang Ramadhan Utama</h5>
-                          <p>12 November 2020, 20:40</p>
-                        </div>
-                      </div>
-                      <div class="btn-negosiasi">Negosiasi</div>
-                    </div>
-                    <div class="list-transaksi w-100 p-3 mb-4">
-                      <div class="d-flex align-items-center">
-                        <div class="profile small mr-3">
-                          <img src="images/ex-profile-1.jpg" alt="">
-                        </div>
-                        <div class="d-flex flex-column">
-                          <h5 class="font-medium">Ahmad Nudin</h5>
-                          <p>12 November 2020, 20:40</p>
-                        </div>
-                      </div>
-                      <div class="btn-negosiasi">Negosiasi</div>
-                    </div>
-                    <div class="list-transaksi w-100 p-3 mb-4">
-                      <div class="d-flex align-items-center">
-                        <div class="profile small mr-3">
-                          <img src="images/ex-profile-1.jpg" alt="">
-                        </div>
-                        <div class="d-flex flex-column">
-                          <h5 class="font-medium">Putra Siregar</h5>
-                          <p>12 November 2020, 20:40</p>
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-outline-danger">Bayar sekarang</button>
-                    </div>
-                    <div class="list-transaksi w-100 p-3 mb-4">
-                      <div class="d-flex align-items-center">
-                        <div class="profile small mr-3">
-                          <img src="images/ex-profile-1.jpg" alt="">
-                        </div>
-                        <div class="d-flex flex-column">
-                          <h5 class="font-medium">Nasuha Ahmad</h5>
                           <p>12 November 2020, 20:40</p>
                         </div>
                       </div>
