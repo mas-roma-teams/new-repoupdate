@@ -71,13 +71,13 @@
                 @endguest
               </div>
             </div>
-            <div class="d-flex justify-content-center">
+            {{-- <div class="d-flex justify-content-center">
               <a href="{{ url('/vendors') }}" class="text-regular text-secondary mx-3">Vendor disekitarmu</a>
               <a href="{{ url('/jasa-list') }}" class="text-regular text-secondary mx-3">Jasa disekitarmu</a>
               <a href="{{ url('/jasa-banyak-dicari') }}" class="text-regular text-secondary mx-3">Jasa yang paling dicari</a>
               <a href="" class="text-regular text-secondary mx-3">Jasa terbaik</a>
               <a href="" class="text-regular text-secondary mx-3">Jasa top bulan ini</a>
-            </div>
+            </div> --}}
           </div>
           <div class="mobile">
             <div class="d-flex align-items-center justify-content-between mb-5">

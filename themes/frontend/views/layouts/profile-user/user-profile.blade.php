@@ -26,7 +26,7 @@
                 </ul>
 
                 <br>
-               <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+               <button type="button" class="btn btn-block" data-toggle="modal" data-target="#exampleModal" style="background-color: #E78A6E; color: white;">
                 EDIT PROFILE
               </button>
 
@@ -120,7 +120,7 @@
                      
                    
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save changes</button>
+                      <button type="submit" class="btn" style="background-color: #E78A6E; color: white;">Save changes</button>
                      </form>
                     </div>
                   </div>

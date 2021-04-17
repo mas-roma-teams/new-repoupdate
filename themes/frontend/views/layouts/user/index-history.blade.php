@@ -7,7 +7,7 @@
 
 <div class="container">
       <div class="text-right mb-4">
-        <button type="button" class="btn btn-primary px-5">
+        <button type="button" class="btn btn-primary px-5" style="background-color: #E78A6E; color: white;">
           Gabung jadi mitra
         </button>
       </div>

@@ -9,30 +9,20 @@
                 </li>
 
 
-                {{-- <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation">
                   <a class="nav-link" id="pills-negosiasi-tab" data-toggle="pill" href="#pills-negosiasi" role="tab" aria-controls="pills-negosiasi" aria-selected="false">Negosiasi</a>
                 </li>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link" id="pills-dealing-tab" data-toggle="pill" href="#pills-dealing" role="tab" aria-controls="pills-dealing" aria-selected="false">Dealing</a>
-                </li> --}} 
+                </li> 
 
-                @foreach( $getstatus as $statue )
+              
                 <li class="nav-item" role="presentation">
                   <a class="nav-link" id="pills-dibayar-tab" data-toggle="pill" href="#pills-dibayar" role="tab" aria-controls="pills-dibayar" aria-selected="false">
-                    
-                    @if ($statue->status == 0 )
-                    Menunggu Pembayaran
-                    @elseif ($statue->status == 1)
-                    Menunggu Hari H
-                    @elseif ($statue->status == 2)
-                    Menunggu Pelunasan
-                    @elseif ($statue->status == 3)
-                    Pembatalan
-                    @endif
-
+                    Sudah Di Bayar
                   </a>
                 </li>
-                @endforeach
+                
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">

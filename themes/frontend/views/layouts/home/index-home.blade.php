@@ -48,7 +48,7 @@
           <h2 class="text-ptserif mb-2">Vendor disekitarmu</h2>
           <div class="d-flex justify-content-between mb-3">
             <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
-            <a href="" class="h5 font-regular color-primary text-bold link">lihat semua</a>
+            <a href="{{ url('/vendors') }}" class="h5 font-regular color-primary text-bold link">lihat semua</a>
           </div>
           <div class="row">
             @foreach( $vendors as $vendor )
@@ -69,7 +69,7 @@
           <h2 class="text-ptserif mb-2">Jasa disekitarmu</h2>
           <div class="d-flex justify-content-between mb-3">
             <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
-            <a href="" class="h5 font-regular color-primary text-bold link">lihat semua</a>
+            <a href="{{ url('/jasa-list') }}" class="h5 font-regular color-primary text-bold link">lihat semua</a>
           </div>
           <div class="row">
             @foreach( $jasas as $jasa )
@@ -100,7 +100,7 @@
       </div>
   
     
-      <div class="container">
+      {{-- <div class="container">
         <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa terbaik</h2>
           <div class="d-flex justify-content-between mb-3">
@@ -285,7 +285,7 @@
           </div>
          
         </div>
-      </div>
+      </div> --}}
 
       
       
