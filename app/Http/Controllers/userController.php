@@ -41,10 +41,12 @@ class userController extends Controller
         $getuserid = Auth::user()->id;
         $getstatus = DB::table('transaksis')
         ->join('users', 'transaksis.user_id', '=', 'users.id')
-        ->where('user_id', $getuserid)->get();
+        ->join('vendors', 'transaksis.vendor_id', '=', 'vendors.id')
+        ->where('user_id', $getuserid)
+        ->where('vendors.id','transaksis.vendor_id')->get();
 
 
-      // dd($getstatus);
+      dd($getstatus);
         return view('layouts.user.index-status-transaksi',compact('getstatus'))->with(['getuserid' => $getuserid]);
     }
 
