@@ -1,4 +1,4 @@
- 
+
 <style>
   .img-profile {
     float: left;
@@ -14,11 +14,11 @@
           <div class="card mb-5">
             <div class="card-body">
 
-            <div class="col-md-12"> 
-                  
+            <div class="col-md-12">
+
               <img src="https://via.placeholder.com/100x100" class="img-profile">
-              
-              
+
+
                   <ul class="list-group list-group-flush">
                   <li class="list-group-item">{{ $users->name }}</li>
                   <li class="list-group-item">{{ $users->email }}</li>
@@ -26,11 +26,11 @@
                 </ul>
 
                 <br>
-               <button type="button" class="btn btn-block" data-toggle="modal" data-target="#exampleModal" style="background-color: #E78A6E; color: white;">
+               <button type="button" class="btn btn-block btn-me" data-toggle="modal" data-target="#exampleModal" >
                 EDIT PROFILE
               </button>
 
-                
+
             </div>
 
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,7 +84,7 @@
 
                           <label for="password">{{ __('Password') }}</label>
                          <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                          <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> --> 
+                          <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
                             <div class="input-group">
                                 <input class="form-control py-2 border-right-0 border @error('password') is-invalid @enderror" type="password" id="password" name="password" required autocomplete="current-password">
                                 <span class="input-group-append">
@@ -102,7 +102,7 @@
 
                           <label for="password">{{ __('Confirm Password') }}</label>
                          <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                          <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> --> 
+                          <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
                             <div class="input-group">
 
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -116,9 +116,9 @@
                             </span>
                             @enderror
                         </div>
-                      
-                     
-                   
+
+
+
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn" style="background-color: #E78A6E; color: white;">Save changes</button>
                      </form>

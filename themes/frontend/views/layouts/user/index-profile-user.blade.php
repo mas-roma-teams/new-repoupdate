@@ -7,18 +7,18 @@
 
 <div class="container">
       <div class="text-right mb-4">
-        <button type="button" class="btn px-5" style="background-color: #E78A6E; color: white;">
+        <button type="button" class="btn px-5 btn btn-me" >
           Gabung jadi mitra
         </button>
       </div>
       <!-- INCLUDE SIDE MENU PROFILE USER -->
       @include('layouts.bar-right.list-menu-user')
-      
+
         </div>
         <div class="col-md-8 col-sm-7">
           <!-- INCLUDE HISTORY VENDOR  -->
           @include('layouts.profile-user.user-profile')
-         
+
 
          <!-- INCLUDE STATUS TRANSAKSI  -->
          {{-- @include('layouts.profile-user.status-transaksi') --}}
