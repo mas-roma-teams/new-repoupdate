@@ -1,0 +1,10 @@
+.btn-me{
+    background-color: #E78A6E;
+    color:white;
+}
+
+.btn-me:hover{
+    color:#E78A6E;
+background-color: white;
+border: #E78A6E 1px solid;
+}
