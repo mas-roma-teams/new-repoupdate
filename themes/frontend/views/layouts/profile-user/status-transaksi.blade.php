@@ -34,7 +34,7 @@
                             <img src="{{ asset('images/ex-profile-1.jpg') }}" alt="">
                           </div>
                           <div class="d-flex flex-column">
-                            <h5 class="font-medium">@if($row->vendor){{$row->vendor->nama_vendor}} @endif </h5>
+                            <h5 class="font-medium">@if($row->vendor){{$row->vendor->nama_vendor}} @else Tidak ada vendor @endif </h5>
                             <p>12 November 2020, 20:40</p>
                           </div>
                         </div>
