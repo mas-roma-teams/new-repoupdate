@@ -50,6 +50,7 @@ Route::get('vendors/detail/{id}',[VendorsController::class,'show'])->name('vendo
 Route::get('provinces_id/{id}',[VendorsController::class,'store'])->name('provinces_id.store');
 Route::post('vendorsprovices', 'VendorsController@store')
     ->name('vendorsprovice.store');
+Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor');
 
 
 
@@ -79,7 +80,7 @@ Route::prefix('user')->group(function () {
 
 		Route::resource('user', userController::class);
 
-		
+
 
 
    });

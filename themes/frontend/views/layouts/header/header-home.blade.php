@@ -11,7 +11,6 @@
 
 
               <div class="d-flex">
-
                 @guest
                   @if (Route::has('login'))
                       <input type="button" class="btn-login mr-3" value="{{ __('Login') }}" onclick=" relocate_login()">
@@ -27,7 +26,9 @@
                   <img class="mr-4" src="{{ asset('themes/frontend/images/icon-calendar.png') }}" alt="">
                   <img class="mr-4" src="{{ asset('themes/frontend/images/icon-notif.png') }}" alt="">
                   <div class="d-flex align-items-center ml-3">
-                    <h5 class="text-bold mr-3 btn btn-me">Jadi Vendor</h5>
+                      @if(!$cekVendor)
+                    <a href="{{route('vendors.addvendor')}}" class="text-bold mr-3 btn btn-me">Jadi Vendor</a>
+                    @endif
                     <div class="profile small mr-2">
                       <img src="{{ asset('themes/frontend/images/ex-profile-1.jpg') }}" alt="">
                     </div>
@@ -40,7 +41,9 @@
                     </button> -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="{{ url('/user/dashboard/'. Auth::user()->id) }}">Dashboard Saya</a>
-
+                      @if($cekVendor)
+                      <a class="dropdown-item" href="{{ url('/user/dashboard/'. Auth::user()->id) }}">Jasa Saya</a>
+                      @endif
                       <a class="dropdown-item" href="#">Edit Profile</a>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();

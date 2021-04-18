@@ -5,7 +5,7 @@
     @include('layouts.header.header-home')
     <!-- END INCLUDE HEADER -->
     <div id="content">
-     
+
       <div class="container">
         <h1 class="text-center color-primary text-ptserif mb-2">Gunakan jasa kami sekarang</h1>
         <h4 class="text-center font-light w-75 mx-auto mb-4">Rencanakan hari pernikahanmu dengan matang, serta gunakan jasa kami untuk membuat hari penting mu menjadi sangat spesial</h4>
@@ -14,9 +14,9 @@
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
-  
+
       <div class="for_slick_slider center my-5">
-      
+
         <!-- looping banner -->
         @foreach( $banner as $banners )
           <div class="items">
@@ -24,11 +24,11 @@
           </div>
         @endforeach
         <!-- end looping banner -->
-      
-          
-        
+
+
+
       </div>
-  
+
       <div class="container">
         <div class="mb-5">
           <h2 class="text-ptserif mb-2">Kategori</h2>
@@ -58,7 +58,7 @@
                 <div class="card-body">
                   <h4 class="mb-2">{{ $vendor->nama_vendor }}</h4>
                   <p class="mb-2 font-light">{{ $vendor->alamat_lengkap  }}</p>
-                 
+
                 </div>
               </div>
             </div>
@@ -81,12 +81,12 @@
                   <p class="mb-2 font-light">{{ $jasa->nama_daerah }}</p>
                   <span class="float-left">
                     <i class="fa fa-eye"></i>{{ $jasa->dilihat }}
-                   
+
 
                    </span>
 
                    <span class="float-right">
-                    
+
                     <i class="fas fa-shopping-cart"></i>  {{ $jasas_count }}
 
                    </span>
@@ -98,8 +98,8 @@
           </div>
         </div>
       </div>
-  
-    
+
+
       {{-- <div class="container">
         <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa terbaik</h2>
@@ -114,7 +114,7 @@
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                 
+
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                 
+
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
@@ -139,11 +139,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -157,19 +157,19 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
 
-           
+
         </div>
         <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa top bulan ini</h2>
@@ -185,11 +185,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -203,11 +203,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -221,11 +221,11 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
@@ -239,17 +239,17 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
                   <div class="d-flex mb-2">
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                   </div>
                   <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
-           
+
           </div>
         </div>
         <div class="mb-5">
@@ -266,7 +266,7 @@
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
         <div class="mb-5">
@@ -281,14 +281,14 @@
             </div>
             <div class="col-sm-5 mb-4">
               <img src="{{ asset('themes/frontend/images/gallery-2.png') }}" class="img-fluid w-100 h-100" alt="">
-            </div>  
+            </div>
           </div>
-         
+
         </div>
       </div> --}}
 
-      
-      
+
+
 
     </div>
     @endsection

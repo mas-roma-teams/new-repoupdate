@@ -21,16 +21,17 @@ class VendorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
         $vendors = DB::table('vendors')->paginate(6);
         $kategoris = Kategoris::All();
         $provinces = Province::pluck('name', 'id');
-       
+
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
-       
+
 
         return view('layouts.vendors.index',compact(
             'kategoris',
@@ -39,7 +40,7 @@ class VendorsController extends Controller
             'vendors',    ['vendors'=> $vendors]),
             ['provinces' => $provinces,]
         );
-    }   
+    }
 
 
 
@@ -53,7 +54,7 @@ class VendorsController extends Controller
         return response()->json($cityData);
     }
 
-    
+
 
     public function getCitys($province_id){
 
@@ -74,7 +75,7 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.vendors.addvendor');
     }
 
     /**
@@ -87,7 +88,7 @@ class VendorsController extends Controller
     {
         $cities = City::where('province_id', $request->get('id'))
             ->pluck('name', 'id');
-    
+
         return response()->json($cities);
     }
 
