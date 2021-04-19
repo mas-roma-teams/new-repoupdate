@@ -11,6 +11,8 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\IndoProv;
 use App\Models\IndoCity;
+use App\Models\Vendors;
+use Auth;
 
 
 class JasasController extends Controller
@@ -30,10 +32,10 @@ class JasasController extends Controller
         ->Where(function ($query) use($datakategori) {
             for ($i = 0; $i < count($datakategori ); $i++){
                   $query->Where('kategori_id', $datakategori);
-            }  
+            }
         })
         ->paginate(6);
-        
+
         $provincess = IndoProv::orderby("name","asc")
                     ->select('id','name')->get();
         $jasas_new = Jasas::All();
@@ -48,8 +50,13 @@ class JasasController extends Controller
 
 
         $jasas_count = $jasas_new->count();
-       
 
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         // dd($jasas_new);
 
 
@@ -58,9 +65,9 @@ class JasasController extends Controller
             'provincess',
             'jasas_new',
             'getJasaCat',
-        
+'cekVendor',
             'jasas',
-            'jasas_count', 
+            'jasas_count',
             ['provincess' => $provincess],
             'rating_place',
             'jasas',
@@ -86,7 +93,7 @@ class JasasController extends Controller
         //
         $provincess = IndoProv::orderby("name","asc")
                     ->select('id','name')->get();
-                    
+
         $jasas_news = Jasas::orderBy('dilihat','desc')->paginate(9);
         // dd($jasas_news);
         $jasas_new = DB::table('jasas')
@@ -99,20 +106,20 @@ class JasasController extends Controller
 
 
         $jasas_count = $jasas_new->count();
-        
+
          $kategoris = Kategoris::All();
         return view('layouts.jasa.index-jasa-dicari',compact(
             'kategoris',
             'provincess',
             'jasas_news',
-           
-            'jasas_count', 
+
+            'jasas_count',
             ['provincess' => $provincess],
-           
+
            )
         );
      }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -146,7 +153,7 @@ class JasasController extends Controller
     {
         //
         // $jasas = Jasas::findOrFail($id);
-        
+
 
     }
 

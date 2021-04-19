@@ -12,6 +12,8 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\IndoProv;
 use App\Models\IndoCity;
+use App\Models\Provinsi;
+use Auth;
 
 
 class VendorsController extends Controller
@@ -32,7 +34,7 @@ class VendorsController extends Controller
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
 
-        
+
         return view('layouts.vendors.index',compact(
             'kategoris',
             'vendors',
@@ -75,7 +77,14 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        return view('layouts.vendors.addvendor');
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $provinsi = Provinsi::all();
+        return view('layouts.vendors.addvendor',compact('cekVendor','provinsi'));
     }
 
     /**

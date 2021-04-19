@@ -40,9 +40,9 @@ class Vendors extends Model
         return $this->belongsTo(Provinsi::class,'provinsi_id');
     }
 
-    public function kelurahan()
+    public function kecamatan()
     {
-        return $this->belongsTo(Provinsi::class,'provinsi_id');
+        return $this->belongsTo(Kecamatan::class,'kecamatan_id');
     }
 
 

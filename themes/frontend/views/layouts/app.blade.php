@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="{{ asset('themes/frontend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/frontend/scss/index.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/frontend/css/style.css')}}">
+     <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
+        integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+    {{-- dropify --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
     <title>Hello, world!</title>
   </head>
   <body style="overflow-x: hidden;">
@@ -47,6 +55,10 @@
     <script src="{{ asset('themes/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/app.js') }}" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- Select2 -->
+<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             $(function () {
@@ -170,6 +182,31 @@
                 })
             })
        })
+   </script>
+   <script>
+   $(function () {
+     //Initialize Select2 Elements
+     $('.select2').select2()
+
+     //Initialize Select2 Elements
+     $('.select2bs4').select2({
+       theme: 'bootstrap4'
+     })
+   });
+ </script>
+
+<script>
+    $('.dropify').dropify({
+       error: {
+           'fileSize': 'File gambar terlalu besar maksimal 2 MB ).',
+           'imageFormat': 'Format gambar hanya JPG, JPEG dan PNG ).'
+       }
+   });
+
+   var drEvent =  $('.dropify.photo_vendor').dropify();
+  drEvent.on('dropify.afterClear', function(event, element){
+  $("#photo_vendor_").val("1");
+  });
    </script>
   </body>
 </html>

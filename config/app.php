@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         Laravolt\Indonesia\ServiceProvider::class,
-        
+        App\Providers\ButtonJoinProvider::class
+
     ],
 
     /*

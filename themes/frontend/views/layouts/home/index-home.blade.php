@@ -57,7 +57,7 @@
                 <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2">{{ substr($jasa->nama_jasa,0,30) }}</h4>
-                  <p class="mb-2 font-light">{{ $jasa->vendors->wilayah->name }}</p>
+                  <p class="mb-2 font-light">{{ ucfirst($jasa->vendors->kecamatan->name) }}, {{ $jasa->vendors->wilayah->name }}</p>
                   <div class="d-flex mb-2">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
