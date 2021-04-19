@@ -10,7 +10,7 @@ class Vendors extends Model
     use HasFactory;
 
 
-    // 
+    //
 
     protected $primaryKey = 'id';
  	protected $table = 'vendors';
@@ -34,6 +34,11 @@ class Vendors extends Model
 	{
 	    return $this->hasMany(Jasas::class);
 	}
+
+    public function wilayah()
+    {
+        return $this->belongsTo(Provinsi::class,'provinsi_id');
+    }
 }
 
 

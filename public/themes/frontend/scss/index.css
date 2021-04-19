@@ -349,7 +349,7 @@ i
 }
 
 .home-section {
-  background-image: url(/images/home-section.jpg);
+  background-image: url('../images/home-section.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;

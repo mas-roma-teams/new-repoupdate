@@ -29,7 +29,7 @@ class Jasas extends Model
    ];
      public function vendors()
 	{
-	    return $this->belongsTo(Vendors::class);
+	    return $this->belongsTo(Vendors::class,'vendor_id');
 	}
 
     public function kategoris()

@@ -45,27 +45,6 @@
           </div>
         </div>
         <div class="mb-5">
-          <h2 class="text-ptserif mb-2">Vendor disekitarmu</h2>
-          <div class="d-flex justify-content-between mb-3">
-            <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
-            <a href="{{ url('/vendors') }}" class="h5 font-regular color-primary text-bold link">lihat semua</a>
-          </div>
-          <div class="row">
-            @foreach( $vendors as $vendor )
-            <div class="col-md-4 col-sm-6 mb-4">
-              <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $vendor->nama_vendor }}">
-                <div class="card-body">
-                  <h4 class="mb-2">{{ $vendor->nama_vendor }}</h4>
-                  <p class="mb-2 font-light">{{ $vendor->alamat_lengkap  }}</p>
-
-                </div>
-              </div>
-            </div>
-            @endforeach
-          </div>
-        </div>
-        <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa disekitarmu</h2>
           <div class="d-flex justify-content-between mb-3">
             <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
@@ -77,9 +56,17 @@
               <div class="card noborder">
                 <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                 <div class="card-body no-paddingleft">
-                  <h4 class="mb-2">{{ $jasa->nama_jasa }}</h4>
-                  <p class="mb-2 font-light">{{ $jasa->nama_daerah }}</p>
-                  <span class="float-left">
+                  <h4 class="mb-2">{{ substr($jasa->nama_jasa,0,30) }}</h4>
+                  <p class="mb-2 font-light">{{ $jasa->vendors->wilayah->name }}</p>
+                  <div class="d-flex mb-2">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                  </div>
+                  <h2 class=" text-ptserif text-orange">Rp 1500.000</h2>
+                  {{-- <span class="float-left">
                     <i class="fa fa-eye"></i>{{ $jasa->dilihat }}
 
 
@@ -89,14 +76,125 @@
 
                     <i class="fas fa-shopping-cart"></i>  {{ $jasas_count }}
 
-                   </span>
-                  {{-- <h2 class="text-primary text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2> --}}
+                   </span> --}}
+                  {{-- <h2 class="text-orange text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2> --}}
                 </div>
               </div>
             </div>
             @endforeach
           </div>
         </div>
+      </div>
+
+      <div class="home-section mb-5">
+        <div class="container">
+          <h2 class="text-ptserif mb-2 text-white">Jasa yang paling dicari</h2>
+          <div class="d-flex justify-content-between mb-3">
+            <h5 class="font-light text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
+            <a href="" class="h5 font-regular color-primary text-bold link text-white">lihat semua</a>
+          </div>
+          <div class="row multiple-items">
+            <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                  <div class="d-flex mb-2">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                  </div>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                  <div class="d-flex mb-2">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                  </div>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                  <div class="d-flex mb-2">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                  </div>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                  <div class="d-flex mb-2">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                  </div>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="mb-5">
+            <h2 class="text-ptserif mb-2">Vendor disekitarmu</h2>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
+              <a href="{{ url('/vendors') }}" class="h5 font-regular color-primary text-bold link">lihat semua</a>
+            </div>
+            <div class="row">
+              @foreach( $vendors as $vendor )
+              <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                  <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $vendor->nama_vendor }}">
+                  <div class="card-body">
+
+                    <h4 class="mb-2">{{ substr($vendor->nama_vendor,0,30) }}</h4>
+                    <p class="mb-2 font-light">{{ substr($vendor->alamat_lengkap,0,40)  }}</p>
+                    <div class="d-flex mb-2">
+                        <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                        <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                        <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                        <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                        <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                      </div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
       </div>
 
 
@@ -115,7 +213,7 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
 
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
@@ -127,7 +225,21 @@
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
 
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
+                </div>
+              </div>
+            </div>
+
+             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <div class="card noborder">
+                <img src="{{ asset('themes/frontend/images/jasa-1.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body no-paddingleft">
+                  <h4 class="mb-2">Wedding March Factory</h4>
+                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                  <div class="d-flex mb-2">
+
+                  </div>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
@@ -145,25 +257,7 @@
 
 
                   </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
-                </div>
-              </div>
-            </div>
-
-             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <div class="card noborder">
-                <img src="{{ asset('themes/frontend/images/jasa-1.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body no-paddingleft">
-                  <h4 class="mb-2">Wedding March Factory</h4>
-                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  <div class="d-flex mb-2">
-
-
-
-
-
-                  </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
@@ -191,7 +285,7 @@
 
 
                   </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
@@ -209,7 +303,7 @@
 
 
                   </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
@@ -227,7 +321,7 @@
 
 
                   </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
@@ -245,7 +339,7 @@
 
 
                   </div>
-                  <h2 class="text-primary text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
             </div>
