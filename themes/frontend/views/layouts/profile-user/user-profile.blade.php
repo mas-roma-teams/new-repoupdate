@@ -16,8 +16,11 @@
 
             <div class="col-md-12">
 
-              <img src="https://via.placeholder.com/100x100" class="img-profile">
-
+                      @if(Auth::user()->photo_profile == true)
+                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="">
+                      @else
+                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" style="width: 213px; float: left;margin-right: 25px;">
+                      @endif
 
                   <ul class="list-group list-group-flush">
                   <li class="list-group-item">{{ $users->name }}</li>
@@ -26,9 +29,9 @@
                 </ul>
 
                 <br>
-               <button type="button" class="btn btn-block btn-me" data-toggle="modal" data-target="#exampleModal" >
+               <a href="{{ url('/user/dashboard/edit/'. Auth::user()->id) }}" class="btn btn-block btn-me" style="margin-top: 92px;">
                 EDIT PROFILE
-              </button>
+              </a>
 
 
             </div>

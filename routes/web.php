@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\JasasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
 
 
@@ -42,7 +43,7 @@ Route::get('user/home', [HomeController::class, 'userHome'])->name('user.index')
 
 
 // HOME ROUTE
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 // VENDOR ROUTE
 Route::get('/vendors', [VendorsController::class,'index']);
@@ -70,6 +71,9 @@ Route::prefix('user')->group(function () {
 		// LOGIN USER
 		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
 		Route::get('/user/dashboard/{id}',[userController::class, 'index'])->name('layots.user');
+
+
+
 		Route::get('/dashboard/history',[userController::class, 'gethistory'])->name('history');
 		Route::get('/dashboard/{id}',[userController::class,'show'])->name('users.edit');
 
@@ -77,13 +81,20 @@ Route::prefix('user')->group(function () {
 
 		Route::get('/dashboard/profile',[userController::class, 'getprofileuser'])->name('profile');
 
-		Route::resource('user', userController::class);
+		// Route::resource('user', userController::class);
 
 		
 
 
    });
 });
+
+Route::get('user/dashboard/edit/{id}',[userController::class, 'edit']);
+
+// Route::resource('users', userController::class);
+
+Route::post('/test/update/{id}',[userController::class, 'update'])->name('testingupdate');
+
 
 Route::get('/dashboard/testaja',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
 

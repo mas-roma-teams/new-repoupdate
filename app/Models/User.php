@@ -28,10 +28,11 @@ class User extends Authenticatable
     
     protected $fillable = [
         'name',
-        'no_tlp',
+        'no_telp',
         'email',
         'password',
         'vendor_status',
+        'photo_profile',
         'google_id',
 
     ];
@@ -65,4 +66,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    function image()
+    {
+        if ($this->image && file_exists(public_path('images/user/' . $this->image)))
+            return asset('images/user/' . $this->image);
+        else
+            return asset('images/user.png');
+    }
 }

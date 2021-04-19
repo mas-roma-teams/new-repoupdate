@@ -45,12 +45,12 @@ class userController extends Controller
         // ->where('user_id', $getuserid)
         // ->where('vendors.id','transaksis.vendor_id')->get();
 
-        $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
-        dd($transaksiPerId);
+        $transaksiPerId = Transaksis::with(['vendor'])->where('user_id', Auth::user()->id)->get();
+        // dd($transaksiPerId);
 
 
-      dd($getstatus);
-        return view('layouts.user.index-status-transaksi',compact('getstatus'))->with(['getuserid' => $getuserid]);
+      // dd($getstatus);
+        return view('layouts.user.index-status-transaksi',compact('transaksiPerId'))->with(['getuserid' => $getuserid]);
     }
 
 
@@ -102,6 +102,8 @@ class userController extends Controller
     public function edit($id)
     {
         //
+        $users = User::findOrFail($id);
+        return view('layouts.user.edit-user',compact('users'));
     }
 
     /**
@@ -111,20 +113,34 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, User $users)
+    public function update(Request $request,$id, User $users)
     {
         //
         $request->validate([
+            'photo_profile'     => 'required|image|mimes:png,jpg,jpeg',
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'no_tlp' => 'required',
         ]);
-        var_dump($request);exit;
-        $users->update($request->all());
+        // var_dump($request);exit;
+        $user = User::findOrFail($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->no_tlp = $request->get('no_tlp');
+        if ($request->hasFile('photo_profile')) {
+            // $post->delete_image();
+            $photo_profile = $request->file('photo_profile');
+            // echo $photo_profile;exit;
+            $name = rand(1000, 9999) . $photo_profile->getClientOriginalName();
+            $photo_profile->move('themes/frontend/images/user', $name);
+            $user->photo_profile = $name;
+        }
+        $user->save();
+        // $users->update($request->all());
 
 
-        return redirect()->back()->with('success_message','any message you want');
+        return redirect()->route('home');
     }
 
 

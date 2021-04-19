@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('themes/frontend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/frontend/scss/index.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/frontend/css/style.css')}}">
-    <title>Hello, world!</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
   </head>
   <body style="overflow-x: hidden;">
 
@@ -29,7 +29,6 @@
     <!-- INCLUDE HEADER -->
     @include('layouts.footer.index')
     <!-- END INCLUDE HEADER -->
-
     <!-- @include('layouts.user.modal-chat-user') -->
 
 

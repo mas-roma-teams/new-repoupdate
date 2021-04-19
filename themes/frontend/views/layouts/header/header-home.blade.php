@@ -29,7 +29,11 @@
                   <div class="d-flex align-items-center ml-3">
                     <h5 class="text-bold mr-3 btn btn-me">Jadi Vendor</h5>
                     <div class="profile small mr-2">
-                      <img src="{{ asset('themes/frontend/images/ex-profile-1.jpg') }}" alt="">
+                      @if(Auth::user()->photo_profile == true)
+                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="">
+                      @else
+                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="">
+                      @endif
                     </div>
                     <h5 class="text-bold">{{ Auth::user()->name }}</h5>
                     <i class="fa fa-angle-down ml-3" aria-hidden="true" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>

@@ -27,18 +27,20 @@
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                   <div class="row px-3">
+                    @foreach( $transaksiPerId as $transaksi)
                     <div class="list-transaksi w-100 p-3 mb-4">
                       <div class="d-flex align-items-center">
                         <div class="profile small mr-3">
                           <img src="{{ asset('images/ex-profile-1.jpg') }}" alt="">
                         </div>
                         <div class="d-flex flex-column">
-                          <h5 class="font-medium">Gilang Ramadhan Utama</h5>
+                          <h5 class="font-medium">{{ $transaksi->vendor }}</h5>
                           <p>12 November 2020, 20:40</p>
                         </div>
                       </div>
                       <div class="btn-negosiasi">Negosiasi</div>
                     </div>
+                    @endforeach
                   </div>
                 </div>
                 <div class="tab-pane fade" id="pills-negosiasi" role="tabpanel" aria-labelledby="pills-negosiasi-tab">Gedung</div>
