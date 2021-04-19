@@ -12,6 +12,8 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\IndoProv;
 use App\Models\IndoCity;
+use App\Models\Provinsi;
+use Auth;
 
 
 class VendorsController extends Controller
@@ -21,16 +23,17 @@ class VendorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
         $vendors = DB::table('vendors')->paginate(6);
         $kategoris = Kategoris::All();
         $provinces = Province::pluck('name', 'id');
-       
+
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
-       
+                                        
 
         return view('layouts.vendors.index',compact(
             'kategoris',
@@ -39,7 +42,7 @@ class VendorsController extends Controller
             'vendors',    ['vendors'=> $vendors]),
             ['provinces' => $provinces,]
         );
-    }   
+    }
 
 
 
@@ -53,7 +56,7 @@ class VendorsController extends Controller
         return response()->json($cityData);
     }
 
-    
+
 
     public function getCitys($province_id){
 
@@ -74,7 +77,14 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        //
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $provinsi = Provinsi::all();
+        return view('layouts.vendors.addvendor',compact('cekVendor','provinsi'));
     }
 
     /**
@@ -87,7 +97,7 @@ class VendorsController extends Controller
     {
         $cities = City::where('province_id', $request->get('id'))
             ->pluck('name', 'id');
-    
+
         return response()->json($cities);
     }
 

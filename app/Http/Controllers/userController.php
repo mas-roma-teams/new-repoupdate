@@ -45,8 +45,16 @@ class userController extends Controller
         // ->where('user_id', $getuserid)
         // ->where('vendors.id','transaksis.vendor_id')->get();
 
+
         $transaksiPerId = Transaksis::with(['vendor'])->where('user_id', Auth::user()->id)->get();
         // dd($transaksiPerId);
+
+
+
+        $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
+        // dd($transaksiPerId);
+
+
 
 
       // dd($getstatus);

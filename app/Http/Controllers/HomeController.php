@@ -7,6 +7,7 @@ use App\Models\Kategoris;
 use App\Models\Jasas;
 use App\Models\Vendors;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -22,7 +23,7 @@ class HomeController extends Controller
     {
         return view('layouts.user.index');
     }
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -30,26 +31,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         $kategoris = Kategoris::All();
         $banner = Banner::All();
-        $jasas = Jasas::All();
+        $jasas = Jasas::with('vendors.wilayah','vendors.kecamatan')->get();
+        // dd($jasas);
         $vendors = DB::select('select * from vendors limit 12');
          $jasas_new = DB::table('jasas')
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
             ->get();
-
-       
-
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
 
         $jasas_count = $jasas_new->count();
 
-        // Fetch Province
-
-        // $jasas = DB::select('SELECT jasas.nama_jasa,photo_jasa vendors.alamat_lengkap, FROM jasas INNER JOIN vendors ON jasas.id=vendors.id;');
-
-            // var_dump($vendors);exit;
-        return view('layouts.home.index-home',compact(array('jasas_count','banner','kategoris','jasas','vendors')));
+        return view('layouts.home.index-home',compact(array('jasas_count','banner','kategoris','jasas','vendors','cekVendor')));
     }
 
     /**
