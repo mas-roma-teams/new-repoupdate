@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Transaksis;
+use App\Models\Vendors;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Auth;
@@ -24,6 +25,11 @@ class userController extends Controller
     public function index()
     {
         //
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         return view('layouts.user.index');
     }
 
@@ -49,7 +55,12 @@ class userController extends Controller
         $transaksiPerId = Transaksis::with(['vendor'])->where('user_id', Auth::user()->id)->get();
         // dd($transaksiPerId);
 
-
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
 
         $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
         // dd($transaksiPerId);
@@ -65,6 +76,11 @@ class userController extends Controller
     public function getprofileuser()
     {
         //
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         return view('layouts.user.index-profile-user');
     }
     /**
@@ -97,8 +113,14 @@ class userController extends Controller
     public function show($id)
     {
         //
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         $users = User::findOrFail($id);
-        return view('layouts.user.index-profile-user',compact('users'));
+        return view('layouts.user.index-profile-user',compact('users','cekVendor','user_id'));
     }
 
     /**
@@ -110,8 +132,14 @@ class userController extends Controller
     public function edit($id)
     {
         //
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         $users = User::findOrFail($id);
-        return view('layouts.user.edit-user',compact('users'));
+        return view('layouts.user.edit-user',compact('users','cekVendor'));
     }
 
     /**

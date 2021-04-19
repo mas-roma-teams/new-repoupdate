@@ -17,7 +17,7 @@
             <div class="col-md-12">
 
                       @if(Auth::user()->photo_profile == true)
-                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="">
+                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="" style="width: 213px; float: left;margin-right: 25px;">
                       @else
                       <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" style="width: 213px; float: left;margin-right: 25px;">
                       @endif

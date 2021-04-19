@@ -35,7 +35,7 @@ class HomeController extends Controller
         $kategoris = Kategoris::All();
         $banner = Banner::All();
         $jasas = Jasas::with('vendors.wilayah','vendors.kecamatan')->get();
-        // dd($jasas);
+         // dd($jasas);
         $vendors = DB::select('select * from vendors limit 12');
          $jasas_new = DB::table('jasas')
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')

@@ -51,10 +51,16 @@
               @enderror
             </div>
 
+            
+
             <div class="form-group">
-              <label for="exampleFormControlFile1">Unggah Gambar Profile</label>
-              <input name="photo_profile" type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
+                            <label for="nama_kategori">Photo Profile</label>
+                            <input type="file" name="photo_profile" class="dropify"
+                                data-allowed-file-extensions="jpg png jpeg" data-max-file-size="2M" />
+                            @error('photo_profile')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
             <div class="form-group">
 
