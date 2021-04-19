@@ -32,7 +32,7 @@ class VendorsController extends Controller
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
 
-
+        
         return view('layouts.vendors.index',compact(
             'kategoris',
             'vendors',
