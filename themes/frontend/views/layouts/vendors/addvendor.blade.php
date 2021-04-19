@@ -48,7 +48,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Whatsapp</label>
-                                    <input type="text" name="kontak" id="kontak" class="form-control">
+                                    <input type="text" name="kontak" id="kontak" placeholder="whatsapp" class="form-control">
                                     <small>No ini akan dijadikan sebagai alat tarnsaksi nego dengan pelanggan anda</small>
                                     @error('kontak')
                                         <small class="text-danger">{{ $message }}</small>
@@ -104,7 +104,7 @@
 
                         <div class="form-group">
                             <label for="">Alamat lengkap</label>
-                            <textarea name="alamat_lengkap" id="alamat_lengkap" class="form-control"></textarea>
+                            <textarea name="alamat_lengkap" id="alamat_lengkap" class="form-control" placeholder="alamat"></textarea>
                             @error('alamat_lengkap')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Nomor KTP</label>
-                            <input type="number" name="ktp" id="ktp" class="form-control">
+                            <input type="number" placeholder="ktp" name="ktp" id="ktp" class="form-control">
                             @error('ktp')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
