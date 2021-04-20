@@ -54,21 +54,9 @@
                 <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2"><a href="">{{ substr($jasa->nama_jasa,0,30) }}</a></h4>
-                  <p class="mb-2 font-light">{{ ucfirst($jasa->vendors->kecamatan->name) }}, {{ $jasa->vendors->wilayah->name }}</p> 
-                  
-                  <h2 class=" text-ptserif text-orange">Rp 1500.000</h2>
-                  {{-- <span class="float-left">
-                    <i class="fa fa-eye"></i>{{ $jasa->dilihat }}
+                  <p class="mb-2 font-light">{{ ucfirst($jasa->vendors->kecamatan->name) }}, {{ $jasa->vendors->wilayah->name }}</p>
+                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2>
 
-
-                   </span>
-
-                   <span class="float-right">
-
-                    <i class="fas fa-shopping-cart"></i>  {{ $jasas_count }}
-
-                   </span> --}}
-                  {{-- <h2 class="text-orange text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2> --}}
                 </div>
               </div>
             </div>
@@ -85,14 +73,14 @@
             <a href="" class="h5 font-regular color-primary text-bold link text-white">lihat semua</a>
           </div>
           <div class="row multiple-items">
-            
+
             <div class="col-4 mb-4">
               <div class="card">
                 <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  
+
                   <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
@@ -103,7 +91,7 @@
                 <div class="card-body">
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  
+
                   <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
@@ -114,7 +102,7 @@
                 <div class="card-body">
                   <h4 class="mb-2">Wedding March Factory</h4>
                   <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  
+
                   <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
                 </div>
               </div>
@@ -139,7 +127,7 @@
 
                     <h4 class="mb-2"><a href="">{{ substr($vendor->nama_vendor,0,30) }}</a></h4>
                     <p class="mb-2 font-light">{{ substr($vendor->alamat_lengkap,0,40)  }}</p>
-                    
+
                   </div>
                 </div>
               </div>

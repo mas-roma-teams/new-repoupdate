@@ -125,11 +125,11 @@ class HomeController extends Controller
         //
     }
 
-    /* 
+    /*
         FITUR SEARCH DI HOME
-    */ 
+    */
 
-    // 
+    //
     // public function fiturSearch(Request $request)
     // {
     //     // menangkap data pencarian
@@ -156,7 +156,7 @@ class HomeController extends Controller
     //     ->paginate();
     //     // dd($jasas);
     //     return view('layouts.home.fitur-search',['jasas' => $jasas],compact('cekVendor','provincess','jasas_new','jasas_count','kategoris','provinces'));
- 
+
     // }
 
 
@@ -175,10 +175,10 @@ class HomeController extends Controller
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         }else{
             $cekVendor = null;
-        }          
+        }
         $jasas_new = DB::table('jasas')
            ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
-           ->get();             
+           ->get();
         $keyword = $request->keyword;
         $jasas = DB::table('jasas')
         ->where('nama_jasa','like',"%".$keyword."%")
@@ -199,7 +199,7 @@ class HomeController extends Controller
         );
     }
 
-   
+
 
     public function getCitys($province_id){
 

@@ -10,12 +10,37 @@ background-color: white;
 border: #E78A6E 1px solid;
 }
 
+.btn-me-outline{
+background-color: white;
+border: 1px solid #E78A6E;
+color:#E78A6E;
+}
+
+.btn-me-outline:hover{
+    color:white;
+background-color:  #E78A6E;
+border: #E78A6E 1px solid;
+}
+
 .text-orange{
     color:#D78369;
 }
 
 .foto-profile {
-	width: 213px; 
+	width: 213px;
 	float: left;
 	margin-right: 25px;
+}
+
+a{
+    color:grey;
+text-decoration: none;
+}
+
+a:hover{
+    color:#D78369;
+}
+
+.menu-active{
+    color:#D78369;
 }

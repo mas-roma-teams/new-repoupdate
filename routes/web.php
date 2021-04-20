@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('prosestambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor');
     Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success');
     Route::get('/vendordashboard', [VendorsController::class,'dashboardVendor'])->name('vendors.dashboard');
+    Route::get('/vendorjasa', [VendorsController::class,'jasaVendor'])->name('vendors.jasa');
+    Route::get('/vendortransaksi', [VendorsController::class,'transaksiVendor'])->name('vendors.transaksi');
+    Route::get('/vendortestimoni', [VendorsController::class,'testimoniVendor'])->name('vendors.testimoni');
+    Route::get('/vendorportfolio', [VendorsController::class,'portfolioVendor'])->name('vendors.portfolio');
 });
 
 
@@ -90,10 +94,6 @@ Route::prefix('user')->group(function () {
 		Route::get('/dashboard/profile',[userController::class, 'getprofileuser'])->name('profile');
 
 		// Route::resource('user', userController::class);
-
-
-
-
    });
 });
 
@@ -123,7 +123,7 @@ Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustrans
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-// -------------------- ENd 
+// -------------------- ENd
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

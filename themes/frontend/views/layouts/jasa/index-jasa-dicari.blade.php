@@ -15,18 +15,18 @@
           <div class="col-lg-3 col-md-4 col-5">
             <!-- INCLUDE LAYOUT BAR KATEGORI -->
            {{-- @include('layouts.bar-right.kategori') --}}
-            
+
             <!-- INCLUDE LAYUOUT WILAYAH -->
-            @include('layouts.bar-right.daerah-select-option') 
+            @include('layouts.bar-right.daerah-select-option')
 
             <!-- INCLUDE LAYOUT RATINGS BAR -->
-           {{-- @include('layouts.bar-right.ratings') --}} 
+           {{-- @include('layouts.bar-right.ratings') --}}
           </div>
           <div class="col-lf-9 col-md-8 col-7">
 
             @if( $jasas_news->count() > 0 )
 
-            
+
             <div class="row">
               @foreach ( $jasas_news as $jasa )
               <div class="col-lg-4 col-md-6 mb-4">
@@ -37,22 +37,22 @@
                     <p class="mb-2 font-light">{{ $jasa->deskripsi }}</p>
                     <span class="float-left">
                     <i class="fa fa-eye"></i>{{ $jasa->dilihat }}
-                   
+
 
                    </span>
 
                    <span class="float-right">
-                    
+
                     <i class="fas fa-shopping-cart"></i>  {{ $jasas_count }}
 
                    </span>
                   </div>
                 </div>
               </div>
-             
+
 
             @endforeach
-              
+
             </div>
             <!-- PENEMPATAN PAGINATION -->
             {{ $jasas_news->links('layouts.pagination.pagination') }}
@@ -62,11 +62,11 @@
               DATA KOSONG, HUBUNGI ADMIN....!!!
             </div>
             @endif
-           
 
-             
 
-          
+
+
+
           </div>
         </div>
       </div>

@@ -20,4 +20,9 @@ class Transaksis extends Model
         return $this->belongsTo(Vendors::class);
 
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

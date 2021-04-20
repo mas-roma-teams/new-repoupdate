@@ -15,6 +15,7 @@ use App\Models\IndoCity;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Provinsi;
+use App\Models\Transaksis;
 use Auth;
 
 
@@ -41,7 +42,7 @@ class VendorsController extends Controller
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         }else{
             $cekVendor = null;
-        }                       
+        }
 
 
         $user_id = Auth::user();
@@ -260,6 +261,68 @@ class VendorsController extends Controller
 
         return view('layouts.vendors.dashboard',compact('cekVendor','profilevendor'));
     }
+
+    public function jasaVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+        $jasavendor = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->paginate(6);
+        $jasagedung = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','2')->paginate(6);
+        $jasadekorasi = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','3')->paginate(6);
+        $jasaentertaiment = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','4')->paginate(6);
+        $jasakatering = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','5')->paginate(6);
+        $jasaphotografer = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','6')->paginate(6);
+        $jasatatarias = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','7')->paginate(6);
+        return view('layouts.vendors.jasavendor',compact('cekVendor','profilevendor','jasavendor','jasagedung','jasadekorasi','jasaentertaiment','jasakatering','jasaphotografer','jasatatarias'));
+    }
+
+    public function transaksiVendor()
+    {
+
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+        $transaksiall = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->paginate(6);
+
+        return view('layouts.vendors.transaksivendor',compact('cekVendor','profilevendor','transaksiall'));
+    }
+
+    public function testimoniVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+
+        return view('layouts.vendors.testimonivendor',compact('cekVendor','profilevendor'));
+    }
+
+    public function portfolioVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+
+        return view('layouts.vendors.portfoliovendor',compact('cekVendor','profilevendor'));
+    }
+
+
 
 
 }
