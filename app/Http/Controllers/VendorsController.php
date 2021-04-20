@@ -36,10 +36,16 @@ class VendorsController extends Controller
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
 
-
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         return view('layouts.vendors.index',compact(
             'kategoris',
             'vendors',
+            'cekVendor',
             'provincess', ['provincess' => $provincess],
             'vendors',    ['vendors'=> $vendors]),
             ['provinces' => $provinces,]
@@ -232,6 +238,19 @@ class VendorsController extends Controller
             $cekVendor = null;
         }
         return view('layouts.vendors.success',compact('cekVendor'));
+    }
+
+    public function dashboardVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+
+        return view('layouts.vendors.dashboard',compact('cekVendor','profilevendor'));
     }
 
 

@@ -55,10 +55,13 @@ Route::get('vendors/detail/{id}',[VendorsController::class,'show'])->name('vendo
 Route::get('provinces_id/{id}',[VendorsController::class,'store'])->name('provinces_id.store');
 Route::post('vendorsprovices', 'VendorsController@store')
     ->name('vendorsprovice.store');
-Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor')->middleware('auth');
-Route::post('prosestambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor')->middleware('auth');
-Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success')->middleware('auth');
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor');
+    Route::post('prosestambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor');
+    Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success');
+    Route::get('/vendordashboard', [VendorsController::class,'dashboardVendor'])->name('vendors.dashboard');
+});
 
 
 // JASA ROUTE

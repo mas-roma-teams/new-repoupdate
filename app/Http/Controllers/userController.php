@@ -30,7 +30,7 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
-        return view('layouts.user.index');
+        return view('layouts.user.index',compact('cekVendor'));
     }
 
 

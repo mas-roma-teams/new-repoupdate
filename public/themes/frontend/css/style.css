@@ -12,3 +12,12 @@ border: #E78A6E 1px solid;
 .text-orange{
     color:#D78369;
 }
+
+a{
+    color:grey;
+    text-decoration: none;
+}
+
+a:hover{
+    color:#D78369;
+}
