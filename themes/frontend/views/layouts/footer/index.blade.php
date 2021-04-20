@@ -1,10 +1,10 @@
-     
-  
+
+
       <footer>
         <div class="container">
           <div class="row mb-3">
             <div class="col-12">
-              <img src="{{ asset('themes/frontend/images/logo-footer.png') }}" alt="">
+              <img src="{{ asset('themes/frontend/images/logo2.png') }}" width="155px" alt="">
             </div>
           </div>
           <div class="row">
@@ -48,4 +48,3 @@
         <h5>All Right Reserved . Alapesta Since 2020</h5>
       </section>
 
-   

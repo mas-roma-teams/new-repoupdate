@@ -34,6 +34,10 @@ Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );
 Route::get('/getCitys/{provice_id}', [VendorsController::class, 'getCitys'] );
 Route::get('get/{id}', 'CategoryController@get_causes_against_category');
 
+// GET Kecamatan
+Route::get('/getDistrict/{city_id}', [VendorsController::class, 'getDistrict'] );
+// GET Kelurahan
+Route::get('/getVillages/{district_id}', [VendorsController::class, 'getVillages'] );
 
 
 // ROUTE LOGIN USER ADMIN
@@ -52,8 +56,13 @@ Route::get('vendors/detail/{id}',[VendorsController::class,'show'])->name('vendo
 Route::get('provinces_id/{id}',[VendorsController::class,'store'])->name('provinces_id.store');
 Route::post('vendorsprovices', 'VendorsController@store')
     ->name('vendorsprovice.store');
-Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor');
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor');
+    Route::post('prosestambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor');
+    Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success');
+    Route::get('/vendordashboard', [VendorsController::class,'dashboardVendor'])->name('vendors.dashboard');
+});
 
 
 // JASA ROUTE
@@ -68,13 +77,10 @@ Route::view('/home','home')->middleware('auth');
 //Route Log
 Route::prefix('user')->group(function () {
 	Route::group(['middleware' => 'auth'], function() {
-		// Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
 		// LOGIN USER
 		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
 		Route::get('/user/dashboard/{id}',[userController::class, 'index'])->name('layots.user');
-
-
 
 		Route::get('/dashboard/history',[userController::class, 'gethistory'])->name('history');
 		Route::get('/dashboard/{id}',[userController::class,'show'])->name('users.edit');

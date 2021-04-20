@@ -12,6 +12,8 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\IndoProv;
 use App\Models\IndoCity;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Provinsi;
 use Auth;
 
@@ -33,6 +35,7 @@ class VendorsController extends Controller
 
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
+
          $user_id = Auth::user();
         if($user_id){
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
@@ -40,6 +43,13 @@ class VendorsController extends Controller
             $cekVendor = null;
         }                       
 
+
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
         return view('layouts.vendors.index',compact(
             'kategoris',
             'vendors',
@@ -67,12 +77,32 @@ class VendorsController extends Controller
     public function getCitys($province_id){
 
          $citysData['data'] = IndoCity::orderby("name","asc")
-                    ->select('province_id','name')
+                    // ->select('province_id','name')
                     ->where('province_id',$province_id)
                     ->get();
          echo( $citysData['data']);exit;
         return response()->json($citysData);
     }
+
+    public function getDistrict($city_id){
+
+        $districtData['data'] = Kecamatan::orderby("name","asc")
+                   // ->select('province_id','id','name')
+                   ->where('city_id',$city_id)
+                   ->get();
+        // echo( $citysData['data']);exit;
+       return response()->json($districtData);
+   }
+
+   public function getVillages($district_id){
+
+    $villagesData['data'] = Kelurahan::orderby("name","asc")
+               // ->select('province_id','id','name')
+               ->where('district_id',$district_id)
+               ->get();
+    // echo( $citysData['data']);exit;
+   return response()->json($villagesData);
+}
 
 
 
@@ -83,14 +113,16 @@ class VendorsController extends Controller
      */
     public function create()
     {
+        $provincess = IndoProv::orderby("name","asc")
+        ->select('id','name')->get();
         $user_id = Auth::user();
         if($user_id){
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         }else{
             $cekVendor = null;
         }
-        $provinsi = Provinsi::all();
-        return view('layouts.vendors.addvendor',compact('cekVendor','provinsi'));
+        // $provinsi = Provinsi::all();
+        return view('layouts.vendors.addvendor',compact('cekVendor','provincess'));
     }
 
     /**
@@ -105,6 +137,53 @@ class VendorsController extends Controller
             ->pluck('name', 'id');
 
         return response()->json($cities);
+    }
+
+    public function addVendor(Request $request)
+    {
+        $messages = [
+            'required' => 'Kolom Wajib diisi!',
+        ];
+
+        $this->validate($request, [
+            'nama_vendor' => 'required',
+            'photo_vendor' => 'required|mimes:jpg,jpeg,png|max:20000',
+            'user_id' => 'required',
+            'kontak' => 'required',
+            'provinsi_id'=>'required',
+            'kabupaten_id'=>'required',
+            'kecamatan_id'=>'required',
+            'kelurahan_id'=>'required',
+            'alamat_lengkap' => 'required',
+            'ktp' => 'required',
+            'status' => 'required',
+
+        ], $messages);
+
+        $new_vendor = new Vendors;
+        $new_vendor->nama_vendor = $request->get('nama_vendor');
+        $new_vendor->user_id = $request->get('user_id');
+        $new_vendor->kontak = $request->get('kontak');
+        if($request->file('photo_vendor')){
+            $photo_vendor = $request->file('photo_vendor')->store('photo_vendor', 'public');
+        }
+        $new_vendor->photo_vendor = $photo_vendor;
+        $new_vendor->alamat_lengkap = $request->get('alamat_lengkap');
+        $new_vendor->provinsi_id = $request->get('provinsi_id');
+        $new_vendor->kabupaten_id = $request->get('kabupaten_id');
+        $new_vendor->kecamatan_id = $request->get('kecamatan_id');
+        $new_vendor->kelurahan_id = $request->get('kelurahan_id');
+        $new_vendor->status = $request->get('status');
+        $new_vendor->ktp = $request->get('ktp');
+        $new_vendor->lokasi = $request->get('kelurahan_id');
+        $new_vendor->save();
+        if ($new_vendor) {
+            //redirect dengan pesan sukses
+            return redirect()->route('vendors.success');
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('vendors.addvendor');
+        }
     }
 
     /**
@@ -156,6 +235,30 @@ class VendorsController extends Controller
     public function destroy(Vendors $vendors)
     {
         //
+    }
+
+    public function succsessVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        return view('layouts.vendors.success',compact('cekVendor'));
+    }
+
+    public function dashboardVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+
+        return view('layouts.vendors.dashboard',compact('cekVendor','profilevendor'));
     }
 
 
