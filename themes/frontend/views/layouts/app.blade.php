@@ -22,7 +22,7 @@
         integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
     {{-- dropify --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
-    <title>Hello, world!</title>
+    
 
   </head>
   <body style="overflow-x: hidden;">
@@ -54,6 +54,8 @@
     <script src="{{ asset('themes/frontend/js/jquery-3.6.0.min.js') }}"></script>
 <!--     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> -->
     <script src="{{ asset('themes/frontend/js/popper.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('themes/frontend/js/main.js') }}"></script> --}}
     <script src="{{ asset('themes/frontend/js/slick.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/app.js') }}" defer></script>
@@ -142,50 +144,7 @@
    </script>
 
 
-   <script type="text/javascript">
-       $(document).ready(function() {
-            // Province change
-
-            $('#province').change(function(){
-
-                // Province id
-                var id =  $(this).val();
-                var province_id =  $(this).val();
-                console.log(id);
-                console.log(province_id);
-
-                // Empty DropDown
-                $('#city').find('option').not(':first').remove();
-
-                // AJAX Request
-                $.ajax({
-                    url: 'getCitys/'+ province_id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success : function(response){
-
-                        var len = 0;
-                        if(response != null){
-                            len = response.length;
-                        }
-
-                        if(len > 0) {
-
-                            // Read Data Create Option
-                            for(var i=0; i<len; i++) {
-                                var province_id = response[i].province_id;
-                                var name = response[i].name;
-                                var option = "<option value='""'>- Pilih Data -</option>";
-                                var option = "<option value='"+id+"'>"+name+"</option>";
-
-                            $("#city").append(option);
-                            }
-                        }
-                    }
-                })
-            })
-       })
-   </script>
+   
    <script>
    $(function () {
      //Initialize Select2 Elements

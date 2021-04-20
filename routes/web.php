@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\KategoriesController;
 
 
 
@@ -43,7 +44,7 @@ Route::get('user/home', [HomeController::class, 'userHome'])->name('user.index')
 
 
 // HOME ROUTE
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/', [HomeController::class,'index'])->name('home-awal');
 
 // VENDOR ROUTE
 Route::get('/vendors', [VendorsController::class,'index']);
@@ -90,17 +91,33 @@ Route::prefix('user')->group(function () {
    });
 });
 
+// ROUTE SEARCH
+Route::get('/search/cari',[HomeController::class,'fiturSearch']);
+// END ROUTE SEARCH
+
+// ROUTE KATEGORI
+Route::get('/semua-kategori',[KategoriesController::class, 'index'])->name('semua-kategori');
+// END ROUTE KATEGORI
+
+// ROUTE USER CONTROLER FRONT END
 Route::get('user/dashboard/edit/{id}',[userController::class, 'edit']);
 
 // Route::resource('users', userController::class);
 
 Route::post('/test/update/{id}',[userController::class, 'update'])->name('testingupdate');
 
+Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
 
-Route::get('/dashboard/testaja',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
+//  END USER CONTROLLER FRONT END
 
+
+
+
+// ---------------- Google login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+// -------------------- ENd 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

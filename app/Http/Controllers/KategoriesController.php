@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategories;
 use Illuminate\Http\Request;
+use App\Models\Kategoris;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Vendors;
 
 class KategoriesController extends Controller
 {
@@ -15,6 +18,18 @@ class KategoriesController extends Controller
     public function index()
     {
         //
+
+        $kategoris = Kategoris::All();
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+
+
+        return view('layouts.kategori.all-kategori',compact(array('kategoris','cekVendor')));
+    
     }
 
     /**

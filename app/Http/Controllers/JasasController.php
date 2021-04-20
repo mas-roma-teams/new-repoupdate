@@ -26,7 +26,7 @@ class JasasController extends Controller
     {
         //
         $datakategori =[];
-        $kategoris = Kategoris::All();
+        $kategoris = DB::select('select * from kategoris limit 6');
         $rating_place = Ratings_Place::All();
         $jasas = DB::table('jasas')
         ->Where(function ($query) use($datakategori) {
@@ -96,6 +96,8 @@ class JasasController extends Controller
 
         $jasas_news = Jasas::orderBy('dilihat','desc')->paginate(9);
         // dd($jasas_news);
+
+        // Mengambil data dilihat dan transaksi
         $jasas_new = DB::table('jasas')
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
             ->get();
@@ -104,6 +106,12 @@ class JasasController extends Controller
             ->join('jasas', 'kategoris.id', '=', 'jasas.kategori_id')
             ->get();
 
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
 
         $jasas_count = $jasas_new->count();
 
@@ -112,7 +120,7 @@ class JasasController extends Controller
             'kategoris',
             'provincess',
             'jasas_news',
-
+            'cekVendor',
             'jasas_count',
             ['provincess' => $provincess],
 

@@ -127,9 +127,13 @@
               </div>
             </div> --}}
            {{--  <a href="{{ url('auth/google') }}" class="btn btn-outline-dark w-100 py-2 mb-4"><img class="mr-4 icon-google" src="{{ asset('themes/frontend/images/icon-google.svg') }}"> Sign in with Google</a> --}}
-            <button type="submit" class="btn btn-booking btn-me py-2">
+            <button type="submit" class="btn btn-me py-2">
                                     {{ __('Submit') }}
             </button>
+
+            <a href="{{ url('/user/dashboard/'. Auth::user()->id) }}" class="btn btn-me py-2">
+                                    {{ __('Cancel') }}
+            </a>
            
           </form>
         </div>

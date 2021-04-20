@@ -6,7 +6,7 @@
 
               <div class="d-flex align-items-center">
                 <img class="mr-5" src="{{ asset('themes/frontend/images/logo.png') }}" alt="">
-                <img src="{{ asset('themes/frontend/images/category-point.png') }}" alt="">
+                <a href="{{ route('semua-kategori') }}"><img src="{{ asset('themes/frontend/images/category-point.png') }}" alt=""></a>
               </div>
 
 
@@ -48,7 +48,7 @@
                       @if($cekVendor)
                       <a class="dropdown-item" href="{{ url('/user/dashboard/'. Auth::user()->id) }}">Jasa Saya</a>
                       @endif
-                      <a class="dropdown-item" href="#">Edit Profile</a>
+                      <a class="dropdown-item" href="{{ url('/user/dashboard/edit/'. Auth::user()->id) }}">Edit Profile</a>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

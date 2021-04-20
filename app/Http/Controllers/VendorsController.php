@@ -28,16 +28,22 @@ class VendorsController extends Controller
     {
         //
         $vendors = DB::table('vendors')->paginate(6);
-        $kategoris = Kategoris::All();
+       $kategoris = DB::select('select * from kategoris limit 6');
         $provinces = Province::pluck('name', 'id');
 
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
-                                        
+         $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }                       
 
         return view('layouts.vendors.index',compact(
             'kategoris',
             'vendors',
+            'cekVendor',
             'provincess', ['provincess' => $provincess],
             'vendors',    ['vendors'=> $vendors]),
             ['provinces' => $provinces,]

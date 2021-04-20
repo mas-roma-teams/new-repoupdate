@@ -5,10 +5,16 @@
 
 .btn-me:hover{
     color:#E78A6E;
-background-color: white;
-border: #E78A6E 1px solid;
+    background-color: white;
+    border: #E78A6E 1px solid;
 }
 
 .text-orange{
     color:#D78369;
+}
+
+.foto-profile {
+	width: 213px; 
+	float: left;
+	margin-right: 25px;
 }

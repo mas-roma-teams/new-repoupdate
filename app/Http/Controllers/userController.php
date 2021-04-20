@@ -176,7 +176,7 @@ class userController extends Controller
         // $users->update($request->all());
 
 
-        return redirect()->route('home');
+        return redirect()->route('home-awal');
     }
 
 

@@ -1,13 +1,5 @@
 
-<style>
-  .img-profile {
-    float: left;
-    width: 230px;
-    margin-right: 20px;
-    margin-bottom: 12px;
 
-  }
-</style>
  <div class="d-flex justify-content-between mb-3">
             <h2>Profile User</h2>
           </div>
@@ -17,15 +9,15 @@
             <div class="col-md-12">
 
                       @if(Auth::user()->photo_profile == true)
-                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="" style="width: 213px; float: left;margin-right: 25px;">
+                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="" class="foto-profile">
                       @else
-                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" style="width: 213px; float: left;margin-right: 25px;">
+                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" class="foto-profile">
                       @endif
 
                   <ul class="list-group list-group-flush">
-                  <li class="list-group-item">{{ $users->name }}</li>
-                  <li class="list-group-item">{{ $users->email }}</li>
-                  <li class="list-group-item">{{ $users->no_tlp }}</li>
+                  <li class="list-group-item">{{ Auth::user()->name  }}</li>
+                  <li class="list-group-item">{{ Auth::user()->email }}</li>
+                  <li class="list-group-item">{{ Auth::user()->no_tlp }}</li>
                 </ul>
 
                 <br>

@@ -8,10 +8,7 @@
 <div class="container">
       <div class="title w-75 mx-auto mb-5">
         <h1 class="text-center color-primary text-ptserif mb-5">Temukan kebutuhan untuk moment pernikahan anda</h1>
-        <form class="seacrh" action="">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+         @include('layouts.search.search')
       </div>
       <div class="list">
         <div class="row">
