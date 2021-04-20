@@ -5,7 +5,7 @@
             <div class="d-flex align-items-center justify-content-between mb-5">
 
               <div class="d-flex align-items-center">
-                <img class="mr-5" src="{{ asset('themes/frontend/images/logo.png') }}" alt="">
+                <img class="mr-5" src="{{ asset('themes/frontend/images/logo4.png') }}" width="155px" alt="">
                 <img src="{{ asset('themes/frontend/images/category-point.png') }}" alt="">
               </div>
 

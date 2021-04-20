@@ -43,17 +43,8 @@ class userController extends Controller
     public function getstatustransaksi(Request $request)
     {
 
-        // Auth::user()->id; berfungsi untuk menampilkan data berdasarkan session login
         $getuserid = Auth::user()->id;
-        // $getstatus = DB::table('transaksis')
-        // ->join('users', 'transaksis.user_id', '=', 'users.id')
-        // ->join('vendors', 'transaksis.vendor_id', '=', 'vendors.id')
-        // ->where('user_id', $getuserid)
-        // ->where('vendors.id','transaksis.vendor_id')->get();
-
-
         $transaksiPerId = Transaksis::with(['vendor'])->where('user_id', Auth::user()->id)->get();
-        // dd($transaksiPerId);
 
         $user_id = Auth::user();
         if($user_id){
@@ -63,13 +54,8 @@ class userController extends Controller
         }
 
         $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
-        // dd($transaksiPerId);
 
-
-
-
-      // dd($getstatus);
-        return view('layouts.user.index-status-transaksi',compact('transaksiPerId'))->with(['getuserid' => $getuserid]);
+        return view('layouts.user.index-status-transaksi',compact('transaksiPerId','cekVendor'))->with(['getuserid' => $getuserid]);
     }
 
 

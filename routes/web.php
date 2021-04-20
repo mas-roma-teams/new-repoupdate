@@ -67,13 +67,10 @@ Route::view('/home','home')->middleware('auth');
 //Route Log
 Route::prefix('user')->group(function () {
 	Route::group(['middleware' => 'auth'], function() {
-		// Route::get('/dashboardadmin', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
 		// LOGIN USER
 		Route::get('/testinghome', 'HomeController@index')->name('layouts.home.index-home');
 		Route::get('/user/dashboard/{id}',[userController::class, 'index'])->name('layots.user');
-
-
 
 		Route::get('/dashboard/history',[userController::class, 'gethistory'])->name('history');
 		Route::get('/dashboard/{id}',[userController::class,'show'])->name('users.edit');
