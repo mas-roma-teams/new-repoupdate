@@ -11,6 +11,7 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\IndoProv;
 use App\Models\IndoCity;
+use App\Models\Kecamatan;
 use App\Models\Vendors;
 use Auth;
 
@@ -79,12 +80,22 @@ class JasasController extends Controller
     public function getCitys($province_id){
 
          $citysData['data'] = IndoCity::orderby("name","asc")
-                    ->select('province_id','name')
+                    // ->select('province_id','id','name')
                     ->where('province_id',$province_id)
                     ->get();
          echo( $citysData['data']);exit;
         return response()->json($citysData);
     }
+
+    public function getDistrict($city_id){
+
+        $districtData['data'] = Kecamatan::orderby("name","asc")
+                   // ->select('province_id','id','name')
+                   ->where('city_id',$city_id)
+                   ->get();
+        // echo( $citysData['data']);exit;
+       return response()->json($districtData);
+   }
 
 
 

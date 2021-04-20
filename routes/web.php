@@ -33,6 +33,10 @@ Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );
 Route::get('/getCitys/{provice_id}', [VendorsController::class, 'getCitys'] );
 Route::get('get/{id}', 'CategoryController@get_causes_against_category');
 
+// GET Kecamatan
+Route::get('/getDistrict/{city_id}', [VendorsController::class, 'getDistrict'] );
+// GET Kelurahan
+Route::get('/getVillages/{district_id}', [VendorsController::class, 'getVillages'] );
 
 
 // ROUTE LOGIN USER ADMIN
@@ -52,6 +56,8 @@ Route::get('provinces_id/{id}',[VendorsController::class,'store'])->name('provin
 Route::post('vendorsprovices', 'VendorsController@store')
     ->name('vendorsprovice.store');
 Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor')->middleware('auth');
+Route::post('prosestambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor')->middleware('auth');
+Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success')->middleware('auth');
 
 
 

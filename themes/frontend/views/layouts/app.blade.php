@@ -106,8 +106,8 @@
                 // Province id
                 var id =  $(this).val();
                 var province_id =  $(this).val();
-                console.log(id);
-                console.log(province_id);
+                // console.log(id);
+                // console.log(province_id);
 
                 // Empty DropDown
                 $('#city').find('option').not(':first').remove();
@@ -118,6 +118,7 @@
                     type: 'GET',
                     dataType: 'json',
                     success : function(response){
+                        // console.log(response);
 
                         var len = 0;
                         if(response != null){
@@ -130,62 +131,91 @@
                             for(var i=0; i<len; i++) {
                                 var province_id = response[i].province_id;
                                 var name = response[i].name;
-                                var option = "<option value='"+id+"'>"+name+"</option>";
+                                var city_id = response[i].id;
+                                var option = "<option value='"+city_id+"'>"+name+"</option>";
 
                             $("#city").append(option);
                             }
                         }
                     }
                 })
+
+
             })
-       })
-   </script>
 
+            $('#city').change(function(){
+                var city_id =  $(this).val();
 
-   <script type="text/javascript">
-       $(document).ready(function() {
-            // Province change
-
-            $('#province').change(function(){
-
-                // Province id
-                var id =  $(this).val();
-                var province_id =  $(this).val();
-                console.log(id);
-                console.log(province_id);
-
-                // Empty DropDown
-                $('#city').find('option').not(':first').remove();
+                $('#district').find('option').not(':first').remove();
 
                 // AJAX Request
                 $.ajax({
-                    url: 'getCitys/'+ province_id,
+                    url: 'getDistrict/'+ city_id,
                     type: 'GET',
                     dataType: 'json',
-                    success : function(response){
+                    success : function(res){
+
 
                         var len = 0;
-                        if(response != null){
-                            len = response.length;
+                        if(res != null){
+                            len = res.data.length;
                         }
 
                         if(len > 0) {
-
                             // Read Data Create Option
                             for(var i=0; i<len; i++) {
-                                var province_id = response[i].province_id;
-                                var name = response[i].name;
-                                var option = "<option value='""'>- Pilih Data -</option>";
-                                var option = "<option value='"+id+"'>"+name+"</option>";
+                                var city_id = res.data[i].city_id;
+                                var name = res.data[i].name;
+                                var district_id = res.data[i].id;
+                                var option = "<option value='"+district_id+"'>"+name+"</option>";
 
-                            $("#city").append(option);
+                            $("#district").append(option);
                             }
                         }
                     }
                 })
+
+            })
+
+            $('#district').change(function(){
+                var district_id =  $(this).val();
+
+
+                $('#villages').find('option').not(':first').remove();
+
+                // AJAX Request
+                $.ajax({
+                    url: 'getVillages/'+ district_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success : function(res){
+
+
+                        var len = 0;
+                        if(res != null){
+                            len = res.data.length;
+                        }
+
+                        if(len > 0) {
+                            // Read Data Create Option
+                            for(var i=0; i<len; i++) {
+                                var district_id = res.data[i].city_id;
+                                var name = res.data[i].name;
+                                var villages_id = res.data[i].id;
+                                var option = "<option value='"+villages_id+"'>"+name+"</option>";
+
+                            $("#villages").append(option);
+                            }
+                        }
+                    }
+                })
+
             })
        })
    </script>
+
+
+
    <script>
    $(function () {
      //Initialize Select2 Elements
