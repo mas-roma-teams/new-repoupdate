@@ -292,8 +292,14 @@ class VendorsController extends Controller
         }
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
         $transaksiall = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->paginate(6);
+        $transaksinego = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',0)->paginate(6);
+        $transaksideal = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',1)->paginate(6);
+        $transaksidp = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',2)->paginate(6);
+        $transaksilunas = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',3)->paginate(6);
+        $transaksiselesai = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',4)->paginate(6);
+        $transaksibatal = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',5)->paginate(6);
 
-        return view('layouts.vendors.transaksivendor',compact('cekVendor','profilevendor','transaksiall'));
+        return view('layouts.vendors.transaksivendor',compact('cekVendor','profilevendor','transaksiall','transaksinego','transaksideal','transaksidp','transaksilunas','transaksibatal','transaksiselesai'));
     }
 
     public function testimoniVendor()
