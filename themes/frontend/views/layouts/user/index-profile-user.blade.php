@@ -7,13 +7,13 @@
 
 <div class="container">
       <div class="text-right mb-4">
-        <button type="button" class="btn px-5 btn btn-me" >
+        {{-- <button type="button" class="btn px-5 btn btn-me" >
           Gabung jadi mitra
         </button>
 
         <a href="{{ url('') }}" class="btn px-5 btn btn-me" >
           Kembali Ke Halaman Utama
-        </a>
+        </a> --}}
       </div>
       <!-- INCLUDE SIDE MENU PROFILE USER -->
       @include('layouts.bar-right.list-menu-user')

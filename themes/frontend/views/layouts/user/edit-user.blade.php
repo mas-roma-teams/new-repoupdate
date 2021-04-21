@@ -10,8 +10,8 @@
 <div class="container pb-5">
       <div class="row">
         <div class="col-md-7 mx-auto">
-          <h1 class="text-secondary text-center text-ptserif mb-2">Silahkan isi untuk Mengupdate data diri anda</h1>
-          
+          <h3 class="text-secondary text-center text-ptserif mb-2">Silahkan isi untuk Mengupdate data diri anda</h3>
+
           <form action="{{ url('/test/update/'. Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- @method('PUT') --}}
@@ -51,7 +51,7 @@
               @enderror
             </div>
 
-            
+
 
             <div class="form-group">
                             <label for="nama_kategori">Photo Profile</label>
@@ -66,7 +66,7 @@
 
               <label for="password">{{ __('Password') }}</label>
              <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> --> 
+              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
                 <div class="input-group">
                     <input class="form-control py-2 border-right-0" name="password" type="password" id="password" autocomplete="current-password">
                     <span class="input-group-append">
@@ -88,7 +88,7 @@
 
               <label for="password">{{ __('Confirm Password') }}</label>
              <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> --> 
+              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
                 <div class="input-group">
 
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"autocomplete="new-password">
@@ -119,7 +119,7 @@
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
-              
+
             </div>
             <div class="p-4">
               <div class="login-or">
@@ -134,7 +134,7 @@
             <a href="{{ url('/user/dashboard/'. Auth::user()->id) }}" class="btn btn-me py-2">
                                     {{ __('Cancel') }}
             </a>
-           
+
           </form>
         </div>
       </div>

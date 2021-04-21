@@ -1,5 +1,5 @@
-<div class="row">
-          <div class="col-md-4 col-sm-5">
+
+
             <div class="list-group">
             <li class="list-group-item list-group-item-action" style="background-color: #E78A6E; color: white;">
               Menu User
@@ -9,11 +9,19 @@
               <!-- <span class="badge badge-primary badge-pill">14</span> -->
             </li> --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-             <a href="{{ route('status-transaksi') }}"> Status Transaksi </a>
+                <a class="{{ (request()->segment(1) == 'userdashboard') ? 'menu-active' : '' }}" href="{{ route('users.dashboard') }}"> Dashboard </a>
+                 <!-- <span class="badge badge-primary badge-pill">2</span> -->
+               </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ route('status-transaksi') }}"> Profile Saya </a>
+                 <!-- <span class="badge badge-primary badge-pill">2</span> -->
+               </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+             <a href="{{ route('status-transaksi') }}"> Transaksi </a>
               <!-- <span class="badge badge-primary badge-pill">2</span> -->
             </li>
-            {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
-              <a href="{{ route('profile') }}"> Profile User </a>
-              <!-- <span class="badge badge-primary badge-pill">1</span> -->
-            </li>--}}
-        </div>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ route('status-transaksi') }}"> Ganti password</a>
+                 <!-- <span class="badge badge-primary badge-pill">2</span> -->
+               </li>
+            </div>

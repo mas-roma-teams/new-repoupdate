@@ -176,4 +176,16 @@ class userController extends Controller
     {
         //
     }
+
+    public function dashboarduser()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $users = User::findOrFail($user_id->id);
+        return view('layouts.user.userdashboard',compact('users','cekVendor'));
+    }
 }

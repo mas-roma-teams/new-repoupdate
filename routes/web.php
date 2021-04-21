@@ -58,6 +58,7 @@ Route::post('vendorsprovices', 'VendorsController@store')
     ->name('vendorsprovice.store');
 
 Route::group(['middleware' => 'auth'], function() {
+    // vendor
     Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor');
     Route::post('prosestambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor');
     Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success');
@@ -66,6 +67,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/vendortransaksi', [VendorsController::class,'transaksiVendor'])->name('vendors.transaksi');
     Route::get('/vendortestimoni', [VendorsController::class,'testimoniVendor'])->name('vendors.testimoni');
     Route::get('/vendorportfolio', [VendorsController::class,'portfolioVendor'])->name('vendors.portfolio');
+
+    // user
+    Route::get('/userdashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
 });
 
 
