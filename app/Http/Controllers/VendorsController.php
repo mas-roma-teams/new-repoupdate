@@ -328,6 +328,24 @@ class VendorsController extends Controller
         return view('layouts.vendors.portfoliovendor',compact('cekVendor','profilevendor'));
     }
 
+    public function tambahJasaVendor()
+    {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $kategori = Kategoris::all();
+        $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+        return view('layouts.vendors.addjasavendor',compact('cekVendor','profilevendor','kategori'));
+    }
+
+    public function prosestambahjasa()
+    {
+
+    }
+
 
 
 

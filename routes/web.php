@@ -10,8 +10,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\KategoriesController;
-
-
+use App\Models\Vendors;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +66,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/vendortransaksi', [VendorsController::class,'transaksiVendor'])->name('vendors.transaksi');
     Route::get('/vendortestimoni', [VendorsController::class,'testimoniVendor'])->name('vendors.testimoni');
     Route::get('/vendorportfolio', [VendorsController::class,'portfolioVendor'])->name('vendors.portfolio');
-
+    Route::get('/tambahjasa',[VendorsController::class,'tambahJasaVendor'])->name('vendors.tambahjasa');
+    Route::post('/prosestambahjasa',[VendorsController::class,'prosestambahjasa'])->name('vendors.prosestambahjasa');
     // user
     Route::get('/userdashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
 });

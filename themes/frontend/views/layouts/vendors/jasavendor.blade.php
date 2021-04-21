@@ -36,7 +36,7 @@
               <div class="d-flex justify-content-between mb-3">
                 <h2>Jasa</h2>
                 <div class="d-flex align-items-center">
-                    <a href="" class="btn btn-me-outline">Tambah Jasa</a>
+                    <a href="{{route('vendors.tambahjasa')}}" class="btn btn-me-outline">Tambah Jasa</a>
                 </div>
               </div>
               <div class="card mb-5">
@@ -72,6 +72,13 @@
                                 <div class="card-body no-paddingleft">
                                   <h4 class="mb-2"><a href="">{{ substr($row->nama_jasa,0,30) }}</a></h4>
                                   <p class="mb-2 font-light">{{ ucfirst($row->vendors->kecamatan->name) }}, {{ $row->vendors->wilayah->name }}</p>
+                                  <div class="d-flex mb-2">
+                                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                                  </div>
                                   <h2 class="text-orange text-ptserif">Rp. {{ number_format($row->harga) }}</h2>
 
                                 </div>
@@ -99,6 +106,13 @@
                                         <div class="card-body no-paddingleft">
                                           <h4 class="mb-2"><a href="">{{ substr($row->nama_jasa,0,30) }}</a></h4>
                                           <p class="mb-2 font-light">{{ ucfirst($row->vendors->kecamatan->name) }}, {{ $row->vendors->wilayah->name }}</p>
+                                          <div class="d-flex mb-2">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                                          </div>
                                           <h2 class="text-orange text-ptserif">Rp. {{ number_format($row->harga) }}</h2>
 
                                         </div>
@@ -126,6 +140,13 @@
                                         <div class="card-body no-paddingleft">
                                           <h4 class="mb-2"><a href="">{{ substr($row->nama_jasa,0,30) }}</a></h4>
                                           <p class="mb-2 font-light">{{ ucfirst($row->vendors->kecamatan->name) }}, {{ $row->vendors->wilayah->name }}</p>
+                                          <div class="d-flex mb-2">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                                          </div>
                                           <h2 class="text-orange text-ptserif">Rp. {{ number_format($row->harga) }}</h2>
 
                                         </div>
@@ -153,6 +174,13 @@
                                         <div class="card-body no-paddingleft">
                                           <h4 class="mb-2"><a href="">{{ substr($row->nama_jasa,0,30) }}</a></h4>
                                           <p class="mb-2 font-light">{{ ucfirst($row->vendors->kecamatan->name) }}, {{ $row->vendors->wilayah->name }}</p>
+                                          <div class="d-flex mb-2">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                                          </div>
                                           <h2 class="text-orange text-ptserif">Rp. {{ number_format($row->harga) }}</h2>
 
                                         </div>
@@ -180,6 +208,13 @@
                                         <div class="card-body no-paddingleft">
                                           <h4 class="mb-2"><a href="">{{ substr($row->nama_jasa,0,30) }}</a></h4>
                                           <p class="mb-2 font-light">{{ ucfirst($row->vendors->kecamatan->name) }}, {{ $row->vendors->wilayah->name }}</p>
+                                          <div class="d-flex mb-2">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                                          </div>
                                           <h2 class="text-orange text-ptserif">Rp. {{ number_format($row->harga) }}</h2>
 
                                         </div>
@@ -207,6 +242,13 @@
                                         <div class="card-body no-paddingleft">
                                           <h4 class="mb-2"><a href="">{{ substr($row->nama_jasa,0,30) }}</a></h4>
                                           <p class="mb-2 font-light">{{ ucfirst($row->vendors->kecamatan->name) }}, {{ $row->vendors->wilayah->name }}</p>
+                                          <div class="d-flex mb-2">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                                            <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                                          </div>
                                           <h2 class="text-orange text-ptserif">Rp. {{ number_format($row->harga) }}</h2>
 
                                         </div>
@@ -229,10 +271,6 @@
               </div>
 
             </div>
-
     </div>
 
   </div>
-
-
-

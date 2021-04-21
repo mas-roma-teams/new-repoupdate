@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('themes/frontend/css/style.css')}}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 
      <!-- Select2 -->
   <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
@@ -22,7 +23,7 @@
         integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
     {{-- dropify --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
-    
+
 
   </head>
   <body style="overflow-x: hidden;">
@@ -216,6 +217,23 @@
        })
    </script>
 
+<script>
+    $(document).ready(function () {
+        // var harga = $('#harga').val();
+        // // console.log(harga);
+        // var jumlah_dp = document.getElementById('jumlah_dp').value;
+        // var total = harga * (komisi / 100);
+        $('#jumlah_dp').on('keyup', function () {
+            var jumlah_dp = this.value;
+            var harga = $('#harga').val();
+            var total = harga * (jumlah_dp / 100);
+            $('#jumlah_dp_uang').val(Math.ceil(total));
+        });
+
+    });
+
+</script>
+
 
 
 
@@ -244,5 +262,8 @@
   $("#photo_vendor_").val("1");
   });
    </script>
+   <script>
+    CKEDITOR.replace( 'editor' );
+</script>
   </body>
 </html>
