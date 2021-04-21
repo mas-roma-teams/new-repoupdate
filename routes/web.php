@@ -69,7 +69,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/tambahjasa',[VendorsController::class,'tambahJasaVendor'])->name('vendors.tambahjasa');
     Route::post('/prosestambahjasa',[VendorsController::class,'prosestambahjasa'])->name('vendors.prosestambahjasa');
     // user
-    Route::get('/userdashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
+    Route::get('/user/dashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
+
+    Route::get('/user/profile', [userController::class,'getprofileuser'])->name('users.profile');
+    Route::get('/user/profile/ganti-password', [userController::class,'gantipassword'])->name('users.password');
 });
 
 
@@ -114,7 +117,8 @@ Route::get('user/dashboard/edit/{id}',[userController::class, 'edit']);
 
 // Route::resource('users', userController::class);
 
-Route::post('/test/update/{id}',[userController::class, 'update'])->name('testingupdate');
+Route::post('/form/update/{id}',[userController::class, 'update'])->name('testingupdate');
+Route::post('/form/update/password/{id}',[userController::class, 'updatePassword'])->name('user.update.password');
 
 Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
 

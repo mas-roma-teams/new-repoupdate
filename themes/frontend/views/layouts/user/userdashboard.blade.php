@@ -13,7 +13,11 @@
             <div class="col-3">
               <div class="card-profile mb-5 p-4">
                 <div class="profile square mb-3">
-                  <img src="{{asset('storage/'.$users->photo_profile)}}" alt="">
+                   @if(Auth::user()->photo_profile == true)
+                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="" class="foto-profile">
+                      @else
+                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" class="foto-profile">
+                      @endif
                 </div>
                 <h4 class="text-ptserif text-center mb-2">{{$users->name}}</h4>
                 <h5 class="text-secondary mb-4">Saldo : Rp 875.000</h5>

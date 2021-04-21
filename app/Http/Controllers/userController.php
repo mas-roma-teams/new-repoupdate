@@ -62,12 +62,28 @@ class userController extends Controller
     public function getprofileuser()
     {
         //
+        $user_id = Auth::user();
         if($user_id){
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         }else{
             $cekVendor = null;
         }
-        return view('layouts.user.index-profile-user');
+        $users = User::findOrFail($user_id->id);
+        return view('layouts.profile-user.user-profile',compact('cekVendor','users'));
+    }
+
+
+    public function gantipassword()
+    {
+        //
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $users = User::findOrFail($user_id->id);
+        return view('layouts.user.ganti-password',compact('cekVendor','users'));
     }
     /**
      * Show the form for creating a new resource.
@@ -142,7 +158,6 @@ class userController extends Controller
             'photo_profile'     => 'required|image|mimes:png,jpg,jpeg',
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'no_tlp' => 'required',
         ]);
         // var_dump($request);exit;
@@ -158,6 +173,23 @@ class userController extends Controller
             $photo_profile->move('themes/frontend/images/user', $name);
             $user->photo_profile = $name;
         }
+        $user->save();
+        // $users->update($request->all());
+
+
+        return redirect()->route('home-awal');
+    }
+
+    public function updatePassword(Request $request,$id, User $users)
+    {
+        //
+        $request->validate([
+            
+            'password' => 'required',
+          
+        ]);
+        // var_dump($request);exit;
+        $user = User::findOrFail($id);
         $user->save();
         // $users->update($request->all());
 

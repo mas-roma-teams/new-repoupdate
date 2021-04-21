@@ -33,57 +33,56 @@
             </div>
 
             <div class="col-9">
-                <form action="{{ url('/form/update/'. Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/form/update/password/'. Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- @method('PUT') --}}
 
 
-            <div class="form-group">
-              <label for="email">{{ __('Nama Lengkap') }}</label>
-              <input id="email" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $users->name }}" required autocomplete="email" autofocus>
+          
 
-              @error('email')
+            <div class="form-group">
+
+              <label for="password">{{ __('Password') }}</label>
+             <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0" name="password" type="password" id="password" autocomplete="current-password">
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent"><i id="toggle_pwd" class="fa fa-eye" style="cursor: pointer;"></i></div>
+                    </span>
+                </div>
+                @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
-              @enderror
+                @enderror
             </div>
 
-            <div class="form-group">
-              <label for="email">{{ __('E-Mail Address') }}</label>
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $users->email }}" required autocomplete="email" autofocus>
+            <p style="color: red;"><b>*Kosongkan jika password tidak ingin di ubah</b></p>
 
-              @error('email')
+            <br>
+
+            <div class="form-group">
+
+              <label for="password">{{ __('Confirm Password') }}</label>
+             <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
+                <div class="input-group">
+
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"autocomplete="new-password">
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent"><i id="toggle_pwd1" class="fa fa-eye" style="cursor: pointer;"></i></div>
+                    </span>
+                </div>
+                @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
-              @enderror
+                @enderror
             </div>
+            <p style="color: red;"><b>*Kosongkan jika password tidak ingin di ubah</b></p>
 
-
-            <div class="form-group">
-              <label for="email">{{ __('Nomor Whatsapp') }}</label>
-              <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="no_tlp" value="{{ $users->no_tlp }}" required autocomplete="email" autofocus>
-
-              @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-
-
-
-            <div class="form-group">
-                            <label for="nama_kategori">Photo Profile</label>
-                            <input type="file" name="photo_profile" class="dropify"
-                                data-allowed-file-extensions="jpg png jpeg" data-max-file-size="2M" />
-                            @error('photo_profile')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-            
+            <br>
 
 
             {{-- <div class="form-group form-check d-flex justify-content-between">
