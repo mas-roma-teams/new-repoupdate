@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Transaksis;
@@ -190,6 +192,8 @@ class userController extends Controller
         ]);
         // var_dump($request);exit;
         $user = User::findOrFail($id);
+        $user->password = Hash::make($request->password);
+        // echo $user->password;exit;
         $user->save();
         // $users->update($request->all());
 
