@@ -34,7 +34,10 @@
                     <tfoot>
                       <tr>
                         <th class="total-font">Kode Referal :</th>
-                        <th id="total" class="total-font kode-font">KHSAIH-1091090</th>
+                        <th id="total" id="myInput" class="total-font kode-font">
+                        <input type="text" class="total-font kode-font" value="{{ Auth::user()->kode_referal }}" id="myInput" disabled></th>
+                        <th><button class="btn btn-me" onclick="myFunction()">Copy</button>
+                        </th>
                       </tr>
                     </tfoot>
                   </table>

@@ -73,9 +73,14 @@ a:hover{
 }
 
 .total-font {
-    font-size: 30px;
+    font-size: 23px;
+}
+
+.input-kode {
+    width: 495px;
 }
 
 .kode-font {
+    width: 470px;
     color: red;
 }

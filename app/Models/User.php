@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\Uuid;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Uuid;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +36,7 @@ class User extends Authenticatable
         'vendor_status',
         'photo_profile',
         'google_id',
+        'kode_referal',
 
     ];
 
@@ -74,4 +77,16 @@ class User extends Authenticatable
         else
             return asset('images/user.png');
     }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     static::creating(function ($model) {
+    //         try {
+    //             $model->uuid = Generator::uuid4()->toString();
+    //         } catch (UnsatisfiedDependencyException $e) {
+    //             abort(500, $e->getMessage());
+    //         }
+    //     });
+    // }
 }

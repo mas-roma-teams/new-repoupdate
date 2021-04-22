@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Str;
+use App\Helpers\Helper;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -29,6 +31,7 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
+            // 'kode_referal' = Helper::IDGenerator();
             'name' => $input['name'],
             'email' => $input['email'],
             'no_tlp' => $input['no_tlp'],

@@ -27,7 +27,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Kode referal</h4>
-                                <h3 class="text-orange">ALAPESTA0123</h3>
+                                 <input type="text" class="total-font text-orange input-kode" value="{{ Auth::user()->kode_referal }}" id="myInput" disabled>
+                                  <button class="btn btn-me mb-2" onclick="myFunction()">Copy</button>
+                                
                                 <p>Dapatkan penghasilan 2% dari setiap transaksi dengan cara memasukan kode referal di setiap transaksi kamu, atau kamu juga bisa bantu orang sekitarmu yang membutuhkan jasa untuk acara mereka dan kamu bisa dapat penghasilan dari transaksi mereka dengan cara memasukan kode referal ini , jadi tunggu apalagi, kamu bisa dapat penghasilan dengan modal ngomong, selamat mencoba</p>
                             </div>
                         </div>

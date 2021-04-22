@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Models\User;
 use App\Models\Transaksis;
 use App\Models\Vendors;
