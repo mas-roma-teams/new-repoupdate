@@ -41,6 +41,41 @@
             @endforeach
           </div>
         </div>
+
+
+         <div class="mb-5">
+          <h2 class="text-ptserif mb-2">Jasa Terbaru</h2>
+          <div class="d-flex justify-content-between mb-3">
+            <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
+            <a href="{{ url('/jasa-list') }}" class="h5 font-regular color-primary text-bold link">lihat semua</a>
+          </div>
+          <div class="row">
+            @foreach( $jasa_terbaru as $jkey )
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <div class="card noborder">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jkey->nama_jasa }}">
+                <div class="card-body no-paddingleft">
+                  <h4 class="mb-2"><a href="">{{ substr($jkey->nama_jasa,0,30) }}</a></h4>
+                  <p class="mb-2 font-light">{{ ucfirst($jkey->vendors->kecamatan->name) }}, {{ $jkey->vendors->wilayah->name }}</p>
+
+                  <div class="d-flex mb-2">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
+                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
+                  </div>
+                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jkey->harga,2) }}</h2>
+
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+
+
+        @if(Auth::user())
         <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa disekitarmu</h2>
           <div class="d-flex justify-content-between mb-3">
@@ -71,6 +106,9 @@
             @endforeach
           </div>
         </div>
+        @endif
+
+
       </div>
 
       <div class="home-section mb-5">

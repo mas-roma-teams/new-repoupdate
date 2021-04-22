@@ -74,6 +74,19 @@ class userController extends Controller
         return view('layouts.profile-user.user-profile',compact('cekVendor','users'));
     }
 
+    public function kodeReferal()
+    {
+        //
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+        $users = User::findOrFail($user_id->id);
+        return view('layouts.user.kode-referal',compact('cekVendor','users'));
+    }
+
 
     public function gantipassword()
     {
@@ -156,12 +169,12 @@ class userController extends Controller
     public function update(Request $request,$id, User $users)
     {
         //
-        $request->validate([
-            'photo_profile'     => 'required|image|mimes:png,jpg,jpeg',
-            'name' => 'required',
-            'email' => 'required',
-            'no_tlp' => 'required',
-        ]);
+        // $request->validate([
+        //     'photo_profile'     => '|image|mimes:png,jpg,jpeg',
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'no_tlp' => 'required',
+        // ]);
         // var_dump($request);exit;
         $user = User::findOrFail($id);
         $user->name = $request->get('name');

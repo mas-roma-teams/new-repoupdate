@@ -44,7 +44,9 @@ class HomeController extends Controller
          // dd($jasas);
         $jasas_news = Jasas::orderBy('dilihat','desc')->get();
         $vendors = DB::select('select * from vendors limit 12');
-         $jasas_new = DB::table('jasas')
+        $jasa_terbaru = Jasas::OrderBy('created_at','desc')->limit(8)->get();
+        // dd($jasa_terbaru);
+        $jasas_new = DB::table('jasas')
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
             ->get();
         $user_id = Auth::user();
@@ -56,7 +58,7 @@ class HomeController extends Controller
 
         $jasas_count = $jasas_new->count();
 
-        return view('layouts.home.index-home',compact(array('jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor')));
+        return view('layouts.home.index-home',compact(array('jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor','jasa_terbaru')));
     }
 
     /**

@@ -11,22 +11,10 @@
     <div class="row">
 
             <div class="col-3">
-              <div class="card-profile mb-5 p-4">
-                <div class="profile square mb-3">
-                   @if(Auth::user()->photo_profile == true)
-                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="" class="foto-profile">
-                      @else
-                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" class="foto-profile">
-                      @endif
-                </div>
-                <h4 class="text-ptserif text-center mb-2">{{$users->name}}</h4>
-                <h5 class="text-secondary mb-4">Saldo : Rp 875.000</h5>
-                <div class="d-flex align-items-center">
+              <!-- FOTO USER LEFT -->
+              @include('layouts.user.foto-user')
 
-
-                </div>
-              </div>
-
+              <!-- LIST MENU USER -->
               @include('layouts.bar-right.list-menu-user')
 
 
@@ -34,7 +22,31 @@
 
             <div class="col-9">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
+                        <div id="ticket">
+                          <h1 class="mb-3">TERIMA KASIH.. !!!</h1>
+                          <p><b>*Sebarkan kode ini dan dapatkan benefit nya</b></p>
+                          <table>
+                            
+                            <tbody id="entries">
+                              
+                              
+                              
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <th class="total-font">Kode Referal :</th>
+                                <th id="total" class="total-font kode-font">KHSAIH-1091090</th>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                    </div>
+                   
+                </div>
+                <br>
+                 <div class="row">
+                    <div class="col-6 mb-2">
                         <div class="card">
                             <div class="card-body">
                                 <h4>Jumlah Transaksi</h4>

@@ -44,3 +44,38 @@ a:hover{
 .menu-active{
     color:#D78369;
 }
+
+#ticket {
+  background: white;
+  margin: 0 1em;
+  padding: 1em;
+  box-shadow: 0 0 5px rgba(0,0,0,.25);
+}
+#ticket h1 {
+  text-align: center;
+}
+#ticket table {
+  font-family: monospace;
+  width: 100%;
+  border-collapse: collapse;
+}
+#ticket td, #ticket th {
+  padding: 5px;
+}
+#ticket th {
+  text-align: left;
+}
+#ticket td, #ticket #total {
+  text-align: right;
+}
+#ticket tfoot th {
+  border-top: 1px solid black;
+}
+
+.total-font {
+    font-size: 30px;
+}
+
+.kode-font {
+    color: red;
+}

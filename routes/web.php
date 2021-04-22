@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/user/dashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
 
     Route::get('/user/profile', [userController::class,'getprofileuser'])->name('users.profile');
+
+    Route::get('/user/kode-referal', [userController::class,'kodeReferal'])->name('users.kode-referal');
     Route::get('/user/profile/ganti-password', [userController::class,'gantipassword'])->name('users.password');
 });
 

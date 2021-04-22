@@ -11,22 +11,10 @@
     <div class="row">
 
             <div class="col-3">
-              <div class="card-profile mb-5 p-4">
-                <div class="profile square mb-3">
-                   @if(Auth::user()->photo_profile == true)
-                      <img src="{{ asset('themes/frontend/images/user/' . Auth::user()->photo_profile) }}" alt="" class="foto-profile">
-                      @else
-                      <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" class="foto-profile">
-                      @endif
-                </div>
-                <h4 class="text-ptserif text-center mb-2">{{ Auth::user()->name }}</h4>
-                <h5 class="text-secondary mb-4">Saldo : Rp 875.000</h5>
-                <div class="d-flex align-items-center">
+              <!-- FOTO USER LEFT -->
+              @include('layouts.user.foto-user')
 
-
-                </div>
-              </div>
-
+              <!-- LIST MENU USER -->
               @include('layouts.bar-right.list-menu-user')
 
 
@@ -82,7 +70,8 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
+              <p style="color: red;"><b>*Kosongkan gambar jika password tidak ingin di ubah</b></p>
+              <br><br>
             
 
 
@@ -110,9 +99,9 @@
                                     {{ __('Submit') }}
             </button>
 
-            <a href="{{ url('/user/dashboard/'. Auth::user()->id) }}" class="btn btn-me py-2">
+           {{--  <a href="{{ url('/user/dashboard/'. Auth::user()->id) }}" class="btn btn-me py-2">
                                     {{ __('Cancel') }}
-            </a>
+            </a> --}}
 
           </form>
             </div>
