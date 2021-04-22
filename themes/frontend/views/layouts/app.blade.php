@@ -15,6 +15,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
      <!-- Select2 -->
   <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">

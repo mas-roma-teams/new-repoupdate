@@ -17,6 +17,8 @@ use App\Models\Kelurahan;
 use App\Models\Provinsi;
 use App\Models\Transaksis;
 use Auth;
+use Illuminate\Support\Str;
+use Alert;
 
 
 class VendorsController extends Controller
@@ -341,9 +343,47 @@ class VendorsController extends Controller
         return view('layouts.vendors.addjasavendor',compact('cekVendor','profilevendor','kategori'));
     }
 
-    public function prosestambahjasa()
+    public function prosestambahjasa(Request $request)
     {
+        $messages = [
+            'required' => 'Kolom Wajib diisi!',
+        ];
 
+        $this->validate($request, [
+            'nama_jasa' => 'required',
+            'photo_jasa' => 'required|mimes:jpg,jpeg,png|max:20000',
+            'deskripsi' => 'required',
+            'kategori_id' => 'required',
+            'vendor_id' => 'required',
+            'harga' => 'required',
+            'jumlah_dp' => 'required',
+
+        ], $messages);
+
+        $new_jasa = new Jasas;
+        $new_jasa->nama_jasa = $request->get('nama_jasa');
+        $new_jasa->slug = Str::slug($request->get('nama_jasa'));
+        if($request->file('photo_jasa')){
+            $photo_jasa = $request->file('photo_jasa')->store('photo_jasa', 'public');
+        }
+        $new_jasa->photo_jasa = $photo_jasa;
+        $new_jasa->deskripsi = $request->get('deskripsi');
+        $new_jasa->kategori_id = $request->get('kategori_id');
+        $new_jasa->vendor_id = $request->get('vendor_id');
+        $new_jasa->harga = $request->get('harga');
+        $new_jasa->jumlah_dp = $request->get('jumlah_dp');
+        $new_jasa->jumlah_dp_uang = $request->get('jumlah_dp_uang');
+        $new_jasa->dilihat = 0;
+        $new_jasa->status = $request->get('status');
+        $new_jasa->save();
+        if ($new_jasa) {
+            //redirect dengan pesan sukses
+
+            return redirect()->route('jasa.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('jasa.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
 
