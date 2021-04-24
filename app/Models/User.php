@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Traits\Uuid;
+// use App\Traits\Uuid;
+// use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,9 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use Uuid;
+    // use Uuid;
+    // use IdGenerator;
+    // use IdFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -33,10 +36,11 @@ class User extends Authenticatable
         'no_telp',
         'email',
         'password',
+        'kode_referal',
         'vendor_status',
         'photo_profile',
         'google_id',
-        'kode_referal',
+        
 
     ];
 

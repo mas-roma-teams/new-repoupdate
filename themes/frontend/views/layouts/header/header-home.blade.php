@@ -7,10 +7,22 @@
               <div class="d-flex align-items-center">
 
                 {{-- <img class="mr-5" src="{{ asset('themes/frontend/images/logo.png') }}" alt="">
+
+
                 <a href="{{ route('semua-kategori') }}"><img src="{{ asset('themes/frontend/images/category-point.png') }}" alt=""></a> --}}
 
                 <img class="mr-5" src="{{ asset('themes/frontend/images/logo4.png') }}" width="155px" alt="">
-                <img src="{{ asset('themes/frontend/images/category-point.png') }}" alt="">
+
+                <div class="dropdown">
+                    <img src="{{ asset('themes/frontend/images/category-point.png') }}" class="-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      @foreach( $kategoris as $kategori )
+                      <a class="dropdown-item" href="#">{{ $kategori->nama_kategori  }}</a>
+                      @endforeach
+                    </div>
+                  </div>
+                <!-- <img src="{{ asset('themes/frontend/images/category-point.png') }}" alt=""> -->
 
               </div>
 

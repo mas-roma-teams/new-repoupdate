@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\KategoriesController;
 use App\Models\Vendors;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,12 @@ use App\Models\Vendors;
 //     return view('welcome');
 // });
 
+
+Route::get('/testing-function', function() {
+         $config = ['table' => 'users', 'length'=>10, 'prefix' => 'ALAPESTA-'];
+         $kode_referal = IdGenerator::generate($config);
+         echo $kode_referal;
+});
 
 // GET PROVINSI  - KOTA
 Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );

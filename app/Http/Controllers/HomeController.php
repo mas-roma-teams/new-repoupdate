@@ -37,13 +37,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+       
         $kategoris = DB::select('select * from kategoris limit 6');
         $banner = Banner::All();
         $jasas = Jasas::with('vendors.wilayah','vendors.kecamatan')->get();
          // dd($jasas);
-        $jasas_news = Jasas::orderBy('dilihat','desc')->get();
-        $vendors = DB::select('select * from vendors limit 12');
+        $jasas_news = Jasas::orderBy('dilihat','desc')->limit(8)->get();
+        $vendors = DB::select('select * from vendors limit 8');
         $jasa_terbaru = Jasas::OrderBy('created_at','desc')->limit(8)->get();
         // dd($jasa_terbaru);
         $jasas_new = DB::table('jasas')

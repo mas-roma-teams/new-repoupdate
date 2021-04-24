@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -66,10 +67,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $random = Str::random(5);
+        $kapital = ucwords($random);
+        $kode =  "ALAPESTA-".$kapital;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'no_tlp' => $data['no_tlp'],
+            'kode_referal' => $kode,
             'vendor_status' => '0',
             'password' => Hash::make($data['password']),
         ]);

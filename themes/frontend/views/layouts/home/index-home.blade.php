@@ -43,7 +43,11 @@
         </div>
 
 
-         <div class="mb-5">
+       
+     
+
+
+        <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa Terbaru</h2>
           <div class="d-flex justify-content-between mb-3">
             <h5 class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
@@ -73,6 +77,8 @@
             @endforeach
           </div>
         </div>
+
+
 
 
         @if(Auth::user())
@@ -175,6 +181,8 @@
         </div>
       </div>
 
+
+
       <div class="container">
         <div class="mb-5">
             <h2 class="text-ptserif mb-2">Vendor disekitarmu</h2>
@@ -198,6 +206,42 @@
               @endforeach
             </div>
           </div>
+      </div>
+
+       <div class="home-section mb-0">
+        <div class="container">
+          <h2 class="text-ptserif mb-2 text-white">Adat Istiadat Provinsi</h2>
+          <div class="d-flex justify-content-between mb-3">
+            <h5 class="font-light text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h5>
+            <a href="" class="h5 font-regular color-primary text-bold link text-white">lihat semua</a>
+          </div>
+          <div class="row multiple-items">
+
+            <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                
+              </div>
+            </div>
+           
+
+           <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                
+              </div>
+            </div>
+
+            <div class="col-4 mb-4">
+              <div class="card">
+                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                
+              </div>
+            </div>
+
+
+          </div>
+        </div>
       </div>
 
 

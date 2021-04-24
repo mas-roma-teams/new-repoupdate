@@ -28,12 +28,13 @@ class userController extends Controller
     public function index()
     {
         //
+         $kategoris = DB::select('select * from kategoris limit 6');
         if($user_id){
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         }else{
             $cekVendor = null;
         }
-        return view('layouts.user.index',compact('cekVendor'));
+        return view('layouts.user.index',compact('cekVendor','kategoris'));
     }
 
 
@@ -58,7 +59,7 @@ class userController extends Controller
 
         $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
 
-        return view('layouts.user.index-status-transaksi',compact('transaksiPerId','cekVendor'))->with(['getuserid' => $getuserid]);
+        return view('layouts.user.index-status-transaksi',compact('transaksiPerId','cekVendor','kategoris'))->with(['getuserid' => $getuserid]);
     }
 
 
@@ -71,8 +72,9 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+         $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.profile-user.user-profile',compact('cekVendor','users'));
+        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris'));
     }
 
     public function kodeReferal()
@@ -84,8 +86,9 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+         $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.kode-referal',compact('cekVendor','users'));
+        return view('layouts.user.kode-referal',compact('cekVendor','users','kategoris'));
     }
 
 
@@ -98,8 +101,9 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+        $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.ganti-password',compact('cekVendor','users'));
+        return view('layouts.user.ganti-password',compact('cekVendor','users','kategoris'));
     }
     /**
      * Show the form for creating a new resource.
@@ -138,6 +142,7 @@ class userController extends Controller
             $cekVendor = null;
         }
         $users = User::findOrFail($id);
+         $kategoris = DB::select('select * from kategoris limit 6');
         return view('layouts.user.index-profile-user',compact('users','cekVendor','user_id'));
     }
 
@@ -157,7 +162,8 @@ class userController extends Controller
             $cekVendor = null;
         }
         $users = User::findOrFail($id);
-        return view('layouts.user.edit-user',compact('users','cekVendor'));
+        $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.user.edit-user',compact('users','cekVendor','kategoris'));
     }
 
     /**
@@ -236,6 +242,7 @@ class userController extends Controller
             $cekVendor = null;
         }
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.userdashboard',compact('users','cekVendor'));
+        $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris'));
     }
 }
