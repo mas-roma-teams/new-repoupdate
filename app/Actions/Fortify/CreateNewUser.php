@@ -30,13 +30,25 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
-        return User::create([
-            // 'kode_referal' = Helper::IDGenerator();
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'no_tlp' => $input['no_tlp'],
-            'password' => Hash::make($input['password']),
-        ]);
+        // return User::create([
+        //     'kode_referal' = Helper::IDGenerator(new User, 'kode_referal',5 ,'ALPST');
+        //     'name' => $input['name'],
+        //     'email' => $input['email'],
+        //     'no_tlp' => $input['no_tlp'],
+        //     'password' => Hash::make($input['password']),
+        // ]);
+
+
+        $name = $request->name;
+        $kode_referal = Helper::IDGenerator(new User, 'kode_referal', 2, 'STD'); /** Generate id */
+        $q = new User;
+        $q->kode_referal = $kode_referal;
+        dd($kode_referal);
+        $q->name = $name;
+        // $q->name = $request->get('name');
+        $q->email = $request->get('email');
+        $q->no_tlp = $request->get('no_tlp');
+        $save =  $q->save();
 
         
     }
