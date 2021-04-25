@@ -39,8 +39,13 @@
                     <div class="col-6 mb-2">
                         <div class="card">
                             <div class="card-body">
+                              
                                 <h4>Jumlah Transaksi</h4>
+                                @if($transcount == 0)
+                                <h3 class="text-orange">Belum Ada Transaksi</h3>
+                                @else
                                 <h3 class="text-orange">{{ $transcount }}</h3>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -49,7 +54,15 @@
                             <div class="card-body">
                                 <h4>Total Transaksi</h4>
                                 
-                                  <h3 class="text-orange">Rp. {{ number_format(Auth::user()->transaksi()->sum('harga_total'),2,',','.') }}</h3>
+                                @if(Auth::user()->transaksi()->sum('harga_total') == 0)
+                                  <h3 class="text-orange">
+                                    Belum Ada Transaksi
+                                  </h3>
+                                @else
+                                  <h3 class="text-orange">
+                                    Rp. {{ number_format(Auth::user()->transaksi()->sum('harga_total'),2,',','.') }}
+                                  </h3>
+                                @endif
                                 
                             </div>
                         </div>

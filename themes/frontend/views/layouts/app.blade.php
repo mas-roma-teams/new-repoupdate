@@ -237,22 +237,22 @@
          })
      </script>
 
-    <script>
-        $(document).ready(function () {
-            // var harga = $('#harga').val();
-            // // console.log(harga);
-            // var jumlah_dp = document.getElementById('jumlah_dp').value;
-            // var total = harga * (komisi / 100);
-            $('#jumlah_dp').on('keyup', function () {
-                var jumlah_dp = this.value;
-                var harga = $('#harga').val();
-                var total = harga * (jumlah_dp / 100);
-                $('#jumlah_dp_uang').val(Math.ceil(total));
-            });
+      <script>
+          $(document).ready(function () {
+              // var harga = $('#harga').val();
+              // // console.log(harga);
+              // var jumlah_dp = document.getElementById('jumlah_dp').value;
+              // var total = harga * (komisi / 100);
+              $('#jumlah_dp').on('keyup', function () {
+                  var jumlah_dp = this.value;
+                  var harga = $('#harga').val();
+                  var total = harga * (jumlah_dp / 100);
+                  $('#jumlah_dp_uang').val(Math.ceil(total));
+              });
 
-        });
+          });
 
-    </script>
+      </script>
 
 
 
