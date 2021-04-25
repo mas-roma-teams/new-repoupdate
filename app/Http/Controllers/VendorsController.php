@@ -248,7 +248,8 @@ class VendorsController extends Controller
         }else{
             $cekVendor = null;
         }
-        return view('layouts.vendors.success',compact('cekVendor'));
+         $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.vendors.success',compact('cekVendor','kategoris'));
     }
 
     public function dashboardVendor()
@@ -260,8 +261,8 @@ class VendorsController extends Controller
             $cekVendor = null;
         }
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
-
-        return view('layouts.vendors.dashboard',compact('cekVendor','profilevendor'));
+         $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.vendors.dashboard',compact('cekVendor','profilevendor','kategoris'));
     }
 
     public function jasaVendor()
@@ -280,7 +281,7 @@ class VendorsController extends Controller
         $jasakatering = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','5')->paginate(6);
         $jasaphotografer = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','6')->paginate(6);
         $jasatatarias = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','7')->paginate(6);
-        return view('layouts.vendors.jasavendor',compact('cekVendor','profilevendor','jasavendor','jasagedung','jasadekorasi','jasaentertaiment','jasakatering','jasaphotografer','jasatatarias'));
+        return view('layouts.vendors.jasavendor',compact('cekVendor','profilevendor','jasavendor','jasagedung','jasadekorasi','jasaentertaiment','jasakatering','jasaphotografer','jasatatarias','kategoris'));
     }
 
     public function transaksiVendor()
@@ -300,8 +301,8 @@ class VendorsController extends Controller
         $transaksilunas = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',3)->paginate(6);
         $transaksiselesai = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',4)->paginate(6);
         $transaksibatal = Transaksis::with('user')->where('vendor_id', $cekVendor->id)->where('status',5)->paginate(6);
-
-        return view('layouts.vendors.transaksivendor',compact('cekVendor','profilevendor','transaksiall','transaksinego','transaksideal','transaksidp','transaksilunas','transaksibatal','transaksiselesai'));
+        $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.vendors.transaksivendor',compact('cekVendor','profilevendor','transaksiall','transaksinego','transaksideal','transaksidp','transaksilunas','transaksibatal','transaksiselesai','kategoris'));
     }
 
     public function testimoniVendor()
@@ -313,8 +314,8 @@ class VendorsController extends Controller
             $cekVendor = null;
         }
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
-
-        return view('layouts.vendors.testimonivendor',compact('cekVendor','profilevendor'));
+        $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.vendors.testimonivendor',compact('cekVendor','profilevendor','kategoris'));
     }
 
     public function portfolioVendor()
@@ -326,8 +327,8 @@ class VendorsController extends Controller
             $cekVendor = null;
         }
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
-
-        return view('layouts.vendors.portfoliovendor',compact('cekVendor','profilevendor'));
+        $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.vendors.portfoliovendor',compact('cekVendor','profilevendor','kategoris'));
     }
 
     public function tambahJasaVendor()
@@ -339,8 +340,9 @@ class VendorsController extends Controller
             $cekVendor = null;
         }
         $kategori = Kategoris::all();
+        $kategoris = DB::select('select * from kategoris limit 6');
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
-        return view('layouts.vendors.addjasavendor',compact('cekVendor','profilevendor','kategori'));
+        return view('layouts.vendors.addjasavendor',compact('cekVendor','profilevendor','kategori','kategoris'));
     }
 
     public function prosestambahjasa(Request $request)
