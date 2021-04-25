@@ -40,7 +40,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Jumlah Transaksi</h4>
-                                <h3 class="text-orange">54</h3>
+                                <h3 class="text-orange">{{ $transcount }}</h3>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Total Transaksi</h4>
-                                <h3 class="text-orange">Rp.98.000.000</h3>
+                                
+                                  <h3 class="text-orange">Rp. {{ number_format(Auth::user()->transaksi()->sum('harga_total'),2,',','.') }}</h3>
+                                
                             </div>
                         </div>
                     </div>

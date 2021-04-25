@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jasas extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'jasas';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -17,9 +18,9 @@ class Jasas extends Model
      'photo_jasa',
      'deskripsi',
      'kategori_id',
+     'harga_total',
      'user_id',
      'vendor_id',
-     'harga',
      'jumlah_dp',
      'jumlah_dp_uang',
      'dilihat',
@@ -31,6 +32,11 @@ class Jasas extends Model
 	{
 	    return $this->belongsTo(Vendors::class,'vendor_id');
 	}
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id');
+    }
 
     public function kategoris()
     {

@@ -93,4 +93,8 @@ class User extends Authenticatable
     //         }
     //     });
     // }
+
+    public function transaksi(){
+        return $this->hasMany(Transaksis::class);
+    }
 }

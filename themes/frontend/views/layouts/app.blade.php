@@ -43,6 +43,8 @@
     <!-- INCLUDE HEADER -->
     @include('layouts.footer.index')
     <!-- END INCLUDE HEADER -->
+
+
     <!-- @include('layouts.user.modal-chat-user') -->
 
 
@@ -63,36 +65,36 @@
     <script src="{{ asset('themes/frontend/js/app.js') }}" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- Select2 -->
-<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-  function myFunction() {
-  /* Get the text field */
-  var copyText = document.getElementById("myInput");
-  console.log(copyText);
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    <script type="text/javascript">
+      function myFunction() {
+      /* Get the text field */
+      var copyText = document.getElementById("myInput");
+      console.log(copyText);
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
 
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-}
-</script>
+      /* Alert the copied text */
+      alert("Copied the text: " + copyText.value);
+    }
+    </script>
 
-        <script type="text/javascript">
-            $(function () {
-                $("#toggle_pwd").click(function () {
-                    $(this).toggleClass("fa-eye fa-eye-slash");
-                   var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
-                    $("#password").attr("type", type);
-                });
+    <script type="text/javascript">
+        $(function () {
+            $("#toggle_pwd").click(function () {
+                $(this).toggleClass("fa-eye fa-eye-slash");
+               var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+                $("#password").attr("type", type);
             });
-        </script>
+        });
+    </script>
 
     <script type="text/javascript">
             $(function () {
@@ -118,170 +120,170 @@
     }
     </script>
 
-   <script type="text/javascript">
-       $(document).ready(function() {
-            // Province change
+     <script type="text/javascript">
+         $(document).ready(function() {
+              // Province change
 
-            $('#province').change(function(){
+              $('#province').change(function(){
 
-                // Province id
-                var id =  $(this).val();
-                var province_id =  $(this).val();
-                // console.log(id);
-                // console.log(province_id);
+                  // Province id
+                  var id =  $(this).val();
+                  var province_id =  $(this).val();
+                  // console.log(id);
+                  // console.log(province_id);
 
-                // Empty DropDown
-                $('#city').find('option').not(':first').remove();
+                  // Empty DropDown
+                  $('#city').find('option').not(':first').remove();
 
-                // AJAX Request
-                $.ajax({
-                    url: 'getCitys/'+ province_id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success : function(response){
-                        // console.log(response);
+                  // AJAX Request
+                  $.ajax({
+                      url: 'getCitys/'+ province_id,
+                      type: 'GET',
+                      dataType: 'json',
+                      success : function(response){
+                          // console.log(response);
 
-                        var len = 0;
-                        if(response != null){
-                            len = response.length;
-                        }
+                          var len = 0;
+                          if(response != null){
+                              len = response.length;
+                          }
 
-                        if(len > 0) {
+                          if(len > 0) {
 
-                            // Read Data Create Option
-                            for(var i=0; i<len; i++) {
-                                var province_id = response[i].province_id;
-                                var name = response[i].name;
-                                var city_id = response[i].id;
-                                var option = "<option value='"+city_id+"'>"+name+"</option>";
+                              // Read Data Create Option
+                              for(var i=0; i<len; i++) {
+                                  var province_id = response[i].province_id;
+                                  var name = response[i].name;
+                                  var city_id = response[i].id;
+                                  var option = "<option value='"+city_id+"'>"+name+"</option>";
 
-                            $("#city").append(option);
-                            }
-                        }
-                    }
-                })
-
-
-            })
-
-            $('#city').change(function(){
-                var city_id =  $(this).val();
-
-                $('#district').find('option').not(':first').remove();
-
-                // AJAX Request
-                $.ajax({
-                    url: 'getDistrict/'+ city_id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success : function(res){
+                              $("#city").append(option);
+                              }
+                          }
+                      }
+                  })
 
 
-                        var len = 0;
-                        if(res != null){
-                            len = res.data.length;
-                        }
+              })
 
-                        if(len > 0) {
-                            // Read Data Create Option
-                            for(var i=0; i<len; i++) {
-                                var city_id = res.data[i].city_id;
-                                var name = res.data[i].name;
-                                var district_id = res.data[i].id;
-                                var option = "<option value='"+district_id+"'>"+name+"</option>";
+              $('#city').change(function(){
+                  var city_id =  $(this).val();
 
-                            $("#district").append(option);
-                            }
-                        }
-                    }
-                })
+                  $('#district').find('option').not(':first').remove();
 
-            })
-
-            $('#district').change(function(){
-                var district_id =  $(this).val();
+                  // AJAX Request
+                  $.ajax({
+                      url: 'getDistrict/'+ city_id,
+                      type: 'GET',
+                      dataType: 'json',
+                      success : function(res){
 
 
-                $('#villages').find('option').not(':first').remove();
+                          var len = 0;
+                          if(res != null){
+                              len = res.data.length;
+                          }
 
-                // AJAX Request
-                $.ajax({
-                    url: 'getVillages/'+ district_id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success : function(res){
+                          if(len > 0) {
+                              // Read Data Create Option
+                              for(var i=0; i<len; i++) {
+                                  var city_id = res.data[i].city_id;
+                                  var name = res.data[i].name;
+                                  var district_id = res.data[i].id;
+                                  var option = "<option value='"+district_id+"'>"+name+"</option>";
+
+                              $("#district").append(option);
+                              }
+                          }
+                      }
+                  })
+
+              })
+
+              $('#district').change(function(){
+                  var district_id =  $(this).val();
 
 
-                        var len = 0;
-                        if(res != null){
-                            len = res.data.length;
-                        }
+                  $('#villages').find('option').not(':first').remove();
 
-                        if(len > 0) {
-                            // Read Data Create Option
-                            for(var i=0; i<len; i++) {
-                                var district_id = res.data[i].city_id;
-                                var name = res.data[i].name;
-                                var villages_id = res.data[i].id;
-                                var option = "<option value='"+villages_id+"'>"+name+"</option>";
+                  // AJAX Request
+                  $.ajax({
+                      url: 'getVillages/'+ district_id,
+                      type: 'GET',
+                      dataType: 'json',
+                      success : function(res){
 
-                            $("#villages").append(option);
-                            }
-                        }
-                    }
-                })
 
-            })
-       })
-   </script>
+                          var len = 0;
+                          if(res != null){
+                              len = res.data.length;
+                          }
 
-<script>
-    $(document).ready(function () {
-        // var harga = $('#harga').val();
-        // // console.log(harga);
-        // var jumlah_dp = document.getElementById('jumlah_dp').value;
-        // var total = harga * (komisi / 100);
-        $('#jumlah_dp').on('keyup', function () {
-            var jumlah_dp = this.value;
-            var harga = $('#harga').val();
-            var total = harga * (jumlah_dp / 100);
-            $('#jumlah_dp_uang').val(Math.ceil(total));
+                          if(len > 0) {
+                              // Read Data Create Option
+                              for(var i=0; i<len; i++) {
+                                  var district_id = res.data[i].city_id;
+                                  var name = res.data[i].name;
+                                  var villages_id = res.data[i].id;
+                                  var option = "<option value='"+villages_id+"'>"+name+"</option>";
+
+                              $("#villages").append(option);
+                              }
+                          }
+                      }
+                  })
+
+              })
+         })
+     </script>
+
+    <script>
+        $(document).ready(function () {
+            // var harga = $('#harga').val();
+            // // console.log(harga);
+            // var jumlah_dp = document.getElementById('jumlah_dp').value;
+            // var total = harga * (komisi / 100);
+            $('#jumlah_dp').on('keyup', function () {
+                var jumlah_dp = this.value;
+                var harga = $('#harga').val();
+                var total = harga * (jumlah_dp / 100);
+                $('#jumlah_dp_uang').val(Math.ceil(total));
+            });
+
         });
 
-    });
-
-</script>
+    </script>
 
 
 
 
-   <script>
-   $(function () {
-     //Initialize Select2 Elements
-     $('.select2').select2()
+    <script>
+       $(function () {
+         //Initialize Select2 Elements
+         $('.select2').select2()
 
-     //Initialize Select2 Elements
-     $('.select2bs4').select2({
-       theme: 'bootstrap4'
-     })
-   });
- </script>
+         //Initialize Select2 Elements
+         $('.select2bs4').select2({
+           theme: 'bootstrap4'
+         })
+       });
+     </script>
 
-<script>
-    $('.dropify').dropify({
-       error: {
-           'fileSize': 'File gambar terlalu besar maksimal 2 MB ).',
-           'imageFormat': 'Format gambar hanya JPG, JPEG dan PNG ).'
-       }
-   });
+    <script>
+        $('.dropify').dropify({
+           error: {
+               'fileSize': 'File gambar terlalu besar maksimal 2 MB ).',
+               'imageFormat': 'Format gambar hanya JPG, JPEG dan PNG ).'
+           }
+       });
 
-   var drEvent =  $('.dropify.photo_vendor').dropify();
-  drEvent.on('dropify.afterClear', function(event, element){
-  $("#photo_vendor_").val("1");
-  });
-   </script>
-   <script>
-    CKEDITOR.replace( 'editor' );
-</script>
+       var drEvent =  $('.dropify.photo_vendor').dropify();
+      drEvent.on('dropify.afterClear', function(event, element){
+      $("#photo_vendor_").val("1");
+      });
+       </script>
+       <script>
+        CKEDITOR.replace( 'editor' );
+    </script>
   </body>
 </html>

@@ -49,6 +49,8 @@ class HomeController extends Controller
         $jasas_new = DB::table('jasas')
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
             ->get();
+
+        
         $user_id = Auth::user();
         if($user_id){
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();

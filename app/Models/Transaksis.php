@@ -21,8 +21,8 @@ class Transaksis extends Model
 
     }
 
-    public function user()
+    public function jasa()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(Jasas::class,'user_id');
     }
 }

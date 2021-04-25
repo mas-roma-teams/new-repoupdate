@@ -65,7 +65,7 @@
                       </ul>
                       <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-                            @forelse ($transaksiall as $row)
+                            @forelse($transaksiall as $row)
                             <div class="list-transaksi w-100 px-3 mb-3">
                                 <div class="d-flex align-items-center">
                                   <div class="profile small mr-3">
@@ -97,34 +97,34 @@
                         </div>
                         <div class="tab-pane fade" id="pills-negosiasi" role="tabpanel" aria-labelledby="pills-negosiasi-tab">
                             @forelse ($transaksinego as $row)
-<div class="list-transaksi w-100 px-3 mb-3">
-    <div class="d-flex align-items-center">
-      <div class="profile small mr-3">
-        <img src="{{asset('storage/'.$row->user->photo_profile)}}" alt="">
-      </div>
-      <div class="d-flex flex-column">
-        <h5 class="font-medium">{{$row->user->name}}</h5>
-        <p>{{$row->created_at}}</p>
-      </div>
-    </div>
-    @if($row->status == 0)
-    <div class="btn btn-warning">Negosiasi</div>
-    @elseif($row->status == 1)
-    <div class="btn-dealing">Dealing</div>
-    @elseif($row->status == 2)
-    <div class="btn btn-info">DP Lunas</div>
-    @elseif($row->status == 3)
-    <div class="btn btn-paid">Pembayaran Lunas</div>
-    @elseif($row->status == 4)
-    <div class="btn btn-success">Transaksi Selesai</div>
-    @elseif($row->status == 5)
-    <div class="btn btn-danger">Transaksi Batal</div>
-    @endif
+                            <div class="list-transaksi w-100 px-3 mb-3">
+                                <div class="d-flex align-items-center">
+                                  <div class="profile small mr-3">
+                                    <img src="{{asset('storage/'.$row->user->photo_profile)}}" alt="">
+                                  </div>
+                                  <div class="d-flex flex-column">
+                                    <h5 class="font-medium">{{$row->user->name}}</h5>
+                                    <p>{{$row->created_at}}</p>
+                                  </div>
+                                </div>
+                                @if($row->status == 0)
+                                <div class="btn btn-warning">Negosiasi</div>
+                                @elseif($row->status == 1)
+                                <div class="btn-dealing">Dealing</div>
+                                @elseif($row->status == 2)
+                                <div class="btn btn-info">DP Lunas</div>
+                                @elseif($row->status == 3)
+                                <div class="btn btn-paid">Pembayaran Lunas</div>
+                                @elseif($row->status == 4)
+                                <div class="btn btn-success">Transaksi Selesai</div>
+                                @elseif($row->status == 5)
+                                <div class="btn btn-danger">Transaksi Batal</div>
+                                @endif
 
-  </div>
-@empty
-<p>Anda belum memiliki jasa</p>
-@endforelse
+                              </div>
+                            @empty
+                            <p>Anda belum memiliki jasa</p>
+                            @endforelse
                         </div>
 
                         <div class="tab-pane fade" id="pills-dealing" role="tabpanel" aria-labelledby="pills-dealing-tab">
@@ -161,34 +161,34 @@
 
                         <div class="tab-pane fade" id="pills-dp" role="tabpanel" aria-labelledby="pills-dp-tab">
                             @forelse ($transaksidp as $row)
-<div class="list-transaksi w-100 px-3 mb-3">
-    <div class="d-flex align-items-center">
-      <div class="profile small mr-3">
-        <img src="{{asset('storage/'.$row->user->photo_profile)}}" alt="">
-      </div>
-      <div class="d-flex flex-column">
-        <h5 class="font-medium">{{$row->user->name}}</h5>
-        <p>{{$row->created_at}}</p>
-      </div>
-    </div>
-    @if($row->status == 0)
-    <div class="btn btn-warning">Negosiasi</div>
-    @elseif($row->status == 1)
-    <div class="btn-dealing">Dealing</div>
-    @elseif($row->status == 2)
-    <div class="btn btn-info">DP Lunas</div>
-    @elseif($row->status == 3)
-    <div class="btn btn-paid">Pembayaran Lunas</div>
-    @elseif($row->status == 4)
-    <div class="btn btn-success">Transaksi Selesai</div>
-    @elseif($row->status == 5)
-    <div class="btn btn-danger">Transaksi Batal</div>
-    @endif
+                          <div class="list-transaksi w-100 px-3 mb-3">
+                              <div class="d-flex align-items-center">
+                                <div class="profile small mr-3">
+                                  <img src="{{asset('storage/'.$row->user->photo_profile)}}" alt="">
+                                </div>
+                                <div class="d-flex flex-column">
+                                  <h5 class="font-medium">{{$row->user->name}}</h5>
+                                  <p>{{$row->created_at}}</p>
+                                </div>
+                              </div>
+                              @if($row->status == 0)
+                              <div class="btn btn-warning">Negosiasi</div>
+                              @elseif($row->status == 1)
+                              <div class="btn-dealing">Dealing</div>
+                              @elseif($row->status == 2)
+                              <div class="btn btn-info">DP Lunas</div>
+                              @elseif($row->status == 3)
+                              <div class="btn btn-paid">Pembayaran Lunas</div>
+                              @elseif($row->status == 4)
+                              <div class="btn btn-success">Transaksi Selesai</div>
+                              @elseif($row->status == 5)
+                              <div class="btn btn-danger">Transaksi Batal</div>
+                              @endif
 
-  </div>
-@empty
-<p>Anda belum memiliki jasa</p>
-@endforelse
+                            </div>
+                          @empty
+                          <p>Anda belum memiliki jasa</p>
+                          @endforelse
                         </div>
 
                         <div class="tab-pane fade" id="pills-dibayar" role="tabpanel" aria-labelledby="pills-dibayar-tab">

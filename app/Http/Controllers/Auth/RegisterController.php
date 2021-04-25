@@ -70,6 +70,7 @@ class RegisterController extends Controller
         $random = Str::random(5);
         $kapital = ucwords($random);
         $kode =  "ALAPESTA-".$kapital;
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

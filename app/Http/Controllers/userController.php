@@ -241,8 +241,33 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+
+        $usetrans = DB::table('transaksis')
+            ->join('users', 'transaksis.user_id', '=', 'users.' . 'id')
+            ->where('user_id',Auth::user()->id)
+            ->get();
+
+        // $transaksiuser = DB::table('jasas')
+        //     ->join('users', 'vendors.user_id', '=', 'users.' . 'id')
+            
+        //     ->where('user_id',Auth::user()->id)
+        //     ->get();
+            
+        // dd($transaksiuser);
+
+        //  $data = DB::table('transaksis')
+        //     ->select(DB::raw("COUNT(harga_total) as count_harga_total"))
+        //     ->join('users', 'transaksis.user_id', '=', 'users.' . 'id')
+        //     ->groupBy('user_id')
+        //     ->get();
+
+
+
+
+        // dd($usetrans);exit;
+        $transcount = $usetrans->count();
         $users = User::findOrFail($user_id->id);
         $kategoris = DB::select('select * from kategoris limit 6');
-        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris'));
+        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris','usetrans','transcount'));
     }
 }
