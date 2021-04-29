@@ -116,6 +116,9 @@ Route::prefix('user')->group(function () {
    });
 });
 
+Route::get('/tarik-tunai',[userController::class, 'tarikTunai'])->name('tarik-tunai');
+
+
 // ROUTE SEARCH
 Route::get('/search/cari',[HomeController::class,'fiturSearch']);
 // END ROUTE SEARCH
@@ -135,6 +138,7 @@ Route::post('/form/update/password/{id}',[userController::class, 'updatePassword
 Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustransaksi'])->name('status-transaksi');
 
 //  END USER CONTROLLER FRONT END
+
 
 
 

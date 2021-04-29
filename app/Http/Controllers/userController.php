@@ -270,4 +270,18 @@ class userController extends Controller
         $kategoris = DB::select('select * from kategoris limit 6');
         return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris','usetrans','transcount'));
     }
+
+    public function tarikTunai(){
+        $user_id = Auth::user();
+            if($user_id){
+                $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+            }else{
+                $cekVendor = null;
+            }
+         $kategoris = DB::select('select * from kategoris limit 6'); 
+         $users = User::findOrFail($user_id->id);
+         return view('layouts.user.tarik-dana-layout',compact('users','cekVendor','kategoris',));
+
+
+    }
 }
