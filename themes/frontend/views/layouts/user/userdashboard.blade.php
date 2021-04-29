@@ -60,7 +60,7 @@
                                   </h3>
                                 @else
                                   <h3 class="text-orange">
-                                    Rp. {{ number_format(Auth::user()->transaksi()->sum('harga_total'),2,',','.') }}
+                                    Rp. {{ number_format(Auth::user()->transaksi()->sum('harga_total'),0,',','.') }}
                                   </h3>
                                 @endif
                                 
