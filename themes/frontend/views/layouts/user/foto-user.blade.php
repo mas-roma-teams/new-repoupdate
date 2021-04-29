@@ -9,7 +9,7 @@
                 <h4 class="text-ptserif text-center mb-2">{{ Auth::user()->name }}</h4>
 
                 @if(Auth::user()->saldo == true )
-                <!-- {{ number_format(Auth::user()->transaksi()->sum('harga_total'),2,',','.') }} -->
+             
                 <h5 class="text-secondary mb-4">Saldo : Rp. {{ number_format(Auth::user()->saldo,0,',','.') }}</h5>
                 <button class="btn btn-me mb-2">Tarik Saldo</button>
                 @else
