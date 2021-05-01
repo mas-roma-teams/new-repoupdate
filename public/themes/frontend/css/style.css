@@ -84,3 +84,12 @@ a:hover{
     width: 470px;
     color: red;
 }
+
+.class-payment {
+  display: flex;
+}
+
+.gambar-payment {
+  /*width: 200px;
+  height: 200px;*/
+}

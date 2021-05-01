@@ -52,7 +52,7 @@
 
 
 
-
+    <script src="{{ asset('themes/frontend/js/hasil-nominal.js') }}"></script>
 
     <script src="{{ asset('themes/frontend/js/jquery-3.5.1.slim.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/jquery-3.6.0.min.js') }}"></script>
@@ -66,6 +66,13 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- Select2 -->
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{ asset('themes/frontend/js/autoNumeric.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#rupiah').autoNumeric('init');
+        });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
 

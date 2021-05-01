@@ -10,7 +10,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\KategoriesController;
-use App\Models\Vendors;
+use App\Http\Controllers\TransaksiControllers;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
@@ -85,6 +85,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/user/profile/ganti-password', [userController::class,'gantipassword'])->name('users.password');
 
     Route::get('/user/profile/status-transaksi', [userController::class,'transaksiuser'])->name('users.status-transaksi');
+
+    Route::get('/user/tarik-tunai',[userController::class, 'tarikTunai'])->name('tarik-tunai');
 });
 
 
@@ -112,11 +114,15 @@ Route::prefix('user')->group(function () {
 
 		Route::get('/dashboard/profile',[userController::class, 'getprofileuser'])->name('profile');
 
+
+
 		// Route::resource('user', userController::class);
    });
 });
 
-Route::get('/tarik-tunai',[userController::class, 'tarikTunai'])->name('tarik-tunai');
+
+
+
 
 
 // ROUTE SEARCH
@@ -139,6 +145,9 @@ Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustrans
 
 //  END USER CONTROLLER FRONT END
 
+
+// HISTORY TRANSAKSI
+Route::post('/post/transaksi',[TransaksiControllers::class, 'store'])->name('tarik-tunai-post');
 
 
 
