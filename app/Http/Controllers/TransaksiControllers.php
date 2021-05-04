@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\HistoryTransaksi;
@@ -68,16 +69,19 @@ class TransaksiControllers extends Controller
 
         ]);
 
+        $random = Str::random(10);
         $data_array = array('Rp.',' ',',00','.');
         DB::table('histrory_transaksi')->insert([
             'jumlah_penarikan'=>str_replace($data_array,[''], $request->jumlah_penarikan),
+            'id_penarikan' => $random,
             'user_id' => Auth::user()->id,
             'metode_penarikan'=>$request->metode_penarikan,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         // dd($post);
-        return redirect()->intended('user/dashboard')->with(['succes'] => 'UANG ANDA BERHASIL DI CAIRKAN...');
+        Alert::success('success', 'UANG ANDA BERHASIL DI CAIRKAN...');
+        return redirect()->intended('user/dashboard')->with(['success' => 'UANG ANDA BERHASIL DI CAIRKAN...']);
 
         // $user = new HistoryTransaksi ;
         // $user->jumlah_penarikan = $request->get('jumlah_penarikan');

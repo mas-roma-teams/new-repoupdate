@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/user/profile/status-transaksi', [userController::class,'transaksiuser'])->name('users.status-transaksi');
 
     Route::get('/user/tarik-tunai',[userController::class, 'tarikTunai'])->name('tarik-tunai');
+    Route::get('/user/history-tarik-tunai',[userController::class, 'historytarikTunai'])->name('history-tarik-tunai');
 });
 
 
@@ -149,6 +150,7 @@ Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustrans
 // HISTORY TRANSAKSI
 Route::post('/post/transaksi',[TransaksiControllers::class, 'store'])->name('tarik-tunai-post');
 Route::get('/post/transaksi/index',[TransaksiControllers::class, 'index'])->name('tarik-tunai-index');
+
 
 
 

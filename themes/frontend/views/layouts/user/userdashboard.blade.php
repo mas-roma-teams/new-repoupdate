@@ -24,6 +24,7 @@
 
                 <div class="row mb-3">
                     <div class="col-md-12">
+                      @include('layouts.message.flash-message')
                         <div class="card">
                             <div class="card-body">
                                 <h4>Kode referal</h4>

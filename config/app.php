@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         Laravolt\Indonesia\ServiceProvider::class,
-        App\Providers\ButtonJoinProvider::class
+        App\Providers\ButtonJoinProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Indonesia' => Laravolt\Indonesia\Facade::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
 
     ],

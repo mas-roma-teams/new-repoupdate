@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Models\User;
+use Carbon\Carbon;
 use App\Models\Transaksis;
 use App\Models\Vendors;
+use App\Models\HistoryTransaksi;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Auth;
@@ -265,10 +267,12 @@ class userController extends Controller
 
 
         // dd($usetrans);exit;
+        $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+        // dd($cekSaldo);
         $transcount = $usetrans->count();
         $users = User::findOrFail($user_id->id);
         $kategoris = DB::select('select * from kategoris limit 6');
-        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris','usetrans','transcount'));
+        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris','usetrans','transcount','cekSaldo'));
     }
 
     public function tarikTunai(){
@@ -281,6 +285,28 @@ class userController extends Controller
          $kategoris = DB::select('select * from kategoris limit 6'); 
          $users = User::findOrFail($user_id->id);
          return view('layouts.user.tarik-dana-layout',compact('users','cekVendor','kategoris',));
+
+
+    }
+
+    public function HistorytarikTunai(){
+        $user_id = Auth::user();
+            if($user_id){
+                $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+            }else{
+                $cekVendor = null;
+            }
+        $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
+
+        
+        $createdAt = Carbon::parse($cekSaldo['created_at'])->isoFormat('dddd, D MMMM Y');
+        // $date = Carbon::parse($cekSaldo->created_at)->locale('id');
+
+        // $date->settings(['formatFunction' => 'translatedFormat']);
+        
+         $kategoris = DB::select('select * from kategoris limit 6'); 
+         $users = User::findOrFail($user_id->id);
+         return view('layouts.user.history-tarik',compact('users','cekVendor','kategoris','cekSaldo','createdAt'));
 
 
     }
