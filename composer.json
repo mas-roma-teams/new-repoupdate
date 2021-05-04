@@ -22,6 +22,7 @@
         "laravel/ui": "^3.2",
         "laravolt/indonesia": "^0.29.0",
         "livewire/livewire": "^2.0",
+        "nesbot/carbon": "^2.47",
         "qirolab/laravel-themer": "^1.4",
         "ramsey/uuid": "^4.1",
         "webpatser/laravel-uuid": "^3.0"

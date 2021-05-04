@@ -14,7 +14,7 @@
                   @else
                   
                    <h5 class="text-secondary mb-4">Saldo : Rp. {{ number_format(Auth::user()->saldo,0,',','.') }}</h5>
-                  <button class="btn btn-me mb-2">Tarik Saldo</button>
+                  <a href="{{ route('tarik-tunai') }}" class="btn btn-me mb-2">Tarik Saldo</a>
                   @endif
                 <div class="d-flex align-items-center">
 

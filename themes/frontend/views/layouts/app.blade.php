@@ -40,9 +40,9 @@
 
     @include('layouts.user.tombol-chat')
 
-    <!-- INCLUDE HEADER -->
+    <!-- INCLUDEFOOTER -->
     @include('layouts.footer.index')
-    <!-- END INCLUDE HEADER -->
+    <!-- END INCLUDE FOOTER-->
 
 
     <!-- @include('layouts.user.modal-chat-user') -->

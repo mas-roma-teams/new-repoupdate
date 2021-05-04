@@ -19,7 +19,7 @@
          <!--  <h2 class="h3 font-regular text-center text-secondary mb-5">Daftarkan dirimu sekarang untuk mendapatkan penawaran exclusive</h2> -->
           <form action="{{ route('tarik-tunai-post') }}" method="POST">
             @csrf
-            <!-- <input type="text" name="vendor_status" value="0"> -->
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <div class="form-group">
               <label for="name">Nama Pengguna</label>
              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" required autocomplete="name" autofocus disabled>
@@ -31,6 +31,8 @@
               @enderror
 
             </div>
+
+
             <div class="form-group">
               <label for="notel">Nomor Whatsapp</label>
               <input type="text" class="form-control" name="no_tlp" id="notel" aria-describedby="emailHelp" value="{{ Auth::user()->no_tlp }}" disabled>

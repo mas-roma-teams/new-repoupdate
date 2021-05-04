@@ -148,6 +148,7 @@ Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustrans
 
 // HISTORY TRANSAKSI
 Route::post('/post/transaksi',[TransaksiControllers::class, 'store'])->name('tarik-tunai-post');
+Route::get('/post/transaksi/index',[TransaksiControllers::class, 'index'])->name('tarik-tunai-index');
 
 
 
