@@ -29,29 +29,7 @@
                   </div>
                   <div class="card mb-5">
                     <div class="card-body">
-                      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">Semua</a>
-                        </li>
-                        <!-- <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="pills-negosiasi-tab" data-toggle="pill" href="#pills-negosiasi" role="tab" aria-controls="pills-negosiasi" aria-selected="false">OVO</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="pills-dealing-tab" data-toggle="pill" href="#pills-dealing" role="tab" aria-controls="pills-dealing" aria-selected="false">Dealing</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-dp-tab" data-toggle="pill" href="#pills-dp" role="tab" aria-controls="pills-dp" aria-selected="false">DP Luns</a>
-                          </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="pills-dibayar-tab" data-toggle="pill" href="#pills-dibayar" role="tab" aria-controls="pills-dibayar" aria-selected="false">Sudah dibayar</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-selesai-tab" data-toggle="pill" href="#pills-selesai" role="tab" aria-controls="pills-selesai" aria-selected="false">Selesai</a>
-                          </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-batal-tab" data-toggle="pill" href="#pills-batal" role="tab" aria-controls="pills-batal" aria-selected="false">Batal</a>
-                          </li> -->
-                      </ul>
+                   
                       <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                            
@@ -67,7 +45,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                    
+                                      @if( $cekSaldo->count() > 0 )
                                       <?php $i=1; ?>
                                       @foreach($cekSaldo as $post)
                                       <tr>
@@ -92,16 +70,26 @@
                                           @endif
 
 
-                                          <td>{{ $createdAt }}</td>
+                                          <td>{{ $post->created_at->format("l, Y-m-d H:i:s\n") }}</td>
                                           
                                       </tr>
                                       <?php $i++; ?>
                                       
                                       @endforeach
+
+
+                                      @else 
+                                      <tr>
+                                          <td colspan="5">BELUM ADA TRANSAKSI PENARIKAN</td>
+                                      </tr>
+                                      @endif
                                      
                                   </tbody>
                                  
                               </table>
+
+                            <!-- START PAGINATION -->
+                            {{ $cekSaldo->links('layouts.pagination.pagination') }}
                            
                             
                         </div>

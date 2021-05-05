@@ -296,17 +296,19 @@ class userController extends Controller
             }else{
                 $cekVendor = null;
             }
-        $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
+       
+            if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
+            }else {
+                $cekSaldo = null;
+            }
 
-        
-        $createdAt = Carbon::parse($cekSaldo['created_at'])->isoFormat('dddd, D MMMM Y');
-        // $date = Carbon::parse($cekSaldo->created_at)->locale('id');
+       
 
-        // $date->settings(['formatFunction' => 'translatedFormat']);
         
          $kategoris = DB::select('select * from kategoris limit 6'); 
          $users = User::findOrFail($user_id->id);
-         return view('layouts.user.history-tarik',compact('users','cekVendor','kategoris','cekSaldo','createdAt'));
+         return view('layouts.user.history-tarik',compact('users','cekVendor','kategoris','cekSaldo'));
 
 
     }

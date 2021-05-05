@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +23,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+   
+        public function boot()
     {
-        //
+        config(['app.locale' => 'id']);
+        \Carbon\Carbon::setLocale('id');
+         Schema::defaultStringLength(191);
     }
+    
 }

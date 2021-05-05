@@ -19,13 +19,13 @@ class HistoryTransaksi extends Model
     'updated_at' => 'datetime:d/m/Y',
 	];
 
-	public function getCreatedAtAttribute($date)
-	{
-	    return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
-	}
+	// public function getCreatedAtAttribute($date)
+	// {
+	//     return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+	// }
 
-	public function getUpdatedAtAttribute($date)
-	{
-	    return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
-	}
+	// public function getUpdatedAtAttribute($date)
+	// {
+	//     return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+	// }
 }
