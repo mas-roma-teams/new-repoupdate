@@ -12,11 +12,11 @@
                
                    <h5 class="text-secondary mb-4">Belum Ada Saldo</h5>
 
-                  @elseif($cekSaldo == TRUE)
+                  @elseif($cek_akhir_saldo == TRUE)
 
                   <?php
                     $saldoawal = Auth::user()->saldo;
-                    $saldo_user_ambil =  $cekSaldo->sum('jumlah_penarikan');
+                    $saldo_user_ambil =  $cek_akhir_saldo->sum('jumlah_penarikan');
                     // dd($saldo_user_ambil);
                     $saldo_akhir = $saldoawal - $saldo_user_ambil;
                   ?>

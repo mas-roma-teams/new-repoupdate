@@ -89,7 +89,7 @@
                               </table>
 
                             <!-- START PAGINATION -->
-                            {{ $cekSaldo->links('layouts.pagination.pagination') }}
+                            {{ $cekSaldo->links('layouts.pagination.pagination') }} 
                            
                             
                         </div>

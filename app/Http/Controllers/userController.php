@@ -36,7 +36,13 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
-        return view('layouts.user.index',compact('cekVendor','kategoris'));
+
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
+        return view('layouts.user.index',compact('cekVendor','cekSaldo','kategoris'));
     }
 
 
@@ -59,9 +65,15 @@ class userController extends Controller
             $cekVendor = null;
         }
 
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+        }else {
+                $cekSaldo = null;
+         }
+
         $transaksiPerId = Transaksis::with('vendor')->where('user_id', Auth::user()->id)->get();
 
-        return view('layouts.user.index-status-transaksi',compact('transaksiPerId','cekVendor','kategoris'))->with(['getuserid' => $getuserid]);
+        return view('layouts.user.index-status-transaksi',compact('transaksiPerId','cekVendor','kategoris','cekSaldo'))->with(['getuserid' => $getuserid]);
     }
 
 
@@ -74,9 +86,15 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
          $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris'));
+        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris','cekSaldo'));
     }
 
     public function kodeReferal()
@@ -88,9 +106,15 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
          $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.kode-referal',compact('cekVendor','users','kategoris'));
+        return view('layouts.user.kode-referal',compact('cekVendor','users','kategoris','cekSaldo'));
     }
 
 
@@ -103,9 +127,14 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
         $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.ganti-password',compact('cekVendor','users','kategoris'));
+        return view('layouts.user.ganti-password',compact('cekVendor','users','kategoris','cekSaldo'));
     }
     /**
      * Show the form for creating a new resource.
@@ -143,9 +172,14 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
         $users = User::findOrFail($id);
          $kategoris = DB::select('select * from kategoris limit 6');
-        return view('layouts.user.index-profile-user',compact('users','cekVendor','user_id'));
+        return view('layouts.user.index-profile-user',compact('users','cekVendor','user_id','cekSaldo'));
     }
 
     /**
@@ -163,9 +197,14 @@ class userController extends Controller
         }else{
             $cekVendor = null;
         }
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
         $users = User::findOrFail($id);
         $kategoris = DB::select('select * from kategoris limit 6');
-        return view('layouts.user.edit-user',compact('users','cekVendor','kategoris'));
+        return view('layouts.user.edit-user',compact('users','cekVendor','kategoris','cekSaldo'));
     }
 
     /**
@@ -212,6 +251,11 @@ class userController extends Controller
             'password' => 'required',
           
         ]);
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+            }else {
+                $cekSaldo = null;
+            }
         // var_dump($request);exit;
         $user = User::findOrFail($id);
         $user->password = Hash::make($request->password);
@@ -269,10 +313,11 @@ class userController extends Controller
         // dd($usetrans);exit;
         $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
         // dd($cekSaldo);
+        $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get(); 
         $transcount = $usetrans->count();
         $users = User::findOrFail($user_id->id);
         $kategoris = DB::select('select * from kategoris limit 6');
-        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris','usetrans','transcount','cekSaldo'));
+        return view('layouts.user.userdashboard',compact('users','cekVendor','kategoris','usetrans','transcount','cekSaldo','cek_akhir_saldo'));
     }
 
     public function tarikTunai(){
@@ -282,9 +327,10 @@ class userController extends Controller
             }else{
                 $cekVendor = null;
             }
+            $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get(); 
          $kategoris = DB::select('select * from kategoris limit 6'); 
          $users = User::findOrFail($user_id->id);
-         return view('layouts.user.tarik-dana-layout',compact('users','cekVendor','kategoris',));
+         return view('layouts.user.tarik-dana-layout',compact('users','cekVendor','kategoris','cek_akhir_saldo'));
 
 
     }
@@ -298,17 +344,18 @@ class userController extends Controller
             }
        
             if ($user_id) {
+                // UNTUK MENGAMBIL DATA PAGINATE KONTEN
                  $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
             }else {
                 $cekSaldo = null;
             }
 
-       
 
-        
+        // UNTUK MENGAMBIL JUMLAH DATA SEMUA YANG DI KURANG DENGAN SALDO 
+         $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();       
          $kategoris = DB::select('select * from kategoris limit 6'); 
          $users = User::findOrFail($user_id->id);
-         return view('layouts.user.history-tarik',compact('users','cekVendor','kategoris','cekSaldo'));
+         return view('layouts.user.history-tarik',compact('users','cekVendor','kategoris','cekSaldo','cek_akhir_saldo','cek_akhir_saldo'));
 
 
     }
