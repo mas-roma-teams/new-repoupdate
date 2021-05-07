@@ -81,13 +81,15 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/user/profile', [userController::class,'getprofileuser'])->name('users.profile');
 
-    Route::get('/user/kode-referal', [userController::class,'kodeReferal'])->name('users.kode-referal');
-    Route::get('/user/profile/ganti-password', [userController::class,'gantipassword'])->name('users.password');
+    // Route::get('/user/kode-referal', [userController::class,'kodeReferal'])->name('users.kode-referal');
+    Route::get('/user/ganti-password', [userController::class,'gantipassword'])->name('users.password');
 
-    Route::get('/user/profile/status-transaksi', [userController::class,'transaksiuser'])->name('users.status-transaksi');
+    Route::get('/user/status-transaksi', [userController::class,'transaksiuser'])->name('users.status-transaksi');
 
     Route::get('/user/tarik-tunai',[userController::class, 'tarikTunai'])->name('tarik-tunai');
     Route::get('/user/history-tarik-tunai',[userController::class, 'historytarikTunai'])->name('history-tarik-tunai');
+
+    Route::get('/user/transaksi-user',[userController::class, 'transaksiUser'])->name('transaksi-user');
 });
 
 
@@ -149,6 +151,8 @@ Route::get('/dashboard/status-transaksi',[userController::class, 'getstatustrans
 
 // HISTORY TRANSAKSI
 Route::post('/post/transaksi',[TransaksiControllers::class, 'store'])->name('tarik-tunai-post');
+
+// Route::get('/post/transaksi/user-transaksi',[userController::class, 'transaksiUser'])->name('transaksi-user');
 Route::get('/post/transaksi/index',[TransaksiControllers::class, 'index'])->name('tarik-tunai-index');
 
 

@@ -11,7 +11,7 @@ class Transaksis extends Model
 
     protected $table = "transaksis";
 
-    public function vendor()
+    /* public function vendor()
     {
 
         return $this->hasOne
@@ -19,10 +19,15 @@ class Transaksis extends Model
 
         return $this->belongsTo(Vendors::class);
 
-    }
+    }*/
 
     public function jasa()
     {
-        return $this->belongsTo(Jasas::class,'user_id');
+        return $this->belongsTo(Jasas::class,'jasa_id');
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendors::class,'vendor_id');
     }
 }

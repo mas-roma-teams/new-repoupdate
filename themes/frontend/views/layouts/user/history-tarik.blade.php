@@ -24,6 +24,7 @@
 
 
             <div class="col-9">
+              
                 <div class="d-flex justify-content-between mb-3">
                     <h2>History Penarikan</h2>
                   </div>

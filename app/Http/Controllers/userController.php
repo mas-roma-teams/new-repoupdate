@@ -91,10 +91,11 @@ class userController extends Controller
                  $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
             }else {
                 $cekSaldo = null;
-            }
-         $kategoris = DB::select('select * from kategoris limit 6');
+        }
+        $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+        $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris','cekSaldo'));
+        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris','cekSaldo','cek_akhir_saldo'));
     }
 
     public function kodeReferal()
@@ -112,11 +113,70 @@ class userController extends Controller
             }else {
                 $cekSaldo = null;
             }
-         $kategoris = DB::select('select * from kategoris limit 6');
+        $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+        $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.kode-referal',compact('cekVendor','users','kategoris','cekSaldo'));
+        return view('layouts.user.kode-referal',compact('cekVendor','users','kategoris','cekSaldo','cek_akhir_saldo'));
     }
 
+
+    public function transaksiUser()
+    {
+        $user = Auth::user();
+        $dataTransaksi = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->get();
+        // DATA UNTUK PAGINATION 
+        // $dataTransaksiSemua = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->get();
+
+       
+        $dataTransaksiNego = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->where('status','=','0')->paginate(5);
+
+        $dataTransaksiDeal = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->where('status','=','1')->paginate(5);
+
+        $dataTransaksiDp = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->where('status','=','2')->paginate(5);
+
+        $dataTransaksiLunas = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->where('status','=','3')->paginate(5);
+
+        $dataTransaksiSelesai = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->where('status','=','4')->paginate(5);
+
+
+        $dataTransaksiBatal = Transaksis::with(['jasa','vendor'])->where('user_id',$user->id)->where('status','=','5')->paginate(5);        
+        // dd($dataTransaksiSelesai);
+
+        $user_id = Auth::user();
+        
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+
+        if ($user_id) {
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+        }else {
+                $cekSaldo = null;
+        }
+
+        $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
+        
+        $kategoris = DB::select('select * from kategoris limit 6');
+        return view('layouts.user.status-transaksi',compact(
+            'cekVendor',
+            'user',
+            'kategoris',
+            'cekSaldo',
+            'cek_akhir_saldo',
+            'dataTransaksiNego',
+            'dataTransaksi',
+            'dataTransaksiDeal',
+            'dataTransaksiDp',
+            'dataTransaksiLunas',
+            'dataTransaksiSelesai',
+            'dataTransaksiBatal',
+
+        ));
+
+        
+    }
 
     public function gantipassword()
     {
@@ -132,9 +192,10 @@ class userController extends Controller
             }else {
                 $cekSaldo = null;
             }
+        $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();    
         $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.user.ganti-password',compact('cekVendor','users','kategoris','cekSaldo'));
+        return view('layouts.user.ganti-password',compact('cekVendor','users','kategoris','cekSaldo','cek_akhir_saldo'));
     }
     /**
      * Show the form for creating a new resource.

@@ -17,6 +17,7 @@
         <div class="col-md-7 mx-auto">
           <h1 class="text-secondary text-center text-ptserif mb-2">Silahkan Masukan Nominal untuk tarik tunai</h1>
          <!--  <h2 class="h3 font-regular text-center text-secondary mb-5">Daftarkan dirimu sekarang untuk mendapatkan penawaran exclusive</h2> -->
+          @include('layouts.message.flash-message')
           <form action="{{ route('tarik-tunai-post') }}" method="POST">
             @csrf
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">

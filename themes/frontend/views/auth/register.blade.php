@@ -45,6 +45,16 @@
                   </span>
               @enderror
             </div>
+
+            <!-- <div class="form-group">
+              <label for="email">Kota Tempat Tinggal</label>
+              <select id="js-example-multiple" class="form-control select2-multiple" >
+                  <option value=""></option>
+                  <option>One</option>
+                  <option>Two</option>
+              </select>
+             
+            </div> -->
             <div class="form-group">
 
               <label for="password">{{ __('Password') }}</label>

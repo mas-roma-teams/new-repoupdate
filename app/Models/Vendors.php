@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class Vendors extends Model
 {
     use HasFactory;
@@ -13,7 +21,7 @@ class Vendors extends Model
     //
 
     protected $primaryKey = 'id';
- 	protected $table = 'vendors';
+    protected $table = 'vendors';
     protected $fillable = [
         'id',
         'user_id',
@@ -31,9 +39,9 @@ class Vendors extends Model
     ];
 
     public function jasas()
-	{
-	    return $this->hasMany(Jasas::class);
-	}
+    {
+        return $this->hasMany(Jasas::class);
+    }
 
     public function wilayah()
     {
