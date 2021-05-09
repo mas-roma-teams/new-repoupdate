@@ -70,7 +70,8 @@ class RegisterController extends Controller
         $random = Str::random(5);
         $kapital = ucwords($random);
         $kode =  "ALAPESTA-".$kapital;
-        
+        // dd($data);
+        // dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -79,5 +80,11 @@ class RegisterController extends Controller
             'vendor_status' => '0',
             'password' => Hash::make($data['password']),
         ]);
+
+
+
+
+
+
     }
 }

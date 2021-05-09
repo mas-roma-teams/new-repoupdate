@@ -19,8 +19,9 @@
     <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
      <!-- Select2 -->
-  <!-- <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css')}}"> -->
+
   <link rel="stylesheet" href="{{ asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
@@ -57,13 +58,14 @@
 
 
 
+
     <script src="{{ asset('themes/frontend/js/hasil-nominal.js') }}"></script>
 
     <script src="{{ asset('themes/frontend/js/jquery-3.5.1.slim.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/jquery-3.6.0.min.js') }}"></script>
 <!--     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> -->
     <script src="{{ asset('themes/frontend/js/popper.min.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     {{-- <script src="{{ asset('themes/frontend/js/main.js') }}"></script> --}}
     <script src="{{ asset('themes/frontend/js/slick.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/bootstrap.min.js') }}"></script>
@@ -79,9 +81,9 @@
         });
     </script>
     <script type="text/javascript">
-     $(document).ready(function() {
-      $(".js-example-multiple").select2();
-      });
+    $(document).ready(function() {
+    $('.select2').select2();
+    });
       </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
