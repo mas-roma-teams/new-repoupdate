@@ -126,7 +126,7 @@ class JasasController extends Controller
 
         $jasas_count = $jasas_new->count();
 
-         $kategoris = Kategoris::All();
+        $kategoris = Kategoris::All();
         return view('layouts.jasa.index-jasa-dicari',compact(
             'kategoris',
             'provincess',

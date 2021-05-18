@@ -12,4 +12,9 @@ class IndoCity extends Model
     protected $fillable = [
      'id','name','meta','province_id'
    ];
+
+   public function jasa()
+    {
+        return $this->hasMany(Jasas::class,'city_id');
+    }
 }

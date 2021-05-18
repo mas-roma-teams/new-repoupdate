@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('no_tlp')->nullable();
+            $table->int('city_id')->nullable();
             $table->string('kode_referal')->nullable();
             $table->boolean('is_admin')->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -33,13 +33,15 @@ class VendorsController extends Controller
     {
         //
         $vendors = DB::table('vendors')->paginate(6);
-       $kategoris = DB::select('select * from kategoris limit 6');
+        $kategoris = DB::select('select * from kategoris limit 6');
         $provinces = Province::pluck('name', 'id');
 
         $provincess = IndoProv::orderby("name","asc")
                                         ->select('id','name')->get();
+        $nama_kota = IndoCity::orderby("name","asc")
+                                        ->select('id','name')->get();
 
-         $user_id = Auth::user();
+        $user_id = Auth::user();
         if($user_id){
             $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         }else{
@@ -57,7 +59,10 @@ class VendorsController extends Controller
             'kategoris',
             'vendors',
             'cekVendor',
-            'provincess', ['provincess' => $provincess],
+            'provincess', 
+            'nama_kota',
+            ['provincess' => $provincess],
+            ['nama_kota' => $nama_kota,],
             'vendors',    ['vendors'=> $vendors]),
             ['provinces' => $provinces,]
         );
@@ -83,6 +88,16 @@ class VendorsController extends Controller
                     // ->select('province_id','name')
                     ->where('province_id',$province_id)
                     ->get();
+         echo( $citysData['data']);exit;
+        return response()->json($citysData);
+    }
+
+    public function ambilDataSemuaKota(){
+
+         $citysData['data'] = IndoCity::orderby("name","asc")
+                    // ->select('province_id','name')
+                    ->get();
+        // dd($citysData['data']);
          echo( $citysData['data']);exit;
         return response()->json($citysData);
     }

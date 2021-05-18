@@ -35,8 +35,35 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    // public function index()
+    // {
+       
+    //     $kategoris = DB::select('select * from kategoris limit 6');
+    //     $banner = Banner::All();
+    //     $jasas = Jasas::with('vendors.wilayah','vendors.kecamatan')->get();
+    //      // dd($jasas);
+    //     $jasas_news = Jasas::orderBy('dilihat','desc')->limit(8)->get();
+    //     $vendors = DB::select('select * from vendors limit 8');
+    //     $jasa_terbaru = Jasas::OrderBy('created_at','desc')->limit(8)->get();
+    //     // dd($jasa_terbaru);
+    //     $jasas_new = DB::table('jasas')
+    //         ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
+    //         ->get();
+
+        
+    //     $user_id = Auth::user();
+    //     if($user_id){
+    //         $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+    //     }else{
+    //         $cekVendor = null;
+    //     }
+
+    //     $jasas_count = $jasas_new->count();
+
+    //     return view('layouts.home.index-home',compact(array('jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor','jasa_terbaru')));
+    // }
+
+    public function index(){
        
         $kategoris = DB::select('select * from kategoris limit 6');
         $banner = Banner::All();
@@ -57,6 +84,10 @@ class HomeController extends Controller
         }else{
             $cekVendor = null;
         }
+
+      
+       
+
 
         $jasas_count = $jasas_new->count();
 

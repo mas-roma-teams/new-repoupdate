@@ -46,15 +46,18 @@
               @enderror
             </div>
 
-            <!-- <div class="form-group">
-              <label for="email">Kota Tempat Tinggal</label>
-              <select id="js-example-multiple" class="form-control select2-multiple" >
-                  <option value=""></option>
-                  <option>One</option>
-                  <option>Two</option>
-              </select>
-             
-            </div> -->
+            <div class="form-group">
+                    <label for="exampleFormControlSelect1">Pilih Kota</label>
+                    <!-- <input type="text" name="province_id" id="city"> -->
+                    
+                    <select name="city_id" class="select2 form-control" id="city" required>
+                     <option value="0">-- PILIH --</option>
+                     @foreach($nama_kota as $jkey)
+                     <option value="{{ $jkey->id }}">{{ $jkey->name  }}</option>
+                     @endforeach
+                    </select>
+            </div>
+
             <div class="form-group">
 
               <label for="password">{{ __('Password') }}</label>

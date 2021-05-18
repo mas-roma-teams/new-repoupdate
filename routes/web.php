@@ -39,6 +39,8 @@ Route::get('/testing-function', function() {
 // GET PROVINSI  - KOTA
 Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );
 Route::get('/getCitys/{provice_id}', [VendorsController::class, 'getCitys'] );
+Route::get('/getCitysAll', [VendorsController::class, 'ambilDataSemuaKota'] );
+
 Route::get('get/{id}', 'CategoryController@get_causes_against_category');
 
 // GET Kecamatan

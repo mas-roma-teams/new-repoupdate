@@ -42,4 +42,11 @@ class Jasas extends Model
     {
         return $this->hasMany(Jasas::class);
     }
+
+    public function kota()
+    {
+        return $this->belongsTo(IndoCity::class,'city_id');
+    }
+
+    
 }

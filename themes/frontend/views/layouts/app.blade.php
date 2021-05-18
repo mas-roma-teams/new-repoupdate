@@ -25,11 +25,18 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
         integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+
+
     {{-- dropify --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <!-- START LOAD SWEAT ALERT  -->
-  @include('sweetalert::alert')
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+  
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('themes/frontend/css/select2.min.css') }}">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
+ 
 
   </head>
   <body style="overflow-x: hidden;">
@@ -56,12 +63,15 @@
 
 
 
+    
 
     <script src="{{ asset('themes/frontend/js/hasil-nominal.js') }}"></script>
 
     <script src="{{ asset('themes/frontend/js/jquery-3.5.1.slim.min.js') }}"></script>
     <script src="{{ asset('themes/frontend/js/jquery-3.6.0.min.js') }}"></script>
 <!--     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> -->
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="{{ asset('themes/frontend/js/popper.min.js') }}"></script>
 
     {{-- <script src="{{ asset('themes/frontend/js/main.js') }}"></script> --}}
@@ -71,6 +81,14 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- Select2 -->
     <!-- <script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}"></script> -->
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+          $('.select2').select2();
+      });
+
+      
+    </script>
 
     <script type="text/javascript" src="{{ asset('themes/frontend/js/autoNumeric.js') }}"></script>
     <script type="text/javascript">
@@ -80,8 +98,10 @@
     </script>
     <script type="text/javascript">
      $(document).ready(function() {
-      $(".js-example-multiple").select2();
+      $("#city").select2();
       });
+
+
       </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
@@ -284,6 +304,9 @@
            theme: 'bootstrap4'
          })
        });
+
+      
+      
      </script>
 
     <script>

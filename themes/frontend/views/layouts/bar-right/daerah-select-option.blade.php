@@ -42,6 +42,7 @@
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Kota</label>
                     <!-- <input type="text" name="province_id" id="city"> -->
+                    
                     <select name="city" class="form-control" id="city">
                      <option value="0">-- PILIH --</option>
 

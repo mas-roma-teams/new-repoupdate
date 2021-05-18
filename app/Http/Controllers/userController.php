@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\IndoCity;
 use App\Models\Transaksis;
 use App\Models\Vendors;
 use App\Models\HistoryTransaksi;
@@ -92,10 +93,11 @@ class userController extends Controller
             }else {
                 $cekSaldo = null;
         }
+        $nama_kota = IndoCity::orderby("name","asc")->select('id','name')->get();
         $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();
         $kategoris = DB::select('select * from kategoris limit 6');
         $users = User::findOrFail($user_id->id);
-        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris','cekSaldo','cek_akhir_saldo'));
+        return view('layouts.profile-user.user-profile',compact('cekVendor','users','kategoris','cekSaldo','cek_akhir_saldo','nama_kota'));
     }
 
     public function kodeReferal()
@@ -289,6 +291,7 @@ class userController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->no_tlp = $request->get('no_tlp');
+        $user->city_id = $request->get('city_id');
         if ($request->hasFile('photo_profile')) {
             // $post->delete_image();
             $photo_profile = $request->file('photo_profile');

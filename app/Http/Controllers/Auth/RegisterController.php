@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\IndoCity;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -56,6 +57,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'no_tlp' => ['required', 'string', 'max:50'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
     }
 
@@ -77,6 +79,7 @@ class RegisterController extends Controller
             'no_tlp' => $data['no_tlp'],
             'kode_referal' => $kode,
             'vendor_status' => '0',
+            'city_id' => $data['city_id'],
             'password' => Hash::make($data['password']),
         ]);
     }

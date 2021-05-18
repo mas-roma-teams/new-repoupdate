@@ -255,7 +255,7 @@
                             @endforelse
                         </div>
 
-                        <div class="tab-pane fade" id="pills-batal" role="tabpanel" aria-labelledby="pills-batal-tab">
+                        http://localhost:8000/register
                             @forelse ($transaksibatal as $row)
                             <div class="list-transaksi w-100 px-3 mb-3">
                                 <div class="d-flex align-items-center">
