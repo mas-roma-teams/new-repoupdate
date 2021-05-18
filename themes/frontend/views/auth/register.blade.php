@@ -47,6 +47,7 @@
             </div>
 
             <div class="form-group">
+<<<<<<< HEAD
                     <label for="exampleFormControlSelect1">Pilih Kota</label>
                     <!-- <input type="text" name="province_id" id="city"> -->
                     
@@ -58,11 +59,24 @@
                     </select>
             </div>
 
+=======
+              <label for="email">Kota Tempat Tinggal</label>
+              <select id="js-example-multiple" class="form-control select2-multiple select2" >
+                  <option value=""></option>
+                  <option>One</option>
+                  <option>Two</option>
+                  <option>Three</option>
+                  <option>four</option>
+                  <option>five</option>
+              </select>
+
+            </div>
+>>>>>>> ed85c2de1adf9f1ddbb39d70ae95839849c61e1e
             <div class="form-group">
 
               <label for="password">{{ __('Password') }}</label>
              <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> --> 
+              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
                 <div class="input-group">
                     <input class="form-control py-2 border-right-0 border @error('password') is-invalid @enderror" type="password" id="password" name="password" required autocomplete="current-password">
                     <span class="input-group-append">
@@ -80,7 +94,7 @@
 
               <label for="password">{{ __('Confirm Password') }}</label>
              <!--  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> --> 
+              <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon"></span> -->
                 <div class="input-group">
 
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -99,12 +113,12 @@
                 <p class="mb-0">or</p>
               </div>
             </div>
-            <a href="{{ url('auth/google') }}" class="btn btn-outline-dark w-100 py-2 mb-4"><img class="mr-4 icon-google" src="{{ asset('themes/frontend/images/icon-google.svg') }}"> Sign in with Google</a> 
+            <a href="{{ url('auth/google') }}" class="btn btn-outline-dark w-100 py-2 mb-4"><img class="mr-4 icon-google" src="{{ asset('themes/frontend/images/icon-google.svg') }}"> Sign in with Google</a>
 
             <button type="submit" class="btn btn-booking py-2">
                                     {{ __('Register') }}
             </button>
-          
+
           </form>
         </div>
       </div>

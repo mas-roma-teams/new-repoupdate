@@ -30,7 +30,7 @@ class User extends Authenticatable
      */
 
     protected $table = "users";
-    
+
     protected $fillable = [
         'name',
         'no_tlp',
@@ -41,7 +41,7 @@ class User extends Authenticatable
         'vendor_status',
         'photo_profile',
         'google_id',
-        
+
 
     ];
 

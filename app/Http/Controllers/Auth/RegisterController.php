@@ -72,7 +72,8 @@ class RegisterController extends Controller
         $random = Str::random(5);
         $kapital = ucwords($random);
         $kode =  "ALAPESTA-".$kapital;
-        
+        // dd($data);
+        // dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -82,5 +83,11 @@ class RegisterController extends Controller
             'city_id' => $data['city_id'],
             'password' => Hash::make($data['password']),
         ]);
+
+
+
+
+
+
     }
 }
