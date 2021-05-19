@@ -29,6 +29,8 @@ class User extends Authenticatable
      * @var array
      */
 
+    public $incrementing = false;
+
     protected $table = "users";
 
     protected $fillable = [
