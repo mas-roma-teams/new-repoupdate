@@ -82,6 +82,7 @@
 
 
         @if(Auth::user())
+        @if( $cekKota->count() > 0 )
         <div class="mb-5">
           <h2 class="text-ptserif mb-2">Jasa disekitarmu</h2>
           <div class="d-flex justify-content-between mb-3">
@@ -89,13 +90,14 @@
             <a href="{{ url('/jasa-list') }}" class="h5 font-regular color-primary text-bold link">lihat semua</a>
           </div>
           <div class="row">
-            @foreach( $jasas as $jasa )
+            
+            @foreach( $cekKota as $jasa )
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
               <div class="card noborder">
                 <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                 <div class="card-body no-paddingleft">
-                  <h4 class="mb-2"><a href="">{{ substr($jasa->nama_jasa,0,30) }}</a></h4>
-                  <p class="mb-2 font-light">{{ ucfirst($jasa->vendors->kecamatan->name) }}, {{ $jasa->vendors->wilayah->name }}</p>
+                  <h4 class="mb-2"><a href=""></a>{{ $jasa->nama_jasa }}</h4>
+                  <p class="mb-2 font-light">{{ ucfirst($jasa->kota->name) }}</p>
 
                   <div class="d-flex mb-2">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
@@ -110,8 +112,13 @@
               </div>
             </div>
             @endforeach
+           
+
           </div>
         </div>
+        @else
+            <p>data kosong</p>
+        @endif
         @endif
 
 

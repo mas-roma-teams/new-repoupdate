@@ -17,6 +17,7 @@
         <div class="col-md-7 mx-auto">
           <h1 class="text-secondary text-center text-ptserif mb-2">Halo, selamat datang kembali!</h1>
           <h2 class="h3 font-regular text-center text-secondary mb-5">Daftarkan dirimu sekarang untuk mendapatkan penawaran exclusive</h2>
+          
           <form action="{{ route('register') }}" method="POST">
             @csrf
             <!-- <input type="text" name="vendor_status" value="0"> -->
@@ -47,7 +48,7 @@
             </div>
 
             <div class="form-group">
-<<<<<<< HEAD
+
                     <label for="exampleFormControlSelect1">Pilih Kota</label>
                     <!-- <input type="text" name="province_id" id="city"> -->
                     
@@ -59,19 +60,9 @@
                     </select>
             </div>
 
-=======
-              <label for="email">Kota Tempat Tinggal</label>
-              <select id="js-example-multiple" class="form-control select2-multiple select2" >
-                  <option value=""></option>
-                  <option>One</option>
-                  <option>Two</option>
-                  <option>Three</option>
-                  <option>four</option>
-                  <option>five</option>
-              </select>
 
-            </div>
->>>>>>> ed85c2de1adf9f1ddbb39d70ae95839849c61e1e
+
+
             <div class="form-group">
 
               <label for="password">{{ __('Password') }}</label>

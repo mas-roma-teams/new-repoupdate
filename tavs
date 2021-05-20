@@ -1,0 +1,31 @@
+[1mdiff --git a/themes/frontend/views/auth/register.blade.php b/themes/frontend/views/auth/register.blade.php[m
+[1mindex ede3d2a..1b751b6 100644[m
+[1m--- a/themes/frontend/views/auth/register.blade.php[m
+[1m+++ b/themes/frontend/views/auth/register.blade.php[m
+[36m@@ -47,7 +47,7 @@[m
+             </div>[m
+ [m
+             <div class="form-group">[m
+[31m-<<<<<<< HEAD[m
+[32m+[m
+                     <label for="exampleFormControlSelect1">Pilih Kota</label>[m
+                     <!-- <input type="text" name="province_id" id="city"> -->[m
+                     [m
+[36m@@ -59,7 +59,7 @@[m
+                     </select>[m
+             </div>[m
+ [m
+[31m-=======[m
+[32m+[m
+               <label for="email">Kota Tempat Tinggal</label>[m
+               <select id="js-example-multiple" class="form-control select2-multiple select2" >[m
+                   <option value=""></option>[m
+[36m@@ -71,7 +71,7 @@[m
+               </select>[m
+ [m
+             </div>[m
+[31m->>>>>>> ed85c2de1adf9f1ddbb39d70ae95839849c61e1e[m
+[32m+[m
+             <div class="form-group">[m
+ [m
+               <label for="password">{{ __('Password') }}</label>[m

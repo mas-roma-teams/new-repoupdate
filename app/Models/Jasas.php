@@ -48,5 +48,10 @@ class Jasas extends Model
         return $this->belongsTo(IndoCity::class,'city_id');
     }
 
+    public function provinsi()
+    {
+        return $this->belongsTo(IndoProv::class,'province_id');
+    }
+
     
 }

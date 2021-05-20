@@ -13,8 +13,11 @@ class IndoCity extends Model
      'id','name','meta','province_id'
    ];
 
-   public function jasa()
+   	public function provinsi()
     {
-        return $this->hasMany(Jasas::class,'city_id');
+        return $this->hasMany(IndoProv::class,'id');
     }
+
+
+
 }

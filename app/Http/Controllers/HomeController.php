@@ -77,6 +77,24 @@ class HomeController extends Controller
             ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
             ->get();
 
+        // $lokasi_koor = DB::table('jasas')
+        //     ->join('users', 'jasas.city_id', '=', 'users.'Auth::user()->city_id'')
+        //     // ->where('city_id',Auth::user()->city_id)
+        //     ->get();
+        // dd($lokasi_koor);
+
+        $city_id = Auth::user();
+        if($city_id){
+            // $cekKota = Jasas::where('city_id',Auth::user()->city_id)->first();
+            $cekKota = Jasas::with('kota')->where('city_id',Auth::user()->city_id)->get();
+        }else{
+            $cekKota = null;
+        }
+
+        // dd($cekKota);
+
+
+
         
         $user_id = Auth::user();
         if($user_id){
@@ -91,7 +109,7 @@ class HomeController extends Controller
 
         $jasas_count = $jasas_new->count();
 
-        return view('layouts.home.index-home',compact(array('jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor','jasa_terbaru')));
+        return view('layouts.home.index-home',compact(array('cekKota','jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor','jasa_terbaru')));
     }
 
     /**
