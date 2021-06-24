@@ -65,8 +65,8 @@
               
             </div>
             <div class="p-4">
-              <div class="login-or">
-                <p class="mb-0">or</p>
+              <div class="login-or" style="z-index: -1;">
+                <p class="mb-0" >or</p>
               </div>
             </div>
             <a href="{{ url('auth/google') }}" class="btn btn-outline-dark w-100 py-2 mb-4"><img class="mr-4 icon-google" src="{{ asset('themes/frontend/images/icon-google.svg') }}"> Sign in with Google</a> 

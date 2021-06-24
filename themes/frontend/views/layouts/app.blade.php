@@ -45,7 +45,48 @@
 
 
 
-
+    <!-- Preloader -->
+  <section style="z-index: 1">
+    <div id="preloader" style="z-index: 1">
+      <div id="ctn-preloader" class="ctn-preloader">
+        <div class="animation-preloader">
+          <div class="spinner"></div>
+          <div class="txt-loading">
+            <span data-text-preloader="L" class="letters-loading">
+              L
+            </span>
+            
+            <span data-text-preloader="O" class="letters-loading">
+              O
+            </span>
+            
+            <span data-text-preloader="A" class="letters-loading">
+              A
+            </span>
+            
+            <span data-text-preloader="D" class="letters-loading">
+              D
+            </span>
+            
+            <span data-text-preloader="I" class="letters-loading">
+              I
+            </span>
+            
+            <span data-text-preloader="N" class="letters-loading">
+              N
+            </span>
+            
+            <span data-text-preloader="G" class="letters-loading">
+              G
+            </span>
+          </div>
+        </div>  
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+      </div>
+    </div>
+  </section>
+  
     <!-- START CONTENT -->
     @yield('content')
     <!-- END CONTENT -->
@@ -83,6 +124,25 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- Select2 -->
     <!-- <script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}"></script> -->
+
+    <script>
+      $(document).ready(function() {
+  
+      setTimeout(function() {
+        $('#ctn-preloader').addClass('loaded');
+        // Una vez haya terminado el preloader aparezca el scroll
+        $('body').removeClass('no-scroll-y');
+
+        if ($('#ctn-preloader').hasClass('loaded')) {
+          // Es para que una vez que se haya ido el preloader se elimine toda la seccion preloader
+          $('#preloader').delay(1000).queue(function() {
+            $(this).remove();
+          });
+        }
+      }, 1500);
+  
+    });
+    </script>
     <script type="text/javascript">
 
       $(document).ready(function() {
