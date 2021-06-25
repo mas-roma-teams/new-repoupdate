@@ -53,5 +53,10 @@ class Jasas extends Model
         return $this->belongsTo(IndoProv::class,'province_id');
     }
 
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksis::class,'jasa_id');
+    }
+
     
 }

@@ -212,8 +212,44 @@ class JasasController extends Controller
 
     public function detailjasa($id)
     {
-        $detail = Jasas::with('vendors','vendors.wilayah','vendors.kecamatan')->where('slug',$id)->first();
-        dd($detail->vendors->wilayah->name);
-        return view('layouts.jasa.detail-jasa',compact('detail'));
+        $provincess = IndoProv::orderby("name","asc")
+                    ->select('id','name')->get();
+
+        $jasas_news = Jasas::orderBy('dilihat','desc')->paginate(9);
+        // dd($jasas_news);
+
+        // Mengambil data dilihat dan transaksi
+        $jasas_new = DB::table('jasas')
+            ->join('transaksis', 'jasas.id', '=', 'transaksis.jasa_id')
+            ->get();
+
+        $getJasaCat = DB::table('kategoris')
+            ->join('jasas', 'kategoris.id', '=', 'jasas.kategori_id')
+            ->get();
+
+        $user_id = Auth::user();
+        if($user_id){
+            $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+        }else{
+            $cekVendor = null;
+        }
+
+        $jasas_count = $jasas_new->count();
+
+        $kategoris = Kategoris::All();
+       
+        $detail = Jasas::with('transaksis','vendors','vendors.wilayah','vendors.kecamatan')->where('slug',$id)->first();
+
+        // dd($detail);
+        
+        return view('layouts.jasa.detail-jasa',compact(
+            
+            'detail',
+            'kategoris',
+            'provincess',
+            'jasas_news',
+            'cekVendor',
+            'jasas_count',
+            ['provincess' => $provincess],));
     }
 }

@@ -46,7 +46,7 @@
 
 
     <!-- Preloader -->
-  <section id="preloader">
+  {{-- <section id="preloader">
     <div>
       <div id="ctn-preloader" class="ctn-preloader">
         <div class="animation-preloader">
@@ -85,7 +85,7 @@
         <div class="loader-section section-right"></div>
       </div>
     </div>
-  </section>
+  </section> --}}
   
     <!-- START CONTENT -->
     @yield('content')

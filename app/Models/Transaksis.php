@@ -10,6 +10,9 @@ class Transaksis extends Model
     use HasFactory;
 
     protected $table = "transaksis";
+    protected $fillable = [
+        'id','kode_transaksi','waktu_transaksi','jasa_id','vendor_id','user_id','harga_total','down_payment','sisa_pembayaran','status'
+      ];
 
     /* public function vendor()
     {
