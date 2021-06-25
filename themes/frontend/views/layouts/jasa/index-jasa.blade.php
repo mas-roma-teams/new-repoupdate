@@ -5,7 +5,7 @@
     @include('layouts.header.header-home')
     <!-- END INCLUDE HEADER -->
 
-<div class="container">
+    <div class="container">
       <div class="title w-75 mx-auto mb-5">
         <h1 class="text-center color-primary text-ptserif mb-5">Temukan kebutuhan untuk moment pernikahan anda</h1>
         @include('layouts.search.search')
@@ -33,7 +33,7 @@
                 <div class="card noborder">
                  <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                   <div class="card-body no-paddingleft">
-                    <h4 class="mb-2">{{ $jasa->nama_jasa }}</h4>
+                    <h4 class="mb-2"><a href="{{ url('') }}">{{ $jasa->nama_jasa }}</a></h4>
                     <p class="mb-2 font-light">{{ $jasa->deskripsi }}</p>
                     <span class="float-left">
                     <i class="fa fa-eye"></i>{{ $jasa->dilihat }}

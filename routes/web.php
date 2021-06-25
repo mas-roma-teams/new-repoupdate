@@ -30,11 +30,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 // });
 
 
-Route::get('/testing-function', function() {
-         $config = ['table' => 'users', 'length'=>10, 'prefix' => 'ALAPESTA-'];
-         $kode_referal = IdGenerator::generate($config);
-         echo $kode_referal;
-});
+
 
 // GET PROVINSI  - KOTA
 Route::get('/getCity/{provice_id}', [VendorsController::class, 'getCity'] );
@@ -60,6 +56,7 @@ Route::get('user/home', [HomeController::class, 'userHome'])->name('user.index')
 Route::get('/', [HomeController::class,'index'])->name('home-awal');
 
 // VENDOR ROUTE
+
 Route::get('/vendors', [VendorsController::class,'index']);
 Route::get('vendors/detail/{id}',[VendorsController::class,'show'])->name('vendors.detail-jasa');
 Route::get('provinces_id/{id}',[VendorsController::class,'store'])->name('provinces_id.store');
@@ -79,7 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/tambah/jasa',[VendorsController::class,'tambahJasaVendor'])->name('vendors.tambahjasa');
     Route::post('/prosestambahjasa',[VendorsController::class,'prosestambahjasa'])->name('vendors.prosestambahjasa');
     // user
-    Route::get('/user/dashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
+   
 
     Route::get('/user/profile', [userController::class,'getprofileuser'])->name('users.profile');
 
@@ -94,9 +91,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/user/transaksi-user',[userController::class, 'transaksiUser'])->name('transaksi-user');
 });
 
+Route::get('/user/dashboard', [userController::class,'dashboarduser'])->name('users.dashboard');
+
 
 // JASA ROUTE
 Route::get('/jasa-list', [JasasController::class,'index']);
+Route::get('/jasa-test-detail/{id}', [JasasController::class,'detailjasa']);
 Route::get('/jasa-banyak-dicari', [JasasController::class,'getJasaBanyakDicari']);
 Route::post('testingdata/{id}', 'JasasController@getJasaCategory')
     ->name('testingdata');

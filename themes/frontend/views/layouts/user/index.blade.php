@@ -6,7 +6,7 @@
     @include('layouts.header.header-home')
     <!-- END INCLUDE HEADER -->
 
-<div class="container">
+      <div class="container">
       <div class="text-right mb-4">
         <button type="button" class="btn btn-primary px-5">
           Gabung jadi mitra

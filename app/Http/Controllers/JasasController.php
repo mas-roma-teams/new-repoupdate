@@ -209,4 +209,11 @@ class JasasController extends Controller
     {
         //
     }
+
+    public function detailjasa($id)
+    {
+        $detail = Jasas::with('vendors','vendors.wilayah','vendors.kecamatan')->where('slug',$id)->first();
+        dd($detail->vendors->wilayah->name);
+        return view('layouts.jasa.detail-jasa',compact('detail'));
+    }
 }

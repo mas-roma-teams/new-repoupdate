@@ -46,8 +46,8 @@
 
 
     <!-- Preloader -->
-  <section style="z-index: 1">
-    <div id="preloader" style="z-index: 1">
+  <section id="preloader">
+    <div>
       <div id="ctn-preloader" class="ctn-preloader">
         <div class="animation-preloader">
           <div class="spinner"></div>
