@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/tambah/jasa',[VendorsController::class,'tambahJasaVendor'])->name('vendors.tambahjasa');
     Route::post('/prosestambahjasa',[VendorsController::class,'prosestambahjasa'])->name('vendors.prosestambahjasa');
     // user
-   
+
 
     Route::get('/user/profile', [userController::class,'getprofileuser'])->name('users.profile');
 
@@ -166,6 +166,13 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 // -------------------- ENd
+
+// ----------------- chat transaksi
+Route::prefix('chat')->group(function () {
+    Route::get('/','ChatController@ChatView')->name('chatview');
+    Route::post('/','ChatController@sendChat')->name('sendchat');
+});
+// ----------------- end chat transaksi
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

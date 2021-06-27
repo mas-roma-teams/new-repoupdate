@@ -174,7 +174,7 @@ a{
 
 .login-or {
 	position: relative;
-	text-align: center;	
+	text-align: center;
 	p {
 		position: relative;
 		z-index: 1;
@@ -743,13 +743,13 @@ svg.animate path {
 }
 .msger-send-btn {
 	margin-left: 10px;
-	background: rgb(0, 196, 65);
+	background: rgb(204, 133, 0);
 	color: #fff;
 	font-weight: bold;
 	cursor: pointer;
 	transition: background 0.23s;
 	&:hover {
-		background: rgb(0, 180, 50);
+		background: rgb(180, 123, 0);
 	}
 }
 
