@@ -17,7 +17,7 @@
         <!-- looping banner -->
         @foreach( $banner as $banners )
           <div class="items">
-            <img src="{{ $banners->photo_banner  }}" alt="">
+            <img src="{{ asset('themes/frontend/images/' . $banners->photo_banner) }}" alt="">
           </div>
         @endforeach
         <!-- end looping banner -->
@@ -36,7 +36,7 @@
           <div class="row">
             @foreach( $kategoris as $kategori )
             <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-2">
-              <a href=""><img src="{{ $kategori->icon }}" alt="{{ $kategori->nama_kategori }}" /></a>
+              <a href=""><img src="{{ asset('themes/frontend/images/' . $kategori->icon) }}" alt="{{ $kategori->nama_kategori }}" /></a>
             </div>
             @endforeach
           </div>
@@ -57,9 +57,9 @@
             @foreach( $jasa_terbaru as $jkey )
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
               <div class="card noborder">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jkey->nama_jasa }}">
+                <img src="{{ asset('themes/frontend/images/' . $jkey->photo_jasa) }}" class="card-img-top" alt="{{ $jkey->nama_jasa }}">
                 <div class="card-body no-paddingleft">
-                  <h4 class="mb-2"><a href="">{{ substr($jkey->nama_jasa,0,30) }}</a></h4>
+                  <h4 class="mb-2"><a href="{{ url('jasa-detail/' . $jkey->slug) }}">{{ substr($jkey->nama_jasa,0,30) }}</a></h4>
                   <p class="mb-2 font-light">{{ ucfirst($jkey->vendors->kecamatan->name) }}, {{ $jkey->vendors->wilayah->name }}</p>
 
                   <div class="d-flex mb-2">
@@ -69,7 +69,7 @@
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
                   </div>
-                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jkey->harga,2) }}</h2>
+                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jkey->harga,2,',','.') }}</h2>
 
                 </div>
               </div>
@@ -94,9 +94,9 @@
             @foreach( $cekKota as $jasa )
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
               <div class="card noborder">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
+                <img src="{{ asset('themes/frontend/images/' . $jasa->photo_jasa) }}" class="card-img-top" alt="{{ $jasa->nama_jasa }}">
                 <div class="card-body no-paddingleft">
-                  <h4 class="mb-2"><a href=""></a>{{ $jasa->nama_jasa }}</h4>
+                  <h4 class="mb-2"><a href="{{ url('jasa-detail/' . $jkey->slug) }}"></a>{{ $jasa->nama_jasa }}</h4>
                   <p class="mb-2 font-light">{{ ucfirst($jasa->kota->name) }}</p>
 
                   <div class="d-flex mb-2">
@@ -106,7 +106,7 @@
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
                   </div>
-                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jasa->harga,2) }}</h2>
+                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jasa->harga,2,',','.') }}</h2>
 
                 </div>
               </div>
@@ -116,14 +116,17 @@
 
           </div>
         </div>
-        @else
-            <p>data kosong</p>
         @endif
         @endif
 
 
       </div>
 
+      <style>
+      .img-jasa {
+        border-radius: 11px;
+      }
+      </style>
       <div class="home-section mb-5">
         <div class="container">
           <h2 class="text-ptserif mb-2 text-white">Jasa yang paling dicari</h2>
@@ -132,13 +135,13 @@
             <a href="" class="h5 font-regular color-primary text-bold link text-white">lihat semua</a>
           </div>
           <div class="row multiple-items">
-
+            @foreach($jasas_news as $jasak)
             <div class="col-4 mb-4">
               <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+                <img src="{{ asset('themes/frontend/images/' . $jasak->photo_jasa) }}" class="card-img-top img-jasas" alt="...">
                 <div class="card-body">
-                  <h4 class="mb-2">Wedding March Factory</h4>
-                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
+                  <h4 class="mb-2">{{ $jasak->nama_jasa }}</h4>
+                  <p class="mb-2 font-light">{{ ucfirst($jasak->kota->name) }}</p>
                   <div class="d-flex mb-2">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
@@ -146,44 +149,11 @@
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
                     <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
                   </div>
-                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
+                  <h2 class="text-orange text-ptserif">Rp. {{ number_format($jasak->harga,2,',','.') }}</h2>
                 </div>
               </div>
             </div>
-            <div class="col-4 mb-4">
-              <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h4 class="mb-2">Wedding March Factory</h4>
-                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
-                  </div>
-                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 mb-4">
-              <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h4 class="mb-2">Wedding March Factory</h4>
-                  <p class="mb-2 font-light">Tomang, Jakarta Selatan</p>
-                  <div class="d-flex mb-2">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-full.png')}}" alt="">
-                    <img class="mr-2" src="{{asset('themes/frontend/images/star-light.png')}}" alt="">
-                  </div>
-                  <h2 class="text-orange text-ptserif">Rp 1500.000</h2>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>
@@ -201,10 +171,11 @@
               @foreach( $vendors as $vendor )
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                  <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="{{ $vendor->nama_vendor }}">
+                  <img src="{{ asset('themes/frontend/images/' . $vendor->photo_vendor) }}" class="card-img-top" alt="{{ $vendor->nama_vendor }}">
                   <div class="card-body">
 
                     <h4 class="mb-2"><a href="">{{ substr($vendor->nama_vendor,0,30) }}</a></h4>
+                    <p class="mb-2 font-light">{{ ucfirst($jasak->kota->name) }}</p>
                     <p class="mb-2 font-light">{{ substr($vendor->alamat_lengkap,0,40)  }}</p>
 
                   </div>

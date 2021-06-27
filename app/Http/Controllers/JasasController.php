@@ -234,6 +234,9 @@ class JasasController extends Controller
             $cekVendor = null;
         }
 
+        $jasa_lainnya = Jasas::All();
+      
+
         $jasas_count = $jasas_new->count();
 
         $kategoris = Kategoris::All();
@@ -245,6 +248,7 @@ class JasasController extends Controller
         return view('layouts.jasa.detail-jasa',compact(
             
             'detail',
+            'jasa_lainnya',
             'kategoris',
             'provincess',
             'jasas_news',

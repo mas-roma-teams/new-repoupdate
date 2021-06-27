@@ -51,7 +51,7 @@
             <div class="profile square mb-3 mt-3">
             @if($detail->vendors('photo_vendors') == true)
            
-            <img src="{{ asset('themes/frontend/images/user/' . $detail->vendors->photo_vendor)  }}" alt="" class="foto-profile">
+            <img src="{{ asset('themes/frontend/images/' . $detail->vendors->photo_vendor)  }}" alt="" class="foto-profile">
             @else
             <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" class="foto-profile">
             @endif
@@ -67,95 +67,34 @@
           </div>
         </div>
       </div>
-      {{-- <div class="detail-projek mb-5">
-        <h2 class="text-center text-ptserif">Proyek kami</h2>
-        <h5 class="font-light text-center mb-3">Beberapa contoh proyek yang telah kami kerjakan sebelumnya</h5>
+      <div class="detail-projek mb-5">
+        <h2 class="text-center text-ptserif">Jasa Lainnya</h2>
+        <h5 class="font-light text-center mb-3">Beberapa Jasa kami</h5>
         <div class="card p-3">
           <div class="card-body">
             <div class="row">
+
+              @foreach($jasa_lainnya as $jasa_lain)
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                  <img src="images/projek-1.jpg" alt="">
-                  <div class="d-flex justify-content-between mt-2">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                  </div>
+                  <img src="{{ asset('themes/frontend/images/'. $jasa_lain->photo_jasa) }}" alt="">
+                  
                   <div class="card-body">
-                    <h4>Adim & Hasna Wedding</h4>
-                    <p class="font-light mt-2">12 Januari 2019</p>
+                    <h4><a href="{{ url('/jasa-detail/'. $jasa_lain->slug ) }}">{{ $jasa_lain->nama_jasa }}</a></h4>
+                    <p class="font-light mt-2">{{ $jasa_lain->created_at }}</p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                  <img src="images/projek-1.jpg" alt="">
-                  <div class="d-flex justify-content-between mt-2">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                  </div>
-                  <div class="card-body">
-                    <h4>Adim & Hasna Wedding</h4>
-                    <p class="font-light mt-2">12 Januari 2019</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                  <img src="images/projek-1.jpg" alt="">
-                  <div class="d-flex justify-content-between mt-2">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                  </div>
-                  <div class="card-body">
-                    <h4>Adim & Hasna Wedding</h4>
-                    <p class="font-light mt-2">12 Januari 2019</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                  <img src="images/projek-1.jpg" alt="">
-                  <div class="d-flex justify-content-between mt-2">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                  </div>
-                  <div class="card-body">
-                    <h4>Adim & Hasna Wedding</h4>
-                    <p class="font-light mt-2">12 Januari 2019</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                  <img src="images/projek-1.jpg" alt="">
-                  <div class="d-flex justify-content-between mt-2">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                  </div>
-                  <div class="card-body">
-                    <h4>Adim & Hasna Wedding</h4>
-                    <p class="font-light mt-2">12 Januari 2019</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                  <img src="images/projek-1.jpg" alt="">
-                  <div class="d-flex justify-content-between mt-2">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                    <img class="w-48" src="images/projek-1.jpg" alt="">
-                  </div>
-                  <div class="card-body">
-                    <h4>Adim & Hasna Wedding</h4>
-                    <p class="font-light mt-2">12 Januari 2019</p>
-                  </div>
-                </div>
-              </div>
+              @endforeach
+
             </div>
           </div>
         </div>
       </div>
-      <div class="detail-testi mb-5">
+
+
+
+      {{-- <div class="detail-testi mb-5">
         <h2 class="text-center text-ptserif">Testimoni pengguna kami</h2>
         <h5 class="font-light text-center mb-4">Komentar mereka yang telah pernah menggunakan jasa kami</h5>
         <div class="row pt-5">
@@ -193,8 +132,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="detail-forum mb-5">
+      </div> --}}
+      {{-- <div class="detail-forum mb-5">
         <h2 class="text-ptserif mb-2">Forum Diskusi</h2>
         <div class="card mb-3">
           <div class="card-body">

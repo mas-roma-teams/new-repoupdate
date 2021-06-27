@@ -69,6 +69,7 @@ class HomeController extends Controller
         $banner = Banner::All();
         $jasas = Jasas::with('vendors.wilayah','vendors.kecamatan')->get();
          // dd($jasas);
+     
         $jasas_news = Jasas::orderBy('dilihat','desc')->limit(8)->get();
         $vendors = DB::select('select * from vendors limit 8');
         $jasa_terbaru = Jasas::OrderBy('created_at','desc')->limit(8)->get();
