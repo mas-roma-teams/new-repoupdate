@@ -72,51 +72,95 @@
                     <div class="d-flex align-items-center">
                       <img width="40px" src="{{asset('themes/frontend/images/ex-profile-1.jpg')}}" alt="">
                       <div class="ml-3">
-                        <h1 class="h5 text-semibold text-dark">Agung Saputra</h1>
-                        <p class="text-regular text-secondary">Hai Alapesta</p>
+                        <h1 class="h5 text-semibold text-dark">{{$vendor->nama_vendor}}</h1>
+                        <p class="text-regular text-secondary"></p>
                       </div>
                     </div>
                   </header>
 
                   <main class="msger-chat">
-                    <div class="msg left-msg">
-                      <div
-                       class="msg-img"
-                       style="background-image: url(images/ex-profile-1.jpg)"
-                      ></div>
+                    @forelse ($historyChat as $h)
+                        @if($h->status_send_replay == "send")
 
-                      <div class="msg-bubble">
-                        <div class="msg-info">
-                          <div class="msg-info-name">Agung Saputra</div>
-                          <div class="msg-info-time">12:45</div>
+                        @if($h->jasa_id != 0)
+                        <div class="msg right-msg">
+                            <div
+                             class="msg-img"
+                             style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+                            ></div>
+                            <div class="msg-bubble">
+                              <div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                              transition: 0.3s; margin-bottom:10px;">
+                                  <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;">
+                                      <img src="{{ asset('themes/frontend/images/' . $h->jasa->photo_jasa) }}" width="100%" height="100%" alt="{{$h->jasa->slug}}">
+                                  </div>
+                                  <div class="msg-info-name">{{substr($h->jasa->nama_jasa,0,23)}}</div>
+                                  <div class="msg-info-name" style="color:#ff5000">Rp.{{number_format($h->jasa->harga, 0, ',', '.')}}</div>
+                              </div>
+                              <div class="msg-info">
+                                  <div class="msg-info-name">{{$h->users->name}}</div>
+                                <div class="msg-info-time">{{\Carbon\Carbon::parse($h->created_at)->Format('d M Y H:i:s')}}</div>
+                              </div>
+                              <div class="msg-text text-dark">
+                                {{$h->pesan}}
+                              </div>
+                            </div>
                         </div>
+                        @else
+                          <div class="msg right-msg">
+                              <div
+                               class="msg-img"
+                               style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+                              ></div>
 
-                        <div class="msg-text">
-                          Hi, welcome to Alapesta 😄
-                        </div>
-                      </div>
-                    </div>
+                              <div class="msg-bubble">
+                                <div class="msg-info">
+                                  <div class="msg-info-name">{{$h->users->name}}</div>
+                                  <div class="msg-info-time">{{\Carbon\Carbon::parse($h->created_at)->Format('d M Y H:i:s')}}</div>
+                                </div>
+                                <div class="msg-text text-dark">
+                                 {{$h->pesan}}
+                                </div>
+                              </div>
+                          </div>
+                          @endif
+                        @else
+                        <div class="msg left-msg">
+                            <div
+                             class="msg-img"
+                             style="background-image: url(images/ex-profile-1.jpg)"
+                            ></div>
 
-                    <div class="msg right-msg">
-                      <div
-                       class="msg-img"
-                       style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
-                      ></div>
+                            <div class="msg-bubble">
+                              <div class="msg-info">
+                                <div class="msg-info-name">{{$h->vendors->nama_vendor}}</div>
+                                <div class="msg-info-time">{{\Carbon\Carbon::parse($h->created_at)->Format('d M Y H:i:s')}}</div>
+                              </div>
 
-                      <div class="msg-bubble">
-                        <div class="msg-info">
-                          <div class="msg-info-name">Sajad</div>
-                          <div class="msg-info-time">12:46</div>
-                        </div>
+                              <div class="msg-text">
+                                {{$h->pesan}}
+                              </div>
+                            </div>
+                          </div>
+                        @endif
+                    @empty
 
-                        <div class="msg-text text-dark">
-                          You can change your name in JS section!
-                        </div>
-                      </div>
-                    </div>
-                  </main>
-                  <form class="msger-inputarea">
-                    <input type="text" class="msger-input" placeholder="Enter your message...">
+                    @endforelse
+
+
+
+
+
+                    </main>
+                  <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
+                    @csrf
+                    <input type="text" class="msger-input" name="pesan" placeholder="Masukan pesan..." required>
+                    <input type="hidden" class="msger-input" name="user" value="{{Auth::user()->id}}">
+                    <input type="hidden" class="msger-input" name="vendor" value="{{Request::segment(2)}}">
+                    <input type="hidden" class="msger-input" name="jasa_id" value="{{$jasaid}}">
+                    <input type="hidden" class="msger-input" name="kode_chat" value="{{$cekChat->kode_chat ?? ""}}">
+                    <input type="hidden" name="status_send_replay" value="{{$sendreplay}}">
+
 
                     <button type="submit" class="msger-send-btn">Send</button>
                   </form>
