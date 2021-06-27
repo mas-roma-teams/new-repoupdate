@@ -96,7 +96,7 @@ Route::get('/user/dashboard', [userController::class,'dashboarduser'])->name('us
 
 // JASA ROUTE
 Route::get('/jasa-list', [JasasController::class,'index']);
-Route::get('/jasa-detail/{id}', [JasasController::class,'detailjasa']);
+Route::get('/jasa-detail/{id}', [JasasController::class,'detailjasa'])->name('detail');
 Route::get('/jasa-banyak-dicari', [JasasController::class,'getJasaBanyakDicari']);
 Route::post('testingdata/{id}', 'JasasController@getJasaCategory')
     ->name('testingdata');

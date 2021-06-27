@@ -21,9 +21,13 @@ class ChatController extends Controller
 
     public function ChatView(Request $request)
     {
-
+        
         $vendor = Vendors::where('id',$request->segment(2))->first();
+        if($vendor->user_id == Auth::user()->id){
+           return redirect()->back();
+        }
         $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->first();
+        // dd($cekChat);
         $cekJasa = Jasas::where('slug', $request->jasa)->first();
         $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
         // dd($historyChat);
@@ -37,10 +41,16 @@ class ChatController extends Controller
         }else{
             $sendreplay = "send";
         }
+
         if($cekChat){
             $jasaid = 0;
         }else{
-            $jasaid = $cekJasa->id;
+            if($cekJasa){
+                $jasaid = $cekJasa->id;
+            }
+            else {
+                $jasaid = 0;
+            }
         }
 
         $kategoris = DB::select('select * from kategoris limit 6');

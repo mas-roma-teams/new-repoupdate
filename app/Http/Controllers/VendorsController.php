@@ -33,6 +33,7 @@ class VendorsController extends Controller
     {
         //
         $vendors = DB::table('vendors')->paginate(6);
+        
         $kategoris = DB::select('select * from kategoris limit 6');
         $provinces = Province::pluck('name', 'id');
 
@@ -139,8 +140,9 @@ class VendorsController extends Controller
         }else{
             $cekVendor = null;
         }
+        $kategoris = DB::select('select * from kategoris limit 6');
         // $provinsi = Provinsi::all();
-        return view('layouts.vendors.addvendor',compact('cekVendor','provincess'));
+        return view('layouts.vendors.addvendor',compact('cekVendor','provincess','kategoris'));
     }
 
     /**

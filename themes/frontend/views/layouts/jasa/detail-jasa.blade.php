@@ -63,7 +63,10 @@
               <img src="images/icon-verified.png" alt="">
               <p class="text-success font-semibold ml-2">Verified Account</p>
             </div>
-            <div class="btn-nego">Kirim Pesan</div>
+            @if(Auth::user()->id == $detail->vendors->user_id)
+            <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->nama_jasa) }}" class="btn-nego">Kirim Pesan</a>
+            @endif
+            
           </div>
         </div>
       </div>
