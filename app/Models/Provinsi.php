@@ -12,4 +12,8 @@ class Provinsi extends Model
     protected $fillable = [
      'id','name','meta','province_id','city_id'
    ];
+
+   public function gambar(){
+    return $this->hasMany(GambarAdat::class,'province_id');
+  }
 }

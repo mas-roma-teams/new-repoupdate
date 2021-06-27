@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Banner;
+use App\Models\GambarAdat;
 use App\Models\Kategoris;
 use App\Models\Jasas;
 use App\Models\Vendors;
@@ -69,7 +70,8 @@ class HomeController extends Controller
         $banner = Banner::All();
         $jasas = Jasas::with('vendors.wilayah','vendors.kecamatan')->get();
          // dd($jasas);
-     
+        $adat = Provinsi::with('gambar')->get();
+        //dd($adat);
         $jasas_news = Jasas::orderBy('dilihat','desc')->limit(8)->get();
         $vendors = DB::select('select * from vendors limit 8');
         $jasa_terbaru = Jasas::OrderBy('created_at','desc')->limit(8)->get();
@@ -110,7 +112,7 @@ class HomeController extends Controller
 
         $jasas_count = $jasas_new->count();
 
-        return view('layouts.home.index-home',compact(array('cekKota','jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor','jasa_terbaru')));
+        return view('layouts.home.index-home',compact(array('cekKota','jasas_count','banner','jasas_news','kategoris','jasas','vendors','cekVendor','jasa_terbaru','adat')));
     }
 
     /**

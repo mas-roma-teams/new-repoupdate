@@ -194,28 +194,22 @@
             <a href="" class="h5 font-regular color-primary text-bold link text-white">lihat semua</a>
           </div>
           <div class="row multiple-items">
-
-            <div class="col-4 mb-4">
-              <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
+            @foreach($adat as $adats)
+              @foreach ($adats->gambar as $items)
+              <div class="col-4 mb-4">
+                <div class="card">
                 
+                  <img src="{{ asset('themes/frontend/images/' . $items->gambar) }}" class="card-img-top" alt="...">
+                  
+                </div>
               </div>
-            </div>
+              @endforeach
+            @endforeach
            
 
-           <div class="col-4 mb-4">
-              <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
-                
-              </div>
-            </div>
+           
 
-            <div class="col-4 mb-4">
-              <div class="card">
-                <img src="https://via.placeholder.com/100x100" class="card-img-top" alt="...">
-                
-              </div>
-            </div>
+          
 
 
           </div>
