@@ -159,6 +159,7 @@
             $('#rupiah').autoNumeric('init');
         });
     </script>
+
     <script type="text/javascript">
 
      $(document).ready(function() {
@@ -170,10 +171,11 @@
     $(document).ready(function() {
     $('.select2').select2();
     });
-
       </script>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
+
 
     <script type="text/javascript">
       function myFunction() {
@@ -309,7 +311,6 @@
               $('#district').change(function(){
                   var district_id =  $(this).val();
 
-
                   $('#villages').find('option').not(':first').remove();
 
                   // AJAX Request
@@ -373,8 +374,6 @@
            theme: 'bootstrap4'
          })
        });
-
-
 
      </script>
 
@@ -516,6 +515,7 @@
         }
       });
     </script>
+
  @yield('script')
   </body>
 </html>

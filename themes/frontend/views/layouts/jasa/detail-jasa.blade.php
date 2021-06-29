@@ -65,10 +65,10 @@
             </div>
             @if(Auth::user())
                 @if(Auth::user()->id != $detail->vendors->user_id)
-                <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->nama_jasa) }}" class="btn-nego">Kirim Pesan</a>
+                <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->slug) }}" class="btn-nego">Kirim Pesan</a>
                 @endif
             @else
-                <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->nama_jasa) }}" class="btn-nego">Kirim Pesan</a>
+                <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->slug) }}" class="btn-nego">Kirim Pesan</a>
             @endif
 
           </div>

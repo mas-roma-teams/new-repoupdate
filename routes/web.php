@@ -170,7 +170,8 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 // ----------------- chat transaksi
 Route::prefix('chat')->group(function () {
     Route::group(['middleware' => 'auth'], function() {
-        Route::get('/','ChatController@ChatView')->name('chatview');
+        Route::get('/history/{id}','ChatController@historyChat')->name('historychat');
+        // Route::get('/','ChatController@ChatView')->name('chatview');
         Route::get('/{id}','ChatController@ChatView')->name('chatview'); //vendor_id
         Route::post('/','ChatController@sendChat')->name('sendchat');
     });

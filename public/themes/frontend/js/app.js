@@ -92,7 +92,7 @@ function openChat(){
   document.getElementById("room-chat").style.transition = "all .4 ease";
   document.getElementById("room-chat").style.display = "block";
   document.getElementById("content").style.display = "none";
-  
+
 }
 
 function back(){
