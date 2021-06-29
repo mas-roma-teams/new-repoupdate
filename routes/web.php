@@ -65,7 +65,7 @@ Route::post('vendorsprovices', 'VendorsController@store')
 
 Route::group(['middleware' => 'auth'], function() {
     // vendor
-    Route::get('/tambah/vendors', [VendorsController::class,'create'])->name('vendors.addvendor');
+    Route::get('/tambahvendors', [VendorsController::class,'create'])->name('vendors.addvendor');
     Route::post('proses/tambahvendor', [VendorsController::class,'addVendor'])->name('vendors.prosestambahvendor');
     Route::get('/successvendor', [VendorsController::class,'succsessVendor'])->name('vendors.success');
     Route::get('/vendor/dashboard', [VendorsController::class,'dashboardVendor'])->name('vendors.dashboard');
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/vendor/transaksi', [VendorsController::class,'transaksiVendor'])->name('vendors.transaksi');
     Route::get('/vendor/testimoni', [VendorsController::class,'testimoniVendor'])->name('vendors.testimoni');
     Route::get('/vendor/portfolio', [VendorsController::class,'portfolioVendor'])->name('vendors.portfolio');
-    Route::get('/tambah/jasa',[VendorsController::class,'tambahJasaVendor'])->name('vendors.tambahjasa');
+    Route::get('/tambahjasa',[VendorsController::class,'tambahJasaVendor'])->name('vendors.tambahjasa');
     Route::post('/proses/tambahjasa',[VendorsController::class,'prosestambahjasa'])->name('vendors.prosestambahjasa');
     // user
 

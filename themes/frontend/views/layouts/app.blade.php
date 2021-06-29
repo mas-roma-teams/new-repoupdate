@@ -154,20 +154,22 @@
     </script>
 
     <script type="text/javascript" src="{{ asset('themes/frontend/js/autoNumeric.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $('#rupiah').autoNumeric('init');
         });
     </script>
-
+    
+    
     <script type="text/javascript">
 
     
 
-    $(document).ready(function() {
-    $('.select2').select2();
-    });
-      </script>
+        $(document).ready(function() {
+          $('.select2').select2();
+        });
+    </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
@@ -272,9 +274,9 @@
 
               $('#city').change(function(){
                   var city_id =  $(this).val();
-
+                  
                   $('#district').find('option').not(':first').remove();
-
+                  
                   // AJAX Request
                   $.ajax({
                       url: 'getDistrict/'+ city_id,
@@ -517,7 +519,7 @@
     </script>
 
 
-  @yield('script')
+    @yield('script')
 
   </body>
 </html>

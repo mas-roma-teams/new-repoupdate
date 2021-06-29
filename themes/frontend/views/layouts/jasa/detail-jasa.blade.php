@@ -64,6 +64,8 @@
               <p class="text-success font-semibold ml-2">Verified Account</p>
             </div>
             @if($detail->vendors->user_id == Auth::user()->id && Auth::user()->id == TRUE)
+
+            
             <!-- KOSONG -->
            
             @elseif(Auth::user()->id !== $detail->vendors->user_id)

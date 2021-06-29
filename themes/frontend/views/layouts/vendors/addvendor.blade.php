@@ -69,7 +69,7 @@
                                     </select>
                                     @error('provinsi_id')
                                     <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                    @enderror
                                   </div>
 
                             </div>

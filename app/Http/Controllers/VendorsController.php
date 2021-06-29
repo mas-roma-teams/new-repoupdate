@@ -197,6 +197,8 @@ class VendorsController extends Controller
         $new_vendor->ktp = $request->get('ktp');
         $new_vendor->lokasi = $request->get('kelurahan_id');
         $new_vendor->save();
+
+        //dd($new_vendor);
         if ($new_vendor) {
             //redirect dengan pesan sukses
             return redirect()->route('vendors.success');
