@@ -150,6 +150,7 @@
                     </main>
                   {{-- <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
                     @csrf --}}
+                    <div class="msger-inputarea">
                     <input type="text" class="msger-input" name="pesan" placeholder="Masukan pesan..." required>
                     <input type="hidden" class="msger-input" name="user" value="{{Auth::user()->id}}">
                     <input type="hidden" class="msger-input" name="vendor" value="{{Request::segment(2)}}">
@@ -157,8 +158,9 @@
                     <input type="hidden" class="msger-input" name="kode_chat" value="{{$cekChat->kode_chat ?? ""}}">
                     <input type="hidden" name="status_send_replay" value="{{$sendreplay}}">
 
-                    <button type="submit" class="msger-send-btn savemessage">Send</button>
-                  {{-- </form> --}}
+                    <button type="button" class="msger-send-btn savemessage">Send</button>
+                    </div>
+                {{-- </form> --}}
                 </section>
               </div>
               <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
