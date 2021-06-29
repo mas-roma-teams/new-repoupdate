@@ -78,8 +78,8 @@
                     </div>
                   </header>
 
-                  <main class="msger-chat" id="content-message">
-
+                  <main class="msger-chat">
+                    <div id="content-message"></div>
 
                     </main>
                   {{-- <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
@@ -277,7 +277,6 @@
 
     $(document).ready(function () {
         let id = {{Request::segment(2)}};
-        // console.log(id);
         $.ajax({
                     url: '/chat/history/'+id,
                     type: "GET",
@@ -285,26 +284,22 @@
                     cache: false,
 
                     success: function (response) {
-                        $('#content-message').empty();
+                        // $('#content-message').empty();
                         var result = response.data;
-                        // looping chat
-
                         for (var i = 0; i < result.length; i++) {
                             if(result[i].status_send_replay == 'send'){
-                               if(result[i].jasa_id != 0){
-                                template = '<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div><div class="msg-bubble"><div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:10px;"> <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;"><img src="{{ asset('"themes/frontend/images/"  + result[i].jasa.photo_jasa + ') }}" width="100%" height="100%" alt="'+result[i].jasa.slug+'"> </div><div class="msg-info-name">'+result[i].jasa.nama_jasa+'</div> <div class="msg-info-name" style="color:#ff5000">Rp.'+result[i].jasa.harga+'</div> </div> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div><div class="msg-info-time"></div> </div><div class="msg-text text-dark">'+result[i]..pesan+' </div> </div>  </div>';
-                               }else{
-                                    template='<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>  <div class="msg-bubble"> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div> <div class="msg-info-time"></div> </div> <div class="msg-text text-dark">'+result[i]..pesan+'</div>  </div> </div>';
-                               }
+                                if(result[i].jasa_id != 0){
+                                    template = '<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div><div class="msg-bubble"><div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:10px;"> <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;"><img src="/themes/frontend/images/'+result[i].jasa.photo_jasa +'" width="100%" height="100%" alt="'+result[i].jasa.slug+'"> </div><div class="msg-info-name">'+result[i].jasa.nama_jasa+'</div><div class="msg-info-name" style="color:#ff5000">Rp.'+result[i].jasa.harga+'</div></div> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div><div class="msg-info-time">'+19.21+'</div> </div><div class="msg-text text-dark">'+result[i].pesan+' </div>';
+                                }else{
+                                    template = '<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div> <div class="msg-bubble"> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div> <div class="msg-info-time">'+19.21+'</div> </div><div class="msg-text text-dark">'+result[i].pesan+'</div>  </div> </div> ';
+                                }
                             }else{
-                                template = ' <div class="msg left-msg"> <div  class="msg-img" style="background-image: url(images/ex-profile-1.jpg)"></div><div class="msg-bubble"><div class="msg-info"><div class="msg-info-name">'+result[i].vendors.nama_vendor+'</div> <div class="msg-info-time"></div>  </div>  <div class="msg-text">  '+esult[i]..pesan+' </div>   </div> </div>';
+                                template = ' <div class="msg left-msg"> <div  class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div><div class="msg-bubble"><div class="msg-info"><div class="msg-info-name">'+result[i].vendors.nama_vendor+'</div> <div class="msg-info-time">'+19.21+'</div>  </div>  <div class="msg-text">  '+result[i].pesan+' </div>   </div> </div>';
                             }
-                            $('#content-message').append(template);
 
-                            // var messageBody = document.querySelector('#content-message');
-                            // messageBody.scrollTop = messageBody.scrollHeight - messageBody
-                            //     .clientHeight;
+                            $('#content-message').append(template);
                         }
+
                     }
             });
     });
