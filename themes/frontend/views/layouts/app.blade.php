@@ -160,11 +160,7 @@
     </script>
     <script type="text/javascript">
 
-     $(document).ready(function() {
-      $("#city").select2();
-      });
-
-
+    
 
     $(document).ready(function() {
     $('.select2').select2();
@@ -234,8 +230,8 @@
                   // Province id
                   var id =  $(this).val();
                   var province_id =  $(this).val();
-                  // console.log(id);
-                  // console.log(province_id);
+                  console.log(id);
+                  console.log(province_id);
 
                   // Empty DropDown
                   $('#city').find('option').not(':first').remove();
@@ -246,8 +242,8 @@
                       type: 'GET',
                       dataType: 'json',
                       success : function(response){
-                          // console.log(response);
-
+                        
+                          console.log(province_id);
                           var len = 0;
                           if(response != null){
                               len = response.length;
@@ -282,7 +278,7 @@
                       type: 'GET',
                       dataType: 'json',
                       success : function(res){
-
+                        console.log(city_id);
 
                           var len = 0;
                           if(res != null){
@@ -317,7 +313,7 @@
                       type: 'GET',
                       dataType: 'json',
                       success : function(res){
-
+                        console.log(district_id);
 
                           var len = 0;
                           if(res != null){
@@ -401,7 +397,7 @@
       });
     </script>
 
-    <script type="text/javascript">
+    
       <script>
       anchors.options.placement = 'left';
       anchors.add('.container h1, .container h2, .container h3, .container h4, .container h5');
@@ -515,6 +511,6 @@
         }
       });
     </script>
-    </script>
+   
   </body>
 </html>

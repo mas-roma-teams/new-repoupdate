@@ -63,8 +63,15 @@
               <img src="images/icon-verified.png" alt="">
               <p class="text-success font-semibold ml-2">Verified Account</p>
             </div>
-            @if(Auth::user()->id == $detail->vendors->user_id)
+            @if($detail->vendors->user_id == Auth::user()->id && Auth::user()->id == TRUE)
+            <!-- KOSONG -->
+            <p>ID SAMAA</p>
+            @elseif(Auth::user()->id !== $detail->vendors->user_id)
+          
             <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->nama_jasa) }}" class="btn-nego">Kirim Pesan</a>
+
+            
+
             @endif
             
           </div>
