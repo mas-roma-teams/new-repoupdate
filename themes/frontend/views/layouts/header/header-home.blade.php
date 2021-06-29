@@ -15,7 +15,7 @@
 
                 <div class="dropdown">
                     <img src="{{ asset('themes/frontend/images/category-point.png') }}" class="-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       @foreach( $kategoris as $kategori )
                       <a class="dropdown-item" href="#">{{ $kategori->nama_kategori  }}</a>

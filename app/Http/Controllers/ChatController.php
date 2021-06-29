@@ -14,14 +14,32 @@ use Illuminate\Support\Str;
 
 class ChatController extends Controller
 {
-    public function historyChat()
+    public function historyChat(Request $request)
     {
+        try{
+            $vendor = Vendors::where('id',$request->segment(3))->first();
+            $history = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
+            return response()->json(
+                [
+                    'data' => $history,
+                    'status' => true
+                ]
+            );
+
+        } catch (Exception $e) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
 
     }
 
     public function ChatView(Request $request)
     {
-        
+
         $vendor = Vendors::where('id',$request->segment(2))->first();
         if($vendor->user_id == Auth::user()->id){
            return redirect()->back();
@@ -61,6 +79,7 @@ class ChatController extends Controller
             $cekVendor = null;
         }
 
+
         return view('layouts.chat.index',compact('kategoris','cekVendor','vendor','cekChat','cekJasa','jasaid','historyChat','sendreplay'));
     }
 
@@ -71,8 +90,12 @@ class ChatController extends Controller
             if($request->status_chat == 'deal'){
                 $statusChat = 'deal';
             }else{
-                if($request->nominal > 0){
-                    $statusChat = 'nego';
+                if(is_numeric($request->pesan)){
+                    if($request->pesan > 0){
+                        $statusChat = 'nego';
+                    }else{
+                        $statusChat = 'chat';
+                    }
                 }else{
                     $statusChat = 'chat';
                 }

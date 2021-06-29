@@ -78,92 +78,23 @@
                     </div>
                   </header>
 
-                  <main class="msger-chat">
-                    @forelse ($historyChat as $h)
-                        @if($h->status_send_replay == "send")
-
-                        @if($h->jasa_id != 0)
-                        <div class="msg right-msg">
-                            <div
-                             class="msg-img"
-                             style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
-                            ></div>
-                            <div class="msg-bubble">
-                              <div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                              transition: 0.3s; margin-bottom:10px;">
-                                  <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;">
-                                      <img src="{{ asset('themes/frontend/images/' . $h->jasa->photo_jasa) }}" width="100%" height="100%" alt="{{$h->jasa->slug}}">
-                                  </div>
-                                  <div class="msg-info-name">{{substr($h->jasa->nama_jasa,0,23)}}</div>
-                                  <div class="msg-info-name" style="color:#ff5000">Rp.{{number_format($h->jasa->harga, 0, ',', '.')}}</div>
-                              </div>
-                              <div class="msg-info">
-                                  <div class="msg-info-name">{{$h->users->name}}</div>
-                                <div class="msg-info-time">{{\Carbon\Carbon::parse($h->created_at)->Format('d M Y H:i:s')}}</div>
-                              </div>
-                              <div class="msg-text text-dark">
-                                {{$h->pesan}}
-                              </div>
-                            </div>
-                        </div>
-                        @else
-                          <div class="msg right-msg">
-                              <div
-                               class="msg-img"
-                               style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
-                              ></div>
-
-                              <div class="msg-bubble">
-                                <div class="msg-info">
-                                  <div class="msg-info-name">{{$h->users->name}}</div>
-                                  <div class="msg-info-time">{{\Carbon\Carbon::parse($h->created_at)->Format('d M Y H:i:s')}}</div>
-                                </div>
-                                <div class="msg-text text-dark">
-                                 {{$h->pesan}}
-                                </div>
-                              </div>
-                          </div>
-                          @endif
-                        @else
-                        <div class="msg left-msg">
-                            <div
-                             class="msg-img"
-                             style="background-image: url(images/ex-profile-1.jpg)"
-                            ></div>
-
-                            <div class="msg-bubble">
-                              <div class="msg-info">
-                                <div class="msg-info-name">{{$h->vendors->nama_vendor}}</div>
-                                <div class="msg-info-time">{{\Carbon\Carbon::parse($h->created_at)->Format('d M Y H:i:s')}}</div>
-                              </div>
-
-                              <div class="msg-text">
-                                {{$h->pesan}}
-                              </div>
-                            </div>
-                          </div>
-                        @endif
-                    @empty
-
-                    @endforelse
-
-
-
+                  <main class="msger-chat" id="content-message">
 
 
                     </main>
-                  <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
-                    @csrf
-                    <input type="text" class="msger-input" name="pesan" placeholder="Masukan pesan..." required>
+                  {{-- <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
+                    @csrf --}}
+                    <div class="msger-inputarea">
+                    <input type="text" class="msger-input pesan" name="pesan" id="pesan" placeholder="Masukan pesan..." required>
                     <input type="hidden" class="msger-input" name="user" value="{{Auth::user()->id}}">
                     <input type="hidden" class="msger-input" name="vendor" value="{{Request::segment(2)}}">
                     <input type="hidden" class="msger-input" name="jasa_id" value="{{$jasaid}}">
                     <input type="hidden" class="msger-input" name="kode_chat" value="{{$cekChat->kode_chat ?? ""}}">
                     <input type="hidden" name="status_send_replay" value="{{$sendreplay}}">
 
-
-                    <button type="submit" class="msger-send-btn">Send</button>
-                  </form>
+                    <button class="msger-send-btn savemessage">Send</button>
+                    </div>
+                {{-- </form> --}}
                 </section>
               </div>
               <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -339,6 +270,90 @@
         </div>
 
 </div>
+
+@stop
+@section('script')
+<script>
+
+    $(document).ready(function () {
+        let id = {{Request::segment(2)}};
+        // console.log(id);
+        $.ajax({
+                    url: '/chat/history/'+id,
+                    type: "GET",
+                    typeData: 'json',
+                    cache: false,
+
+                    success: function (response) {
+                        $('#content-message').empty();
+                        var result = response.data;
+                        // looping chat
+
+                        for (var i = 0; i < result.length; i++) {
+                            if(result[i].status_send_replay == 'send'){
+                               if(result[i].jasa_id != 0){
+                                template = '<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div><div class="msg-bubble"><div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:10px;"> <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;"><img src="{{ asset('"themes/frontend/images/"  + result[i].jasa.photo_jasa + ') }}" width="100%" height="100%" alt="'+result[i].jasa.slug+'"> </div><div class="msg-info-name">'+result[i].jasa.nama_jasa+'</div> <div class="msg-info-name" style="color:#ff5000">Rp.'+result[i].jasa.harga+'</div> </div> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div><div class="msg-info-time"></div> </div><div class="msg-text text-dark">'+result[i]..pesan+' </div> </div>  </div>';
+                               }else{
+                                    template='<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>  <div class="msg-bubble"> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div> <div class="msg-info-time"></div> </div> <div class="msg-text text-dark">'+result[i]..pesan+'</div>  </div> </div>';
+                               }
+                            }else{
+                                template = ' <div class="msg left-msg"> <div  class="msg-img" style="background-image: url(images/ex-profile-1.jpg)"></div><div class="msg-bubble"><div class="msg-info"><div class="msg-info-name">'+result[i].vendors.nama_vendor+'</div> <div class="msg-info-time"></div>  </div>  <div class="msg-text">  '+esult[i]..pesan+' </div>   </div> </div>';
+                            }
+                            $('#content-message').append(template);
+
+                            // var messageBody = document.querySelector('#content-message');
+                            // messageBody.scrollTop = messageBody.scrollHeight - messageBody
+                            //     .clientHeight;
+                        }
+                    }
+            });
+    });
+
+
+    $(".pesan").on("keyup", function (event) {
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                    // Cancel the default action, if needed
+                    event.preventDefault();
+                    // Trigger the button element with a click
+                    sendMessage()
+                }
+            });
+
+    $(".savemessage").click(function(event){
+        sendMessage();
+    });
+
+    function sendMessage()
+    {
+        let pesan = $("input[name=pesan]").val();
+        let user = $("input[name=user]").val();
+        let vendor = $("input[name=vendor]").val();
+        let jasa_id = $("input[name=jasa_id]").val();
+        let kode_chat = $("input[name=kode_chat]").val();
+        let status_send_replay = $("input[name=status_send_replay]").val();
+        let _token = "{{ csrf_token() }}";
+
+        $.ajax({
+            url:"{{route('sendchat')}}",
+            type:"POST",
+            data:{
+                pesan:pesan,
+                user:user,
+                vendor:vendor,
+                jasa_id:jasa_id,
+                kode_chat:kode_chat,
+                status_send_replay:status_send_replay,
+                _token:_token
+            },
+            success:function(response){
+                console.log("sukses");
+            }
+        });
+
+        $("#pesan").val("");
+    }
+</script>
 
 @endsection
 

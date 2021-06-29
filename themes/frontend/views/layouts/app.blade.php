@@ -33,11 +33,11 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-  
+
     <!-- Select2 CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/frontend/css/select2.min.css') }}">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
- 
+
 
   </head>
   <body style="overflow-x: hidden;">
@@ -55,38 +55,38 @@
             <span data-text-preloader="L" class="letters-loading">
               L
             </span>
-            
+
             <span data-text-preloader="O" class="letters-loading">
               O
             </span>
-            
+
             <span data-text-preloader="A" class="letters-loading">
               A
             </span>
-            
+
             <span data-text-preloader="D" class="letters-loading">
               D
             </span>
-            
+
             <span data-text-preloader="I" class="letters-loading">
               I
             </span>
-            
+
             <span data-text-preloader="N" class="letters-loading">
               N
             </span>
-            
+
             <span data-text-preloader="G" class="letters-loading">
               G
             </span>
           </div>
-        </div>  
+        </div>
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
       </div>
     </div>
   </section> --}}
-  
+
     <!-- START CONTENT -->
     @yield('content')
     <!-- END CONTENT -->
@@ -105,7 +105,7 @@
 
 
 
-    
+
 
 
     <script src="{{ asset('themes/frontend/js/hasil-nominal.js') }}"></script>
@@ -125,9 +125,10 @@
 <!-- Select2 -->
     <!-- <script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}"></script> -->
 
+
     <script>
       $(document).ready(function() {
-  
+
       setTimeout(function() {
         $('#ctn-preloader').addClass('loaded');
         // Una vez haya terminado el preloader aparezca el scroll
@@ -140,7 +141,7 @@
           });
         }
       }, 1500);
-  
+
     });
     </script>
     <script type="text/javascript">
@@ -149,7 +150,7 @@
           $('.select2').select2();
       });
 
-      
+
     </script>
 
     <script type="text/javascript" src="{{ asset('themes/frontend/js/autoNumeric.js') }}"></script>
@@ -158,6 +159,7 @@
             $('#rupiah').autoNumeric('init');
         });
     </script>
+
     <script type="text/javascript">
 
     
@@ -165,10 +167,11 @@
     $(document).ready(function() {
     $('.select2').select2();
     });
-
       </script>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
+
 
     <script type="text/javascript">
       function myFunction() {
@@ -304,7 +307,6 @@
               $('#district').change(function(){
                   var district_id =  $(this).val();
 
-
                   $('#villages').find('option').not(':first').remove();
 
                   // AJAX Request
@@ -369,8 +371,6 @@
          })
        });
 
-      
-      
      </script>
 
     <script>
@@ -397,8 +397,12 @@
       });
     </script>
 
+
     
-      <script>
+ 
+    <script type="text/javascript">
+
+
       anchors.options.placement = 'left';
       anchors.add('.container h1, .container h2, .container h3, .container h4, .container h5');
 
@@ -511,6 +515,9 @@
         }
       });
     </script>
-   
+
+
+  @yield('script')
+
   </body>
 </html>
