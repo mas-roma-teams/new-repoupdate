@@ -50,39 +50,30 @@
           <div class="card-profile mb-5">
             <div class="profile square mb-3 mt-3">
             @if($detail->vendors('photo_vendors') == true)
-
+           
             <img src="{{ asset('themes/frontend/images/' . $detail->vendors->photo_vendor)  }}" alt="" class="foto-profile">
             @else
             <img src="{{ asset('themes/frontend/images/user.png') }}" alt="" class="foto-profile">
             @endif
             </div>
-
+          
             <h4 class="text-ptserif text-center mb-2">{{ $detail->vendors->nama_vendor }}</h4>
             <h5 class="text-secondary mb-4">{{ ucfirst($detail->vendors->kecamatan->name) }}, {{ $detail->vendors->wilayah->name }}</h5>
             <div class="d-flex align-items-center mb-5">
               <img src="images/icon-verified.png" alt="">
-              <p class="text-success font-semibold ml-2">Verified Account </p>
+              <p class="text-success font-semibold ml-2">Verified Account</p>
             </div>
-
             @if($detail->vendors->user_id == Auth::user()->id && Auth::user()->id == TRUE)
             <!-- KOSONG -->
-          
+           
             @elseif(Auth::user()->id !== $detail->vendors->user_id)
           
             <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->nama_jasa) }}" class="btn-nego">Kirim Pesan</a>
 
             
 
-
-            @if(Auth::user())
-                @if(Auth::user()->id != $detail->vendors->user_id)
-                <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->slug) }}" class="btn-nego">Kirim Pesan</a>
-                @endif
-            @else
-                <a href="{{ url('chat/' . $detail->vendors->id . '?jasa=' . $detail->slug) }}" class="btn-nego">Kirim Pesan</a>
-
             @endif
-
+            
           </div>
         </div>
       </div>
@@ -97,7 +88,7 @@
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
                   <img src="{{ asset('themes/frontend/images/'. $jasa_lain->photo_jasa) }}" alt="">
-
+                  
                   <div class="card-body">
                     <h4><a href="{{ url('/jasa-detail/'. $jasa_lain->slug ) }}">{{ $jasa_lain->nama_jasa }}</a></h4>
                     <p class="font-light mt-2">{{ $jasa_lain->created_at }}</p>
