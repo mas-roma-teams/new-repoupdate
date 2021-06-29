@@ -147,13 +147,9 @@
 
                     @endforelse
 
-
-
-
-
                     </main>
-                  <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
-                    @csrf
+                  {{-- <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
+                    @csrf --}}
                     <input type="text" class="msger-input" name="pesan" placeholder="Masukan pesan..." required>
                     <input type="hidden" class="msger-input" name="user" value="{{Auth::user()->id}}">
                     <input type="hidden" class="msger-input" name="vendor" value="{{Request::segment(2)}}">
@@ -161,9 +157,8 @@
                     <input type="hidden" class="msger-input" name="kode_chat" value="{{$cekChat->kode_chat ?? ""}}">
                     <input type="hidden" name="status_send_replay" value="{{$sendreplay}}">
 
-
-                    <button type="submit" class="msger-send-btn">Send</button>
-                  </form>
+                    <button type="submit" class="msger-send-btn savemessage">Send</button>
+                  {{-- </form> --}}
                 </section>
               </div>
               <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -339,6 +334,14 @@
         </div>
 
 </div>
+
+@stop
+@section('script')
+<script>
+    $(".savemessage").click(function(event){
+        console.log('oke');
+    });
+</script>
 
 @endsection
 
