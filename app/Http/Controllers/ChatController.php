@@ -37,6 +37,31 @@ class ChatController extends Controller
 
     }
 
+    public function listHistoryVendor()
+    {
+        try{
+            $data= Chat::with('vendors')
+            ->where('user',Auth::user()->id)
+            ->groupBy('vendor')
+            ->get();
+            dd($data);
+            return response()->json(
+                [
+                    'data' => $data,
+                    'status' => true
+                ]
+            );
+
+        } catch (Exception $e) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
+    }
+
     public function ChatView(Request $request)
     {
 
