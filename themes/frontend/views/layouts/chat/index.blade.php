@@ -84,7 +84,11 @@
                     </main>
                   {{-- <form class="msger-inputarea" action="{{route('sendchat')}}" method="post">
                     @csrf --}}
+
+                    <div  id="showproduct" ></div>
+
                     <div class="msger-inputarea">
+
                     <input type="text" class="msger-input pesan" name="pesan" id="pesan" placeholder="Masukan pesan..." required>
                     <input type="hidden" class="msger-input" name="user" value="{{Auth::user()->id}}">
                     <input type="hidden" class="msger-input" name="vendor" value="{{Request::segment(2)}}">
@@ -276,6 +280,21 @@
 <script>
 
     $(document).ready(function () {
+        //
+
+
+            let jasaId = "{{$jasaid}}";
+            let photo = "{{$jasa->photo_jasa}}";
+            let nama_jasa = "{{$jasa->nama_jasa}}";
+            let slug = "{{$jasa->slug}}";
+            let harga = "{{$jasa->harga}}";
+
+            if(jasaId > 0){
+                template = '<div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; transition: 0.3s; margin-bottom:10px; margin-left:10px;"><div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;"><img src="/themes/frontend/images/'+photo+'" width="100%" height="100%" alt="'+slug+'"> </div><div class="msg-info-name">'+nama_jasa+'</div><div class="msg-info-name" style="color:#ff5000">Rp.'+harga+'</div></div></div>';
+                $('#showproduct').append(template);
+            }
+
+
         let id = {{Request::segment(2)}};
         $.ajax({
                     url: '/chat/history/'+id,
@@ -289,7 +308,7 @@
                         for (var i = 0; i < result.length; i++) {
                             if(result[i].status_send_replay == 'send'){
                                 if(result[i].jasa_id != 0){
-                                    template = '<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div><div class="msg-bubble"><div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:10px;"> <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;"><img src="/themes/frontend/images/'+result[i].jasa.photo_jasa +'" width="100%" height="100%" alt="'+result[i].jasa.slug+'"> </div><div class="msg-info-name">'+result[i].jasa.nama_jasa+'</div><div class="msg-info-name" style="color:#ff5000">Rp.'+result[i].jasa.harga+'</div></div> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div><div class="msg-info-time">'+result[i].jam+'</div> </div>';
+                                    template = '<div class="msg right-msg"><div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div><div class="msg-bubble"><div class="card-product" style="border-radius:5px; width:250px; height:80px; background:white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:10px;"> <div class="image-product" style="border-radius:5px; width:30%; height:80px; float:left;  margin-right:5px;"><img src="/themes/frontend/images/'+result[i].jasa.photo_jasa +'" width="100%" height="100%" alt="'+result[i].jasa.slug+'"> </div><div class="msg-info-name">'+result[i].jasa.nama_jasa+'</div><div class="msg-info-name" style="color:#ff5000">Rp.'+result[i].jasa.harga+'</div></div> <div class="msg-info"> <div class="msg-info-name">'+result[i].users.name+'</div><div class="msg-info-time">'+result[i].jam+'</div> </div><div class="msg-text text-dark">'+result[i].pesan+'</div> ';
 
                                 }else{
                                     if(result[i].nominal > 0 && result[i].status_send_replay == 'send'){
@@ -325,6 +344,8 @@
         sendMessage();
     });
 
+
+
     function sendMessage()
     {
         let pesan = $("input[name=pesan]").val();
@@ -353,6 +374,7 @@
         });
 
         $("#pesan").val("");
+        $('#showproduct').hide();
     }
 </script>
 

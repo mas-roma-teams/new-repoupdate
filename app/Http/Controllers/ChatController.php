@@ -18,7 +18,7 @@ class ChatController extends Controller
     {
         try{
             $vendor = Vendors::where('id',$request->segment(3))->first();
-            $history = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
+            $history = Chat::with('jasa','users')->with('vendors')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
             return response()->json(
                 [
                     'data' => $history,
@@ -40,10 +40,7 @@ class ChatController extends Controller
     public function listHistoryVendor()
     {
         try{
-            $data= Chat::with('vendors')
-            ->where('user',Auth::user()->id)
-            ->groupBy('vendor')
-            ->get();
+            $data= Chat::with('vendors')->orderBy('id','DESC')->groupBy('vendor')->get();
             dd($data);
             return response()->json(
                 [
@@ -69,7 +66,10 @@ class ChatController extends Controller
         if($vendor->user_id == Auth::user()->id){
            return redirect()->back();
         }
-        $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->first();
+
+        $jasa = Jasas::where('slug',$request->jasa)->first();
+
+        $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id',$jasa->id)->first();
         // dd($cekChat);
         $cekJasa = Jasas::where('slug', $request->jasa)->first();
         $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
@@ -105,7 +105,7 @@ class ChatController extends Controller
         }
 
 
-        return view('layouts.chat.index',compact('kategoris','cekVendor','vendor','cekChat','cekJasa','jasaid','historyChat','sendreplay'));
+        return view('layouts.chat.index',compact('jasa','kategoris','cekVendor','vendor','cekChat','cekJasa','jasaid','historyChat','sendreplay'));
     }
 
     public function sendChat(Request $request)
