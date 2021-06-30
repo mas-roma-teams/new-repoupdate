@@ -93,6 +93,7 @@ class ChatController extends Controller
                 if(is_numeric($request->pesan)){
                     if($request->pesan > 0){
                         $statusChat = 'nego';
+                        $nominal = $request->pesan;
                     }else{
                         $statusChat = 'chat';
                     }
@@ -112,11 +113,13 @@ class ChatController extends Controller
             $send->vendor = $request->vendor;
             $send->kode_chat = $kode;
             $send->jasa_id = $request->jasa_id;
-            $send->nominal = $request->nominal ?? 0;
+            $send->nominal = $nominal ?? 0;
             $send->pesan = $request->pesan ?? null;
             $send->status_chat = $statusChat;
             $send->is_read = 0;
             $send->status_send_replay = $request->status_send_replay;
+            $send->tanggal = date('Y-m-d');
+            $send->jam = date('H:i:s');
             $send->save();
 
             return response()->json(
