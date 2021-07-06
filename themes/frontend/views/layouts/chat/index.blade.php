@@ -21,17 +21,8 @@
               </form>
 
               <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height: 85vh;">
-                <a class="nav-link-chat active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                  <div class="list-chat">
-                    <img src="{{asset('themes/frontend/images/ex-profile-1.jpg')}}" alt="">
-                    <div class="ml-3">
-                      <h1 class="h5 text-semibold text-dark">Agung Saputra</h1>
-                      <p class="text-regular text-secondary">Hai Alapesta</p>
-                    </div>
-                  </div>
-                  <hr class="mt-2 mr-0" style="width: 80%;">
-                </a>
-                <a class="nav-link-chat" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+
+                {{-- <a class="nav-link-chat" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                   <div class="list-chat">
                     <img src="{{asset('themes/frontend/images/ex-profile-1.jpg')}}" alt="">
                     <div class="ml-3">
@@ -60,7 +51,7 @@
                     </div>
                   </div>
                   <hr class="mt-2 mr-0" style="width: 80%;">
-                </a>
+                </a> --}}
               </div>
             </div>
           </div>
@@ -101,7 +92,7 @@
                 {{-- </form> --}}
                 </section>
               </div>
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+              {{-- <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <section id="msger">
                   <header class="msger-header">
                     <div class="d-flex align-items-center">
@@ -268,7 +259,7 @@
                     <button type="submit" class="msger-send-btn">Send</button>
                   </form>
                 </section>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -327,7 +318,26 @@
 
                     }
             });
+
+            // history nama vendor
+            $.ajax({
+                    url: '/chat/listchat',
+                    type: "GET",
+                    typeData: 'json',
+                    cache: false,
+
+                    success: function (response) {
+                        var result = response.data;
+                        for (var i = 0; i < result.length; i++) {
+                            template = '<a class="nav-link-chat active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><div class="list-chat"><img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt=""><div class="ml-3"> <h1 class="h5 text-semibold text-dark">'+result[i].vendors.nama_vendor+'</h1> <p class="text-regular text-secondary">'+result[i].pesan+'</p></div></div><hr class="mt-2 mr-0" style="width: 80%;"></a>';
+                            $('#v-pills-tab').append(template);
+                        }
+                    }
+            });
+
     });
+
+
 
 
     $(".pesan").on("keyup", function (event) {

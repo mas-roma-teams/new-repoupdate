@@ -40,11 +40,28 @@ class ChatController extends Controller
     public function listHistoryVendor()
     {
         try{
-            $data= Chat::with('vendors')->orderBy('id','DESC')->groupBy('vendor')->get();
-            dd($data);
+            $getHistory = Chat::select(DB::raw('MAX(id) as parent_id'))
+            ->where('user',Auth::user()->id)
+            ->orderBy('tanggal','DESC')
+            ->groupBy('vendor')
+            ->get();
+
+            $arr = [];
+            foreach ($getHistory as $value) {
+                array_push($arr, $value->parent_id);
+            }
+
+            $data =
+            Chat::with(['vendors'])
+            ->whereIn('id', $arr)
+            ->get();
+
+            // $counttotal = Chat::with('vendors')->select(DB::Raw('kode_chat, COUNT(is_read) as read'))->where('is_read', 0)->where('user', Auth::user()->id)->groupBy('kode_chat')->get();
+
             return response()->json(
                 [
                     'data' => $data,
+                    // 'total' => $counttotal,
                     'status' => true
                 ]
             );
@@ -59,20 +76,27 @@ class ChatController extends Controller
         }
     }
 
+
     public function ChatView(Request $request)
     {
 
+
         $vendor = Vendors::where('id',$request->segment(2))->first();
-        if($vendor->user_id == Auth::user()->id){
-           return redirect()->back();
+        // dd($vendor);
+        if($vendor){
+            if($vendor->user_id == Auth::user()->id){
+                return redirect()->back();
+             }
+             $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
         }
 
         $jasa = Jasas::where('slug',$request->jasa)->first();
-
         $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id',$jasa->id)->first();
+
+
         // dd($cekChat);
         $cekJasa = Jasas::where('slug', $request->jasa)->first();
-        $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
+
         // dd($historyChat);
         $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         if($cekVendor){
@@ -168,4 +192,6 @@ class ChatController extends Controller
     {
 
     }
+
+
 }

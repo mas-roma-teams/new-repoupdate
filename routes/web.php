@@ -175,6 +175,7 @@ Route::prefix('chat')->group(function () {
         Route::get('/','ChatController@ChatView')->name('chatview');
         Route::get('/{id}','ChatController@ChatView')->name('chatview'); //vendor_id
         Route::post('/','ChatController@sendChat')->name('sendchat');
+
     });
 });
 // ----------------- end chat transaksi
