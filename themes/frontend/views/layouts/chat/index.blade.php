@@ -271,8 +271,13 @@
 <script>
 
     $(document).ready(function () {
-        //
 
+
+        // socket
+        let currentLocation = 'localhost';
+            let socket_port = "8009";
+            let socket = io(currentLocation + ':' + socket_port);
+            socket.emit('send-message', {});
 
             let jasaId = "{{$jasaid}}";
             let photo = "{{$jasa->photo_jasa}}";
@@ -286,7 +291,9 @@
             }
 
 
-        let id = {{Request::segment(2)}};
+        socket.on('received-message', function (data) {
+            let id = {{Request::segment(2)}};
+
             $.ajax({
                     url: '/chat/history/'+id,
                     type: "GET",
@@ -314,10 +321,14 @@
                             }
 
                             $('#content-message').append(template);
+                            var messageBody = document.querySelector('#content-message');
+                            messageBody.scrollTop = messageBody.scrollHeight - messageBody
+                                .clientHeight;
                         }
 
                     }
             });
+        });
 
             // history nama vendor
             $.ajax({
@@ -327,7 +338,7 @@
                     cache: false,
 
                     success: function (response) {
-
+                        $('#content-message').empty();
                         var result = response.data;
                         for (var i = 0; i < result.length; i++) {
                             template = '<a class="nav-link-chat active" id="v-pills-home-tab"  href="{{url("chat")}}/'+result[i].vendors.id+'" role="tab" aria-controls="v-pills-home" aria-selected="true"><div class="list-chat"><img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt=""><div class="ml-3"> <h1 class="h5 text-semibold text-dark">'+result[i].vendors.nama_vendor+'</h1> <p class="text-regular text-secondary">'+result[i].pesan+'</p></div></div><hr class="mt-2 mr-0" style="width: 80%;"></a>';
@@ -409,6 +420,7 @@
                 _token:_token
             },
             success:function(response){
+                socket.emit('send-message', data);
                 console.log("sukses");
             }
         });

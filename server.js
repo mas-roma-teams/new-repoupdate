@@ -13,13 +13,13 @@ io.on('connection', function(socket){
     socket.on('send-message', function(data) {
         io.emit('received-message', data);
 
-        // console.log(data);
+        console.log(data);
     });
 
-    socket.on('send-notif', function(data) {
-        io.emit('received-notif', 'Send Notif');
-        // console.log("message notif");
-    });
+    // socket.on('send-notif', function(data) {
+    //     io.emit('received-notif', 'Send Notif');
+    //     // console.log("message notif");
+    // });
 
     var oneSecondInterval = setInterval(() => {
         console.log(socket.conn.id);
