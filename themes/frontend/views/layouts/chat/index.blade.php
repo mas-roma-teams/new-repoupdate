@@ -329,7 +329,7 @@
                     success: function (response) {
                         var result = response.data;
                         for (var i = 0; i < result.length; i++) {
-                            template = '<a class="nav-link-chat active" id="v-pills-home-tab" data-toggle="pill" href="/'+result[i].vendors.id+'/" role="tab" aria-controls="v-pills-home" aria-selected="true"><div class="list-chat"><img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt=""><div class="ml-3"> <h1 class="h5 text-semibold text-dark">'+result[i].vendors.nama_vendor+'</h1> <p class="text-regular text-secondary">'+result[i].pesan+'</p></div></div><hr class="mt-2 mr-0" style="width: 80%;"></a>';
+                            template = '<a class="nav-link-chat active" id="v-pills-home-tab" data-toggle="pill" href="chat/'+result[i].vendors.id+'" role="tab" aria-controls="v-pills-home" aria-selected="true"><div class="list-chat"><img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt=""><div class="ml-3"> <h1 class="h5 text-semibold text-dark">'+result[i].vendors.nama_vendor+'</h1> <p class="text-regular text-secondary">'+result[i].pesan+'</p></div></div><hr class="mt-2 mr-0" style="width: 80%;"></a>';
                             $('#v-pills-tab').append(template);
                         }
                     }

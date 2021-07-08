@@ -56,6 +56,9 @@ class ChatController extends Controller
             ->whereIn('id', $arr)
             ->get();
 
+
+
+
             // $counttotal = Chat::with('vendors')->select(DB::Raw('kode_chat, COUNT(is_read) as read'))->where('is_read', 0)->where('user', Auth::user()->id)->groupBy('kode_chat')->get();
 
             return response()->json(
@@ -82,7 +85,7 @@ class ChatController extends Controller
 
 
         $vendor = Vendors::where('id',$request->segment(2))->first();
-        // dd($vendor);
+
         if($vendor){
             if($vendor->user_id == Auth::user()->id){
                 return redirect()->back();
@@ -90,8 +93,18 @@ class ChatController extends Controller
              $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
         }
 
-        $jasa = Jasas::where('slug',$request->jasa)->first();
-        $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id',$jasa->id)->first();
+        if($request->jasa){
+            $jasa = Jasas::where('slug',$request->jasa)->first();
+        }else{
+            $jasaLatest = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id','>','0')->latest()->first();
+            $jasa = Jasas::where('id',$jasaLatest->id)->first();
+
+        }
+
+        $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->first();
+        $cekChatJasa = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id','>','0')->latest()->first();
+
+
 
 
         // dd($cekChat);
@@ -109,7 +122,7 @@ class ChatController extends Controller
             $sendreplay = "send";
         }
 
-        if($cekChat){
+        if($cekChatJasa){
             $jasaid = 0;
         }else{
             if($cekJasa){
