@@ -292,6 +292,7 @@ class VendorsController extends Controller
         }else{
             $cekVendor = null;
         }
+        $kategoris = DB::select('select * from kategoris limit 6');
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
         $jasavendor = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->paginate(6);
         $jasagedung = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','2')->paginate(6);
@@ -300,7 +301,8 @@ class VendorsController extends Controller
         $jasakatering = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','5')->paginate(6);
         $jasaphotografer = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','6')->paginate(6);
         $jasatatarias = Jasas::with('vendors.wilayah','vendors.kecamatan')->where('user_id', Auth::user()->id)->where('kategori_id','7')->paginate(6);
-        return view('layouts.vendors.jasavendor',compact('cekVendor','profilevendor','jasavendor','jasagedung','jasadekorasi','jasaentertaiment','jasakatering','jasaphotografer','jasatatarias','kategoris'));
+        $dataProv = Provinsi::All();
+        return view('layouts.vendors.jasavendor',compact('cekVendor','profilevendor','jasavendor','jasagedung','jasadekorasi','jasaentertaiment','jasakatering','jasaphotografer','jasatatarias','kategoris','dataProv'));
     }
 
     public function transaksiVendor()
@@ -361,11 +363,14 @@ class VendorsController extends Controller
         $kategori = Kategoris::all();
         $kategoris = DB::select('select * from kategoris limit 6');
         $profilevendor = Vendors::with('wilayah','kecamatan')->where('user_id',Auth::user()->id)->first();
+       
+        
         return view('layouts.vendors.addjasavendor',compact('cekVendor','profilevendor','kategori','kategoris'));
     }
 
     public function prosestambahjasa(Request $request)
     {
+        $user = Auth::user();
         $messages = [
             'required' => 'Kolom Wajib diisi!',
         ];
@@ -387,7 +392,9 @@ class VendorsController extends Controller
         if($request->file('photo_jasa')){
             $photo_jasa = $request->file('photo_jasa')->store('photo_jasa', 'public');
         }
+        $new_jasa->user_id = $user->id;
         $new_jasa->photo_jasa = $photo_jasa;
+        $new_jasa->city_id = $request->get('kabupaten_jasa');
         $new_jasa->deskripsi = $request->get('deskripsi');
         $new_jasa->kategori_id = $request->get('kategori_id');
         $new_jasa->vendor_id = $request->get('vendor_id');
@@ -397,6 +404,7 @@ class VendorsController extends Controller
         $new_jasa->dilihat = 0;
         $new_jasa->status = $request->get('status');
         $new_jasa->save();
+        dd($new_jasa);
         if ($new_jasa) {
             //redirect dengan pesan sukses
 

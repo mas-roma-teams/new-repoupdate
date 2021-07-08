@@ -42,8 +42,20 @@
               <h3 class="text-regular text-secondary">/ hari</h3>
             </div>
             <p class="mb-4">*Harga bisa berubah sesuai dengan jarak acara, tanya vendor untuk memastikan harga jasa yang harus dibayar</p>
+            @if($detail->vendors->user_id == Auth::user()->id && Auth::user()->id == TRUE)
+
+            
+            <!-- KOSONG -->
+           
+            @elseif(Auth::user()->id !== $detail->vendors->user_id)
+          
             <a class="btn btn-nego mb-2" data-toggle="modal" data-target="#modalNego">Nego harga</a>
             <a class="btn btn-booking mb-2">Booking</a>
+
+            
+
+            @endif
+            
           </div>
         </div>
         <div class="col-sm-5">

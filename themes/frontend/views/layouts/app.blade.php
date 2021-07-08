@@ -46,7 +46,7 @@
 
 
     <!-- Preloader -->
-  {{-- <section id="preloader">
+ <section id="preloader">
     <div>
       <div id="ctn-preloader" class="ctn-preloader">
         <div class="animation-preloader">
@@ -85,7 +85,7 @@
         <div class="loader-section section-right"></div>
       </div>
     </div>
-  </section> --}}
+  </section> 
 
     <!-- START CONTENT -->
     @yield('content')
@@ -136,7 +136,7 @@
 
         if ($('#ctn-preloader').hasClass('loaded')) {
           // Es para que una vez que se haya ido el preloader se elimine toda la seccion preloader
-          $('#preloader').delay(1000).queue(function() {
+          $('#preloader').delay(500).queue(function() {
             $(this).remove();
           });
         }

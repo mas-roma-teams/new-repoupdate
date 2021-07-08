@@ -57,7 +57,7 @@
             @foreach( $jasa_terbaru as $jkey )
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
               <div class="card noborder">
-                <img src="{{ asset('themes/frontend/images/' . $jkey->photo_jasa) }}" class="card-img-top" alt="{{ $jkey->nama_jasa }}">
+                <img src="{{ asset('storages/' . $jkey->photo_jasa) }}" class="card-img-top" alt="{{ $jkey->nama_jasa }}">
                 <div class="card-body no-paddingleft">
                   <h4 class="mb-2"><a href="{{ url('jasa-detail/' . $jkey->slug) }}">{{ substr($jkey->nama_jasa,0,30) }}</a></h4>
                   <p class="mb-2 font-light">{{ ucfirst($jkey->vendors->kecamatan->name) }}, {{ $jkey->vendors->wilayah->name }}</p>

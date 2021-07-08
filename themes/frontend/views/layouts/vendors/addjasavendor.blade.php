@@ -49,6 +49,15 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="nama_kategori">Tempat Tinggal Jasa</label>
+                                    
+                                    
+                                    @error('nama_jasa')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                                 <div class="form-group">
                                     <label for="nama_kategori">Photo jasa</label>
                                     <input type="file" name="photo_jasa" class="dropify"
