@@ -172,9 +172,11 @@ Route::prefix('chat')->group(function () {
     Route::group(['middleware' => 'auth'], function() {
         Route::get('/history/{id}','ChatController@historyChat')->name('historychat');
         Route::get('/listchat','ChatController@listHistoryVendor')->name('listchat');
-        Route::get('/','ChatController@ChatView')->name('chatview');
+        Route::get('/searchvendor','ChatController@searchvendor')->name('searchvendor');
+        Route::get('/','ChatController@ChatView')->name('chatview')->middleware();
         Route::get('/{id}','ChatController@ChatView')->name('chatview'); //vendor_id
         Route::post('/','ChatController@sendChat')->name('sendchat');
+
 
     });
 });

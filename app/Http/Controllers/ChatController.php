@@ -37,9 +37,10 @@ class ChatController extends Controller
 
     }
 
-    public function listHistoryVendor()
+    public function listHistoryVendor(Request $request)
     {
         try{
+
             $getHistory = Chat::select(DB::raw('MAX(id) as parent_id'))
             ->where('user',Auth::user()->id)
             ->orderBy('tanggal','DESC')
@@ -56,8 +57,53 @@ class ChatController extends Controller
             ->whereIn('id', $arr)
             ->get();
 
+            // $counttotal = Chat::with('vendors')->select(DB::Raw('kode_chat, COUNT(is_read) as read'))->where('is_read', 0)->where('user', Auth::user()->id)->groupBy('kode_chat')->get();
 
+            return response()->json(
+                [
+                    'data' => $data,
+                    // 'total' => $counttotal,
+                    'status' => true
+                ]
+            );
 
+        } catch (Exception $e) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
+    }
+
+    public function searchvendor(Request $request)
+    {
+        try{
+            $search = $request->get('text','');
+            $vendor = Vendors::where('nama_vendor', 'like', '%' . $search . '%')->first();
+            $getHistory = Chat::select(DB::raw('MAX(id) as parent_id'))
+            ->where('user',Auth::user()->id)
+            ->when(
+                $search != '',
+                function ($q) use ($vendor) {
+                    return $q->where('vendor', $vendor->id);
+                }
+            )
+            // ->where('vendor',$vendor->id)
+            ->orderBy('tanggal','DESC')
+            ->groupBy('vendor')
+            ->get();
+
+            $arr = [];
+            foreach ($getHistory as $value) {
+                array_push($arr, $value->parent_id);
+            }
+
+            $data =
+            Chat::with(['vendors'])
+            ->whereIn('id', $arr)
+            ->get();
 
             // $counttotal = Chat::with('vendors')->select(DB::Raw('kode_chat, COUNT(is_read) as read'))->where('is_read', 0)->where('user', Auth::user()->id)->groupBy('kode_chat')->get();
 
@@ -97,9 +143,11 @@ class ChatController extends Controller
             $jasa = Jasas::where('slug',$request->jasa)->first();
         }else{
             $jasaLatest = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id','>','0')->latest()->first();
-            $jasa = Jasas::where('id',$jasaLatest->id)->first();
+
+            $jasa = Jasas::where('id',$jasaLatest->jasa_id)->first();
 
         }
+
 
         $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->first();
         $cekChatJasa = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id','>','0')->latest()->first();

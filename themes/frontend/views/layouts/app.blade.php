@@ -37,7 +37,7 @@
     <!-- Select2 CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/frontend/css/select2.min.css') }}">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
   </head>
   <body style="overflow-x: hidden;">
@@ -160,11 +160,11 @@
             $('#rupiah').autoNumeric('init');
         });
     </script>
-    
-    
+
+
     <script type="text/javascript">
 
-    
+
 
         $(document).ready(function() {
           $('.select2').select2();
@@ -247,7 +247,7 @@
                       type: 'GET',
                       dataType: 'json',
                       success : function(response){
-                        
+
                           console.log(province_id);
                           var len = 0;
                           if(response != null){
@@ -274,9 +274,9 @@
 
               $('#city').change(function(){
                   var city_id =  $(this).val();
-                  
+
                   $('#district').find('option').not(':first').remove();
-                  
+
                   // AJAX Request
                   $.ajax({
                       url: 'getDistrict/'+ city_id,
@@ -400,8 +400,8 @@
     </script>
 
 
-    
- 
+
+
     <script type="text/javascript">
 
 
