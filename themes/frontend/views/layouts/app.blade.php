@@ -37,7 +37,8 @@
     <!-- Select2 CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/frontend/css/select2.min.css') }}">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
-
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> --}}
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
 
   </head>
   <body style="overflow-x: hidden;">
@@ -86,6 +87,9 @@
       </div>
     </div>
   </section> 
+
+    @include('sweetalert::alert')
+
 
     <!-- START CONTENT -->
     @yield('content')
@@ -160,11 +164,11 @@
             $('#rupiah').autoNumeric('init');
         });
     </script>
-    
-    
+
+
     <script type="text/javascript">
 
-    
+
 
         $(document).ready(function() {
           $('.select2').select2();
@@ -235,6 +239,10 @@
                   // Province id
                   var id =  $(this).val();
                   var province_id =  $(this).val();
+                  var base_url = '{{ url("/getCitys") }}';
+                  if (province_id.value !== '') {
+                    ajaxUrl = base_url.replace('-1',province_id.value);
+                  }
                   console.log(id);
                   console.log(province_id);
 
@@ -243,11 +251,11 @@
 
                   // AJAX Request
                   $.ajax({
-                      url: 'getCitys/'+ province_id,
+                      url: ajaxUrl + '/' + province_id,
                       type: 'GET',
                       dataType: 'json',
                       success : function(response){
-                        
+
                           console.log(province_id);
                           var len = 0;
                           if(response != null){
@@ -274,12 +282,15 @@
 
               $('#city').change(function(){
                   var city_id =  $(this).val();
-                  
+
                   $('#district').find('option').not(':first').remove();
-                  
+                  var base_url = '{{ url("/getDistrict") }}';
+                  if (city_id.value !== '') {
+                    ajaxUrl = base_url.replace('-1',city_id.value);
+                  }
                   // AJAX Request
                   $.ajax({
-                      url: 'getDistrict/'+ city_id,
+                      url: ajaxUrl + '/' + city_id,
                       type: 'GET',
                       dataType: 'json',
                       success : function(res){
@@ -308,12 +319,16 @@
 
               $('#district').change(function(){
                   var district_id =  $(this).val();
-
+                  var base_url = '{{ url("/getVillages/") }}';
+                  if (district_id.value !== '') {
+                    ajaxUrl = base_url.replace('-1',district_id.value);
+                  }
+                  
                   $('#villages').find('option').not(':first').remove();
 
                   // AJAX Request
                   $.ajax({
-                      url: 'getVillages/'+ district_id,
+                      url: ajaxUrl + '/' + district_id,
                       type: 'GET',
                       dataType: 'json',
                       success : function(res){
@@ -400,8 +415,8 @@
     </script>
 
 
-    
- 
+
+
     <script type="text/javascript">
 
 

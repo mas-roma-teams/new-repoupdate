@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "589e7af3beffa38f547559ac51d861e1",
+    "content-hash": "942c5fbf45e1d486283133637525b4d9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3453,16 +3453,16 @@
         },
         {
             "name": "realrashid/sweet-alert",
-            "version": "v3.2.3",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realrashid/sweet-alert.git",
-                "reference": "d4e40b4956e1f040bd709d54410b360023cea67f"
+                "reference": "4923bb91d7144c2ac5dacda0b5e1472fff3d88af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/d4e40b4956e1f040bd709d54410b360023cea67f",
-                "reference": "d4e40b4956e1f040bd709d54410b360023cea67f",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/4923bb91d7144c2ac5dacda0b5e1472fff3d88af",
+                "reference": "4923bb91d7144c2ac5dacda0b5e1472fff3d88af",
                 "shasum": ""
             },
             "require": {
@@ -3539,7 +3539,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T10:10:01+00:00"
+            "time": "2021-06-14T19:01:35+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -8572,5 +8572,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }

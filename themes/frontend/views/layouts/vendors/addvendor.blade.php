@@ -83,8 +83,8 @@
                                     </select>
                                     @error('kabupaten_id')
                                     <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                                  </div>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">

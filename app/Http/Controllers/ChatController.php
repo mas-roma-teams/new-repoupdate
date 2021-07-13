@@ -18,7 +18,7 @@ class ChatController extends Controller
     {
         try{
             $vendor = Vendors::where('id',$request->segment(3))->first();
-            $history = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
+            $history = Chat::with('jasa','users')->with('vendors')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
             return response()->json(
                 [
                     'data' => $history,
@@ -37,17 +37,127 @@ class ChatController extends Controller
 
     }
 
+    public function listHistoryVendor(Request $request)
+    {
+        try{
+
+            $getHistory = Chat::select(DB::raw('MAX(id) as parent_id'))
+            ->where('user',Auth::user()->id)
+            ->orderBy('tanggal','DESC')
+            ->groupBy('vendor')
+            ->get();
+
+            $arr = [];
+            foreach ($getHistory as $value) {
+                array_push($arr, $value->parent_id);
+            }
+
+            $data =
+            Chat::with(['vendors'])
+            ->whereIn('id', $arr)
+            ->get();
+
+            // $counttotal = Chat::with('vendors')->select(DB::Raw('kode_chat, COUNT(is_read) as read'))->where('is_read', 0)->where('user', Auth::user()->id)->groupBy('kode_chat')->get();
+
+            return response()->json(
+                [
+                    'data' => $data,
+                    // 'total' => $counttotal,
+                    'status' => true
+                ]
+            );
+
+        } catch (Exception $e) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
+    }
+
+    public function searchvendor(Request $request)
+    {
+        try{
+            $search = $request->get('text','');
+            $vendor = Vendors::where('nama_vendor', 'like', '%' . $search . '%')->first();
+            $getHistory = Chat::select(DB::raw('MAX(id) as parent_id'))
+            ->where('user',Auth::user()->id)
+            ->when(
+                $search != '',
+                function ($q) use ($vendor) {
+                    return $q->where('vendor', $vendor->id);
+                }
+            )
+            // ->where('vendor',$vendor->id)
+            ->orderBy('tanggal','DESC')
+            ->groupBy('vendor')
+            ->get();
+
+            $arr = [];
+            foreach ($getHistory as $value) {
+                array_push($arr, $value->parent_id);
+            }
+
+            $data =
+            Chat::with(['vendors'])
+            ->whereIn('id', $arr)
+            ->get();
+
+            // $counttotal = Chat::with('vendors')->select(DB::Raw('kode_chat, COUNT(is_read) as read'))->where('is_read', 0)->where('user', Auth::user()->id)->groupBy('kode_chat')->get();
+
+            return response()->json(
+                [
+                    'data' => $data,
+                    // 'total' => $counttotal,
+                    'status' => true
+                ]
+            );
+
+        } catch (Exception $e) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
+    }
+
+
     public function ChatView(Request $request)
     {
 
+
         $vendor = Vendors::where('id',$request->segment(2))->first();
-        if($vendor->user_id == Auth::user()->id){
-           return redirect()->back();
+
+        if($vendor){
+            if($vendor->user_id == Auth::user()->id){
+                return redirect()->back();
+             }
+             $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
         }
+
+        if($request->jasa){
+            $jasa = Jasas::where('slug',$request->jasa)->first();
+        }else{
+            $jasaLatest = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id','>','0')->latest()->first();
+
+            $jasa = Jasas::where('id',$jasaLatest->jasa_id)->first();
+
+        }
+
+
         $cekChat = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->first();
+        $cekChatJasa = Chat::where('user',Auth::user()->id)->where('vendor',$vendor->id)->where('jasa_id','>','0')->latest()->first();
+
+
+
+
         // dd($cekChat);
         $cekJasa = Jasas::where('slug', $request->jasa)->first();
-        $historyChat = Chat::with('jasa','vendors','users')->where('user',Auth::user()->id)->where('vendor',$vendor->id)->orderBy('created_at','ASC')->get();
+
         // dd($historyChat);
         $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
         if($cekVendor){
@@ -60,7 +170,7 @@ class ChatController extends Controller
             $sendreplay = "send";
         }
 
-        if($cekChat){
+        if($cekChatJasa){
             $jasaid = 0;
         }else{
             if($cekJasa){
@@ -80,7 +190,7 @@ class ChatController extends Controller
         }
 
 
-        return view('layouts.chat.index',compact('kategoris','cekVendor','vendor','cekChat','cekJasa','jasaid','historyChat','sendreplay'));
+        return view('layouts.chat.index',compact('jasa','kategoris','cekVendor','vendor','cekChat','cekJasa','jasaid','historyChat','sendreplay'));
     }
 
     public function sendChat(Request $request)
@@ -93,6 +203,7 @@ class ChatController extends Controller
                 if(is_numeric($request->pesan)){
                     if($request->pesan > 0){
                         $statusChat = 'nego';
+                        $nominal = $request->pesan;
                     }else{
                         $statusChat = 'chat';
                     }
@@ -112,11 +223,13 @@ class ChatController extends Controller
             $send->vendor = $request->vendor;
             $send->kode_chat = $kode;
             $send->jasa_id = $request->jasa_id;
-            $send->nominal = $request->nominal ?? 0;
+            $send->nominal = $nominal ?? 0;
             $send->pesan = $request->pesan ?? null;
             $send->status_chat = $statusChat;
             $send->is_read = 0;
             $send->status_send_replay = $request->status_send_replay;
+            $send->tanggal = date('Y-m-d');
+            $send->jam = date('H:i:s');
             $send->save();
 
             return response()->json(
@@ -140,4 +253,6 @@ class ChatController extends Controller
     {
 
     }
+
+
 }
