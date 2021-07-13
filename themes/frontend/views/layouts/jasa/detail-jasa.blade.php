@@ -393,9 +393,9 @@
 
   
 
-    @else {
+    @else 
       @include('layouts.modal.modal-login')
-    }
+    
     @endif
     
 @endsection
