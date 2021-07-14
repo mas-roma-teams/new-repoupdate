@@ -268,128 +268,124 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row">
+          
+          
+          <form action="{{ url('/tambah/negosiasi') }}" method="POST">
+            @csrf
+                       
+                      
 
-            <div class="col-md-12 mb-4">
-                <h4 class="mb-2">Nama User</h4>
-                <input type="text" class="form-control w-100" name="nama_user" value="{{ Auth::user()->name }}" disabled>
-              </div>
-
-              <div class="col-md-12 mb-4">
-                <h4 class="mb-2">Provinsi</h4>
-                  
-             
-                    <select class="form-control" id="province" name="provinsi_id">
-                      <option>-- PILIH --</option>
-                      @foreach ($provincess as $id => $name)
-                      <option value="{{ $name->id }}">{{  $name->name }}</option>
-                      @endforeach
-                    </select>
-                    @error('provinsi_id')
-                    <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                  
-              </div>
-              <div class="col-md-12 mb-4">
-                <h4 class="mb-2">Kota/Kabupaten</h4>
-                
-                                    
-                  <select name="kabupaten_id" class="form-control" id="city">
-                    <option value="0">-- PILIH --</option>
-
-                  </select>
-                  @error('kabupaten_id')
-                  <small class="text-danger">{{ $message }}</small>
-                  @enderror
-             
-              </div>
-              <div class="col-md-12 mb-4">
-                <h4 class="mb-2">Kecamatan</h4>
-                
+                        <div class="row">
+                           
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Nama Lengkap</label>
+                                    <input type="text" name="nama_user" id="nama_user" placeholder="whatsapp" class="form-control" value="{{ Auth::user()->name }}" disabled>
                                    
-                  <select name="kecamatan_id" class="form-control" id="district">
-                      <option value="0">-- PILIH --</option>
+                                    @error('nama_user')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
 
-                      </select>
-                      @error('kecamatan_id')
-                      <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                
+                                  <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Pilih Provinsi</label>
+                                    <select class="form-control" id="province" name="id_province">
+                                     <option>-- PILIH --</option>
+                                     @foreach ($provincess as $id => $name)
+                                     <option value="{{ $name->id }}">{{  $name->name }}</option>
+                                     @endforeach
+                                    </select>
+                                    @error('id_province')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                  </div>
 
-               
-              </div>
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Pilih Kota</label>
+                                    <select name="id_city" class="form-control" id="city">
+                                     <option value="0">-- PILIH --</option>
+
+                                    </select>
+                                    @error('id_city')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Pilih Kecamatan</label>
+                                    <select name="id_district" class="form-control" id="district">
+                                        <option value="0">-- PILIH --</option>
+
+                                       </select>
+                                       @error('id_district')
+                                       <small class="text-danger">{{ $message }}</small>
+                                   @enderror
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Kelurahan</label>
+                                    <select name="id_villages" class="form-control" id="villages">
+                                        <option value="0">-- PILIH --</option>
+
+                                       </select>
+                                    @error('id_villages')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                           
+                           <div class="col-md-12">
+                               <div class="form-group">
+                                   <label for="">Jumlah Negosiasi</label>
+                                   <input type="text"  class="form-control" id="rupiah" name="jumlah_negosiasi"  data-a-sign="Rp. " data-a-dec="," data-a-sep="." placeholder="Klik Untuk masukan Jumlah Negosiasi">
+                                  
+                                   @error('jumlah_negosiasi')
+                                       <small class="text-danger">{{ $message }}</small>
+                                   @enderror
+                               </div>
+                           </div>
+                       </div>
+
+                        <div class="form-group">
+                            <label for="">Alamat lengkap</label>
+                            <textarea name="alamat_lengkap" id="alamat_lengkap" class="form-control" placeholder="alamat"></textarea>
+                            @error('alamat_lengkap')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Alamat lengkap</label>
+                            <textarea name="keterangan" id="keterangan" class="form-control" placeholder="alamat"></textarea>
+                            @error('keterangan')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        </div>
 
 
-              <div class="col-md-12 mb-4">
-                <h4 class="mb-2">Kelurahan</h4>
-                 
-                    
-                    <select name="kelurahan_id" class="form-control" id="villages">
-                        <option value="0">-- PILIH --</option>
-
-                        </select>
-                    @error('kelurahan_id')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-                
-              </div>
-              <div class="col-md-12 mb-4">
-                <h4 class="mb-2">Harga Nego</h4>
-                <input type="text"  class="form-control" id="rupiah" name="jumlah_penarikan" data-a-sign="Rp. " data-a-dec="," data-a-sep="." placeholder="Klik Untuk masukan Jumlah Penarikan">
-              </div>
-              
-
-              <div class="col-12 mb-4">
-                <h4 class="mb-2">Keterangan Alamat </h4>
-                <textarea class="form-control" id="alamat" rows="6" placeholder="Jl. Swadaya Timur RT.009/020 No.120 Jakarta barat "></textarea>
-              </div>
-
-              <div class="col-12 mb-4">
-                <h4 class="mb-2">Keterangan (opsional)</h4>
-                <textarea class="form-control" id="alamat" rows="6" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nec urna ornare id amet ut neque duis sit. Netus a, purus euismod congue sagittis eget justo est integer. Magna porttitor quisque suspendisse magna."></textarea>
-              </div>
-              <div class="px-3 w-100">
-                <a class="btn btn-booking mb-2" data-toggle="modal" data-target="#modalNegoSuccess" data-dismiss="modal" aria-label="Close">Lakukan Nego</a>
-              </div>
-            </div>
-          </div>
+                    <input type="hidden" name="status" value="1" class="form-control">
+                        
+                        <button class="btn btn-me" type="submit">Simpan</button>
+                    </form>
+             
         </div>
       </div>
     </div>
 
     <!-- Modal Nego Success -->
-<div class="modal fade" id="modalNegoSuccess" tabindex="-1" aria-labelledby="modalNegoSuccessLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header noborder">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <svg viewBox="0 0 100 100" class="animate mb-5">
-              <filter id="dropshadow" height="100%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-                <feFlood flood-color="rgba(76, 175, 80, 1)" flood-opacity="0.5" result="color"/>
-                <feComposite in="color" in2="blur" operator="in" result="blur"/>
-                <feMerge> 
-                  <feMergeNode/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-              
-              <circle cx="50" cy="50" r="46.5" fill="none" stroke="rgba(76, 175, 80, 0.5)" stroke-width="5"/>
-              
-              <path d="M67,93 A46.5,46.5 0,1,0 7,32 L43,67 L88,19" fill="none" stroke="rgba(76, 175, 80, 1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="80 1000" stroke-dashoffset="-220"  style="filter:url(#dropshadow)"/>
-            </svg>
-            <h1 class="h2 text-center mb-2">Selamat!</h1>
-            <h2 class="font-regular text-center mb-4">Negosiasi harga telah terkirim, tunggu jawaban dari Vendor</h2>
-            <a class="btn btn-nego mb-2">Detail transaksi</a>
-            <a class="btn btn-booking mb-2">Kembali ke Home</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
   
 

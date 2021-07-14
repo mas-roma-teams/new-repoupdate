@@ -7,10 +7,12 @@ use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\JasasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\Negosiasi;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\KategoriesController;
 use App\Http\Controllers\TransaksiControllers;
+use App\Models\Negosiasi_M;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
@@ -156,6 +158,10 @@ Route::post('/post/transaksi',[TransaksiControllers::class, 'store'])->name('tar
 
 // Route::get('/post/transaksi/user-transaksi',[userController::class, 'transaksiUser'])->name('transaksi-user');
 Route::get('/post/transaksi/index',[TransaksiControllers::class, 'index'])->name('tarik-tunai-index');
+
+
+// DAFTAR NEGOSIASI
+Route::post('/tambah/negosiasi',[JasasController::class, 'tambahNegosiasi'])->name('tambah-negosiasi');
 
 
 

@@ -13,7 +13,13 @@ use App\Models\IndoProv;
 use App\Models\IndoCity;
 use App\Models\Kecamatan;
 use App\Models\Vendors;
-use Auth;
+use App\Models\Negosiasi;
+
+use Illuminate\Support\Facades\Auth;
+use App\Models\HistoryTransaksi;
+use App\Models\User;
+
+use Illuminate\Support\Str;
 
 
 class JasasController extends Controller
@@ -255,5 +261,56 @@ class JasasController extends Controller
             'cekVendor',
             'jasas_count',
             ['provincess' => $provincess],));
+    }
+
+    public function tambahNegosiasi(Request $request, Negosiasi $new_negosiasi) {
+        $user_id = Auth::user();
+        if($user_id){
+            $cekUser = User::where('id',Auth::user()->id)->first();
+        }else{
+            $cekUser = null;
+        }
+
+        $messages = [
+            'required' => 'Kolom Wajib diisi!',
+        ];
+
+        $this->validate($request, [
+           
+          
+            'jumlah_negosiasi'=>'required',
+            'alamat_lengkap'=>'required',
+            'keterangan'=>'required',
+
+        ], $messages);
+        $random = Str::random(10);  
+        $data_array = array('Rp.',' ',',00','.');
+        $new_negosiasi = new Negosiasi;
+        $new_negosiasi->nama_user = Auth::user()->name;
+        $new_negosiasi->id_user = Auth::user()->id;
+        // dd($new_negosiasi->nama_user);
+        $new_negosiasi->id_negosiasi = $random;
+        $new_negosiasi->alamat_lengkap = $request->get('alamat_lengkap');
+        $new_negosiasi->id_province = $request->get('id_province');
+        $new_negosiasi->id_city = $request->get('id_city');
+        $new_negosiasi->id_district = $request->get('id_district');
+        $new_negosiasi->id_villages = $request->get('id_villages');
+        $new_negosiasi->jumlah_negosiasi = str_replace($data_array,[''], $request->get('jumlah_negosiasi'));
+        $new_negosiasi->status = "0";
+        $new_negosiasi->keterangan = $request->get('keterangan');
+        $new_negosiasi->save();
+
+        //dd($new_negosiasi);exit;
+        if ($new_negosiasi) {
+            //redirect dengan pesan sukses
+            return redirect()->route('vendors.success');
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('vendors.addvendor');
+        }
+
+       
+
+        
     }
 }
