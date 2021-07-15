@@ -163,6 +163,8 @@ Route::get('/post/transaksi/index',[TransaksiControllers::class, 'index'])->name
 // DAFTAR NEGOSIASI
 Route::post('/tambah/negosiasi',[JasasController::class, 'tambahNegosiasi'])->name('tambah-negosiasi');
 
+Route::get('/user/negosiasi',[userController::class, 'cekStatusNegosiasi'])->name('layout-negosiasi');
+
 
 
 

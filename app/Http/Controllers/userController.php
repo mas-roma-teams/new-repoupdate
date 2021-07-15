@@ -12,6 +12,7 @@ use App\Models\IndoCity;
 use App\Models\Transaksis;
 use App\Models\Vendors;
 use App\Models\HistoryTransaksi;
+use App\Models\Negosiasi;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Auth;
@@ -420,6 +421,33 @@ class userController extends Controller
          $kategoris = DB::select('select * from kategoris limit 6'); 
          $users = User::findOrFail($user_id->id);
          return view('layouts.user.history-tarik',compact('users','cekVendor','kategoris','cekSaldo','cek_akhir_saldo','cek_akhir_saldo'));
+
+
+    }
+
+    public function cekStatusNegosiasi(){
+        $user_id = Auth::user();
+            if($user_id){
+                $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
+            }else{
+                $cekVendor = null;
+            }
+       
+            if ($user_id) {
+                // UNTUK MENGAMBIL DATA PAGINATE KONTEN
+                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
+            }else {
+                $cekSaldo = null;
+            }
+
+
+        // UNTUK MENGAMBIL JUMLAH DATA SEMUA YANG DI KURANG DENGAN SALDO 
+         $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();  
+         $cekNegosiasi = Negosiasi::with('kota','provinsi','kelurahan','kecamatan')->where('id_user',Auth::user()->id)->get();   
+        //  dd($cekNegosiasi);
+         $kategoris = DB::select('select * from kategoris limit 6'); 
+         $users = User::findOrFail($user_id->id);
+         return view('layouts.user.status-negosiasi',compact('users','cekVendor','cekNegosiasi','kategoris','cekSaldo','cek_akhir_saldo','cek_akhir_saldo'));
 
 
     }

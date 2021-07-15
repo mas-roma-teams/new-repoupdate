@@ -9,4 +9,7 @@ class Kelurahan extends Model
 {
     use HasFactory;
     protected $table="indonesia_villages";
+    protected $fillable = [
+        'id','name','meta','disctrict_id',
+      ];
 }

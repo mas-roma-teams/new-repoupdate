@@ -96,8 +96,33 @@ class User extends Authenticatable
     //         }
     //     });
     // }
+    public function negosiasi()
+    {
+        return $this->belongsTo(Negosiasi::class,'user_id');
+    }
 
     public function transaksi(){
         return $this->hasMany(Transaksis::class);
+    }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(IndoProv::class,'province_id');
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class,'district_id');
+    }
+
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kecamatan::class,'villages_id');
+    }
+    
+
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksis::class,'jasa_id');
     }
 }
