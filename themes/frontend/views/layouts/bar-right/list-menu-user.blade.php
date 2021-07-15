@@ -32,6 +32,11 @@
               <!-- <span class="badge badge-primary badge-pill">2</span> -->
             </li>
 
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+             <a href="{{ route('layout-negosiasi') }}"> Status Negosiasi</a>
+              <!-- <span class="badge badge-primary badge-pill">2</span> -->
+            </li>
+
 
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href="{{ route('users.password') }}"> Ganti password</a>
