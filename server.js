@@ -9,7 +9,6 @@ var io = require('socket.io')(http,{
 });
 var users =[];
 
-
 http.listen(8009, function(){
     console.log('listenin to part 8009');
 });
