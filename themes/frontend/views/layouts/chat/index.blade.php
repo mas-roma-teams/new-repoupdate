@@ -301,7 +301,7 @@
                     cache: false,
 
                     success: function (response) {
-                        // $('#content-message').empty();
+                        $('#content-message').empty();
                         var result = response.data;
                         for (var i = 0; i < result.length; i++) {
                             if(result[i].status_send_replay == 'send'){
@@ -421,6 +421,7 @@
             },
             success:function(response){
                 socket.emit('send-message', data);
+                // console.log(data);
                 console.log("sukses");
             }
         });
