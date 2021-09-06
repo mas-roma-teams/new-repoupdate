@@ -26,6 +26,7 @@ class CreateNegosiasiTable extends Migration
             $table->string('alamat_lengkap')->nullable();
             $table->bigInteger('status',11)->nullable();
             $table->string('keterangan',255)->nullable();
+            
             $table->timestamps();
         });
     }

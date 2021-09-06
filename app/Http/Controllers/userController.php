@@ -429,25 +429,47 @@ class userController extends Controller
         $user_id = Auth::user();
             if($user_id){
                 $cekVendor = Vendors::where('user_id',Auth::user()->id)->first();
-            }else{
+                $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
+                
+                $cekNegosiasisUser = Negosiasi::with('jasa.vendors')->where('id_user',Auth::user()->id)->get();
+                foreach($cekNegosiasisUser as $users){
+                    $users->id_vendor;
+                 }
+                // dd($cekNegosiasisUser);
+                $ambilDataJasaPerVendor = DB::table('negosiasi')
+                ->join('jasas', 'negosiasi.id_jasa', '=', 'jasas.id')
+                ->join('vendors', 'negosiasi.id_vendor', '=', 'vendors.id')
+                ->where('id_vendor','id_user',Auth::user()->id)
+                ->get();
+                $cekVendors = Negosiasi::where('id_vendor')->orWhere('id_user',Auth::user()->id)->get();
+                
+                // if($cekVendors >= 1) {
+                //     echo 'text';
+                //     e
+                // }else{
+                //     echo 'gas';
+                // }
+                $jasapervendor = $cekVendors->count();
+
+               
+            }else{  
                 $cekVendor = null;
+                $cekSaldo = null;
+                $cekNegosiasisUser = null;
+
             }
        
-            if ($user_id) {
-                // UNTUK MENGAMBIL DATA PAGINATE KONTEN
-                 $cekSaldo = HistoryTransaksi::where('user_id',Auth::user()->id)->paginate(5);
-            }else {
-                $cekSaldo = null;
-            }
+          
+
 
 
         // UNTUK MENGAMBIL JUMLAH DATA SEMUA YANG DI KURANG DENGAN SALDO 
          $cek_akhir_saldo = HistoryTransaksi::where('user_id',Auth::user()->id)->get();  
-         $cekNegosiasi = Negosiasi::with('kota','provinsi','kelurahan','kecamatan')->where('id_user',Auth::user()->id)->get();   
-        //  dd($cekNegosiasi);
+          
+         
          $kategoris = DB::select('select * from kategoris limit 6'); 
          $users = User::findOrFail($user_id->id);
-         return view('layouts.user.status-negosiasi',compact('users','cekVendor','cekNegosiasi','kategoris','cekSaldo','cek_akhir_saldo','cek_akhir_saldo'));
+         return view('layouts.user.status-negosiasi',compact('users','cekVendor','kategoris','cekSaldo','cek_akhir_saldo','cekVendors','cekNegosiasisUser','cek_akhir_saldo','jasapervendor','ambilDataJasaPerVendor'));
 
 
     }

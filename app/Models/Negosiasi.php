@@ -11,7 +11,7 @@ class Negosiasi extends Model
     protected $primaryKey = 'id';
     protected $table = 'negosiasi';
     protected $fillable = ['id',
-     'nama_user','id_negosiasi','id_user','id_city','id_district','id_province','id_villages','jumlah_negosiasi','alamat_lengkap','status','keterangan'
+     'nama_user','id_negosiasi','id_user','id_city','id_district','id_province','id_villages','id_jasa','id_vendor','jumlah_negosiasi','alamat_lengkap','status','keterangan'
    ];
 
    public function kota()
@@ -43,6 +43,16 @@ class Negosiasi extends Model
     public function transaksis()
     {
         return $this->hasMany(Transaksis::class,'jasa_id');
+    }
+
+    public function vendors()
+	{
+	    return $this->belongsTo(Vendors::class,'id_vendor');
+	}
+
+    public function jasa()
+    {
+        return $this->belongsTo(Jasas::class,'id_jasa');
     }
 
 

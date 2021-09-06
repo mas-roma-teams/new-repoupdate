@@ -40,7 +40,7 @@ class Vendors extends Model
 
     public function jasas()
     {
-        return $this->hasMany(Jasas::class);
+        return $this->hasMany(Jasas::class,'id');
     }
 
     public function wilayah()

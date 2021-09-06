@@ -269,3 +269,46 @@ a:hover{
   width: 114px;
   height: 62px;
 }
+
+/* HR STYLES */
+$separator-size: 5px;
+$separator-border-style: solid;
+$separator-border-color: #E78A6E;
+$separator-space-top: 25px;
+$separator-space-bottom: 80px;
+
+.pembatas {
+  margin-top: $separator-space-top;
+  margin-bottom: $separator-space-bottom;
+  border: 0;
+}
+
+/* Vendor Nego Layout */
+.logo-vendor {
+  float: left;
+  width: 40px;
+  height: 38px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  border-radius: 24px;
+  margin-top: 9px;
+}
+.header-nego h3 {
+  font-size: 20px !important;
+}
+
+.header-nego h4 {
+  font-size: 12px !important;
+}
+
+.content-nego {
+  margin-top: 18px;
+  margin-bottom: 80px;
+}
+
+.content-nego .gambar-jasa {
+  height: 100px;
+  float: left;
+  margin-right: 9px;
+  
+}

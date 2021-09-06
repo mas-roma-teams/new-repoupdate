@@ -33,84 +33,58 @@
        
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-           
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>ID Negosiasi</th>
-                  <th>Nama Lengkap</th>
-                  <th>Jumlah Negosiasi</th>
-                  <th>Keterangan</th>
-                  <th>Alamat</th>
-                  <th>Status</th>
-                  <th>#</th>
-                  <!-- <th>Alamat</th>
-                  <th>Keterangan</th>
-                  <th>Waktu Penarikan</th> -->
-                  
-                </tr>
-              </thead>
-              <tbody>
-                @if( $cekNegosiasi->count() > 0 )
-                <?php $i=1; ?>
-                @foreach($cekNegosiasi as $post)
-                <tr>
-                  <td>{{ $i }}</td>
-                  <td>{{ $post->id_negosiasi }}</td>
-                  <td>{{ $post->nama_user }}</td>
-                  <td>
+            <!-- LOOPING UNTUK BAGIAN VENDOR -->
+            @foreach ( $cekNegosiasisUser as $negoasiasiUser => $value)
+            <div class="layout-nego">
+                <hr class="pembatas" /> 
+                <div class="header-nego">
+                  <img class="logo-vendor" src="https://image.flaticon.com/icons/png/512/174/174848.png" alt="">
+                  <h3> Nama Vendor </h3>
+                  <h5> DAERAH ASAL VENDOR </h5>
+                </div>
 
-                    Rp. {{ number_format($post->jumlah_negosiasi,0,',','.') }}</td>
+                <!-- LOOPING UNTUK BAGIAN JASA YANG DIPUNYAI VENDOR -->
+               
+              
 
-                    <td>{{ $post->alamat_lengkap }}</td>
-                    <td>{{ $post->keterangan }}</td>
 
-                    @if($post->status == '1')
-                    <td> <div class="alert alert-primary" role="alert">
-                        Negosiasi Diajukan
-                    </div></td>
-                    @elseif($post->status == '2')
-                    <td> <div class="alert alert-success" role="alert">
-                    Negosiasi Diterima
-                    </div></td>
-                    @else($post->status == '0')
-                    <td> <div class="alert alert-danger" role="alert">
-                    Negosiasi Ditolak
-                    </div></td>
-                    @endif
-
-                    
-
-                   
-                    <td>
-                
-                    <button type="button" class="btn btn-danger">Batalkan Negosiasi</button>
-                    <button type="button" class="btn btn-info">Detail Negosiasi</button>
-                    </td>
-                    
-                    
-                  </tr>
-                  <?php $i++; ?>
-                  
+                  @if (!$value->id_vendor >= 1)
+                  @foreach ($value as $data)
+                    <p>DATA JASA 1 VENDOR </p>
                   @endforeach
 
-
-                  @else 
-                  <tr>
-                    <td colspan="5">BELUM ADA TRANSAKSI PENARIKAN</td>
-                  </tr>
+                  @elseif(!$value->id_vendor == 1)
+                  <p>DATA VENDOR MASIH LEBIH DARI 1</p>
                   @endif
-                  
-                </tbody>
+              
                 
-              </table>
+            
+              
+               
+               
+              
+               
 
-              <!-- START PAGINATION -->
-              {{ $cekSaldo->links('layouts.pagination.pagination') }} 
-              
-              
+                
+                
+               
+                
+                <!-- LOOPING UNTUK BAGIAN JASA YANG DIPUNYAI VENDOR -->
+                
+
+                
+                
+
+                <hr class="pembatas" /> 
+
             </div>
+            @endforeach
+
+           
+
+           
+            <!-- LOOPING UNTUK BAGIAN VENDOR -->
+           
             
           </div>
         </div>
@@ -119,6 +93,7 @@
 
   </div>
 
+</div>
 </div>
 
 @endsection
